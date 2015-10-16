@@ -8,6 +8,34 @@ Router.configure({
 // Dashboards routes
 //
 
+Router.route('/dashboard', function () {
+    this.render('dashboard');
+});
+
+Router.route('/map', function () {
+    this.render('map');
+});
+
+Router.route('/product', function () {
+    this.render('product');
+});
+
+Router.route('/marketing', function () {
+    this.render('marketing');
+});
+
+Router.route('/team', function () {
+    this.render('team');
+});
+
+Router.route('/investments', function () {
+    this.render('investments');
+});
+
+
+/////////////////////////////////////////
+
+
 Router.route('/dashboard1', function () {
     this.render('dashboard1');
 });
