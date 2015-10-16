@@ -3,6 +3,10 @@ __author__ = 'eduar'
 import numpy as np
 import random
 
+from collections import namedtuple
+
+Follower = namedtuple('Follower', ['user', 'weight'])
+
 class User():
     def __init__(self, id, name):
         self.id = id
@@ -13,9 +17,12 @@ class User():
         pass
 
     def __str__(self):
-        return self.name + "\n" + " ".join([friend.name for friend in self.friends])
+        return self.name + "\n" + " ".join([friend.user.name for friend in self.friends])
+
 
 class UsersGenerator():
+    WEIGHT_MAX = 10
+
     @staticmethod
     def generate_users(num, k=10):
         def gen_name():
@@ -29,8 +36,8 @@ class UsersGenerator():
         followers_size = np.random.poisson(k, len(users))
         for i, user in enumerate(users):
             followers_indexes = np.random.permutation(len(users))[:followers_size[i]]
-            user.friends = [users[i] for i in followers_indexes]
+            user.friends = [Follower(users[i], random.random() * UsersGenerator.WEIGHT_MAX) for i in followers_indexes]
         return users
 
 # users = UsersGenerator.generate_users(100)
-# print(users[5])
+# print(users[5].friends)
