@@ -1,0 +1,14 @@
+{
+    "folders":
+    [
+           //... don't touch this part, leave it as it was ...
+    ],
+        // add this! ternjs object
+    "ternjs": {
+        "libs": ["browser", "underscore", "jquery"],
+        "exclude": [".meteor/**", "node_modules/**"],
+        "plugins": {
+            "meteor": {}
+        }
+    }
+}
