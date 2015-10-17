@@ -1,8 +1,8 @@
-from collections import defaultdict
 import random
-from Game.Managers.ProductsManager import create_product
-from Game.Models.UserModel import Follower, User
+
 import numpy as np
+
+from Game.Models.UserModel import Follower, User
 
 __author__ = 'eduar'
 
@@ -23,10 +23,10 @@ def ceo_generator(users, product):
             return user
 
 
-def product_generator(generator, product):
-    for user in generator:
+def product_generator(users, product):
+    for user in users:
         user.add_product(product)
-        yield product
+        yield user
 
 
 def users_selfishness(generator):
