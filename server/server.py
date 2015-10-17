@@ -1,7 +1,9 @@
-from tornado import websocket, web, ioloop
-from Tools.Serialization import serialize
 import json
-from GameManager import GameManager
+
+from tornado import websocket, web, ioloop
+
+from Tools.Serialization import serialize
+from Game.Managers.GameManager import GameManager
 
 
 class SocketHandler(websocket.WebSocketHandler):
