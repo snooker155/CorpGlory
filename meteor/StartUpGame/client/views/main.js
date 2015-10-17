@@ -1,6 +1,8 @@
+var money = new ReactiveVar (1);
+
 var ws = new WebSocket('ws://localhost:8888/');
 ws.onmessage = function(event) {
-    var world = event.data;
+  money.set(event.data);
 };
 
 function send(command, data) {
@@ -10,6 +12,13 @@ function send(command, data) {
   };
   ws.send(JSON.stringify(obj));
 }
+
+
+Template.main.helpers({
+	money: function () {
+		return money.get();
+	}
+});
 
 Template.main.events({
   "click #mainButton": function foo() {
