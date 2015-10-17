@@ -32,7 +32,7 @@ class User:
     def loyalty(self):
         return self.old_parameters.loyalty
 
-    def is_seo(self):
+    def is_ceo(self):
         return self.id == User.CEO_ID
 
     def __str__(self):

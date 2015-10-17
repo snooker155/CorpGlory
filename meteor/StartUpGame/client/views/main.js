@@ -1,8 +1,7 @@
-var ws = new WebSocket('ws://10.25.2.190:8888/');
+var ws = new WebSocket('ws://localhost:8888/');
 ws.onmessage = function(event) {
-  alert(event.data)
-}
-
+  document.getElementById('money_view').innerHTML = event.data
+};
 
 function send(command, data) {
   var obj = {

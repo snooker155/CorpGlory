@@ -2,6 +2,7 @@ from threading import Thread, Lock
 from time import sleep
 from Game.Models.World import World
 
+
 class Game:
     def __init__(self):
         self.world = World()
@@ -18,8 +19,7 @@ class Game:
         pass
 
     def update(self):
-        # TODO: move to the World game element
-        self.world.money -= 200
+        self.world.update()
 
     # ========================
 
