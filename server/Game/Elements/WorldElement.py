@@ -8,7 +8,7 @@ from Game.Models.WorldModel import WorldModel
 class WorldElement(GameElement):
     def __init__(self, model: WorldModel):
         self.model = model
-        self.users = [UserElement(user) for user in self.model.users]
+        self.users = [UserElement(userModel) for userModel in self.model.users]
         self.companies = [create_company(company) for company in self.model.products]
         self.companies.append(create_company('MyCompany', player=True))
 

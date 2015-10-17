@@ -25,13 +25,19 @@ def ceo_generator(users, product):
 
 def product_generator(users, product):
     for user in users:
-        user.add_product(product)
+        add_product(user, product)
         yield user
 
 
 def users_selfishness(generator):
     for user in generator:
         user.selfish = (random.random() + 1) * 0.5
+        yield user
+
+
+def users_tresholders(generator):
+    for user in generator:
+        user.threshold = random.random()
         yield user
 
 
@@ -62,6 +68,28 @@ def update_friends(user):
 
         a = user.selfish
         user.loyalty[product] = (a * user.loyalty[product] + (1 - a) * w)
+
+
+def update_products(user):
+    for product in user.loyalty:
+        if user.loyalty[product] > user.threshold:
+            user.product = product
+
+
+def update_relation_coefficient(user):
+    pass
+
+
+def update_news(user):
+    pass
+
+
+def update_news_coefficient(user):
+    pass
+
+
+def update_inary(user):
+    pass
 
 
 def add_product(user, product):

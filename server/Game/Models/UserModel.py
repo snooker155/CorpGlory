@@ -12,6 +12,7 @@ class User:
         self.name = name
         self.liberal = 0
         self.friends = []
+        self.threshold = 0.0
         self.selfish = 0
         self.loyalty = defaultdict(float)
 

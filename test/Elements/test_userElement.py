@@ -2,14 +2,16 @@ from collections import defaultdict
 from unittest import TestCase
 from Game.Elements.UserElement import UserElement
 from Game.Managers.ProductsManager import create_company
-from Game.Managers.UserManager import users_selfishness, users_relations, usergen, product_generator, ceo_generator
+from Game.Managers.UserManager import users_selfishness, users_relations, usergen, product_generator, ceo_generator, \
+    users_tresholders
 
 __author__ = 'eduar'
 
 
 class TestUserElement(TestCase):
     def test_simple(self):
-        users = list(users_selfishness(users_relations(usergen(100), 10)))
+        users = list(users_tresholders(users_selfishness(users_relations(usergen(100), 10))))
+
         facebook, twitter = create_company('facebook'), create_company('twitter')
 
         product_generator(users, facebook)
@@ -33,5 +35,6 @@ class TestUserElement(TestCase):
 
             for user in users:
                 UserElement(user).update()
+
 
         self.assertTrue(True)
