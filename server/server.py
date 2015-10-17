@@ -22,22 +22,19 @@ class SocketHandler(websocket.WebSocketHandler):
         obj = json.loads(data)
         game = GameManager.game_by_id(self.connection_id())
         command = obj['command']
-        mt = getattr(game, 'public_' + command)
+        handler = getattr(game.communication, command)
+
         game.lockAll()
         try:
-            if 'data' in obj:
-                res = mt(obj['data'])
-            else:
-                res = mt()
+            res = handler(**obj.get('data', {}))
             if res is not None:
                 print('on_message')
-                self.write_message(res)
+                self.write_message(serialize(res))
         finally:
             game.unlockAll()
 
     def on_update(self, game):
         print('on_update')
-        print(serialize(game.world))
         self.write_message(serialize(game.world))
 
     def on_close(self):

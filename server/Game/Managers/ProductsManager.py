@@ -24,8 +24,10 @@ def create_company(name, player=False):
         create_company.id = 0
     product = ProductModel(name)
 
-    product.id = create_company.id
+    cls = PlayerCompanyElement if player else AICompanyElement
+    company = cls(product)
+
+    company.id = create_company.id
     create_company.id += 1
 
-    cls = PlayerCompanyElement if player else AICompanyElement
-    return cls(product)
+    return company

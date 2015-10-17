@@ -4,7 +4,7 @@ from Game.Game import Game
 
 
 class GameManager:
-    games = dict()
+    games = {}
 
     @staticmethod
     def game_by_id(id):
