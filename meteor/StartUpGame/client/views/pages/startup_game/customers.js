@@ -11,7 +11,7 @@ $(function() {
 	}
 	
 	Communication.addSubscriber("users", function(users) {
-
+		// todo: do nothing if not active
 		var hh = "";
 		iillkkk++;
 		
