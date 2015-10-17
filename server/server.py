@@ -27,7 +27,7 @@ class SocketHandler(websocket.WebSocketHandler):
         game.lockAll()
         try:
             res = handler(**obj.get('data', {}))
-            if res is not None:
+            if res:
                 print('on_message')
                 self.write_message(serialize(res))
         finally:

@@ -3,7 +3,6 @@ from time import sleep
 
 from Communacation import Communication
 from Game.Managers.WorldManager import create_world
-from Tools.Serialization import serialize
 
 
 class Game:

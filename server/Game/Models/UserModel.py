@@ -1,5 +1,4 @@
 from collections import namedtuple, defaultdict
-from enum import Enum
 
 Follower = namedtuple('Follower', ['user', 'weight'])
 
@@ -10,9 +9,8 @@ class User:
         self.ceo = False
         self.product = None
         self.name = name
-        self.liberal = 0
         self.friends = []
-        self.threshold = 0.0
+        self.threshold = 0.15
         self.selfish = 0
         self.loyalty = defaultdict(float)
 

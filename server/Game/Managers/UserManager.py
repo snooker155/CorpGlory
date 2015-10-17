@@ -7,6 +7,22 @@ from Game.Models.UserModel import Follower, User
 __author__ = 'eduar'
 
 
+def update_product(user):
+    if user.ceo:
+        return
+
+    max_value = 0.0
+    best_prod = None
+    for i, prod in enumerate(user.loyalty):
+        if user.loyalty[prod] > max_value:
+            max_value = user.loyalty[prod]
+            best_prod = prod
+
+    if best_prod != None and user.loyalty[best_prod] > user.threshold and user.product != best_prod:
+        print(best_prod)
+        user.product = best_prod
+
+
 def ceo_generator(users, product):
     while True:
         user = random.choice(users)
@@ -31,13 +47,7 @@ def product_generator(users, product):
 
 def users_selfishness(generator):
     for user in generator:
-        user.selfish = (random.random() + 1) * 0.5
-        yield user
-
-
-def users_tresholders(generator):
-    for user in generator:
-        user.threshold = random.random()
+        user.selfish = (random.random()) * 0.5
         yield user
 
 
@@ -59,6 +69,20 @@ def usergen(num):
     yield from (User(id, name()) for id in range(1, num))
 
 
+def update_inner(user):
+    for prod in user.loyalty:
+        if user.ceo or user.product == prod or user.loyalty[prod] == 0:
+            continue
+
+        solve = (random.random() * 2 - 1.0) * 0.20
+        if user.loyalty[prod] + solve < 0:
+            user.loyalty[prod] = 0
+        elif user.loyalty[prod] + solve > 1:
+            user.loyalty[prod] = 1
+        else:
+            user.loyalty[prod] += solve
+
+
 def update_friends(user):
     w = 0
     for product in user.loyalty:
@@ -68,28 +92,6 @@ def update_friends(user):
 
         a = user.selfish
         user.loyalty[product] = (a * user.loyalty[product] + (1 - a) * w)
-
-
-def update_products(user):
-    for product in user.loyalty:
-        if user.loyalty[product] > user.threshold:
-            user.product = product
-
-
-def update_relation_coefficient(user):
-    pass
-
-
-def update_news(user):
-    pass
-
-
-def update_news_coefficient(user):
-    pass
-
-
-def update_inary(user):
-    pass
 
 
 def add_product(user, product):
