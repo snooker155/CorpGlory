@@ -1,5 +1,5 @@
 from Game.Models.ProductModel import ProductModel
-from Game.Elements.CompanyElement import PlayerCompanyElement, AICompanyElement
+from Game.Elements.CompanyElement import PlayerCompanyElement
 
 __author__ = 'eduar'
 
@@ -13,8 +13,8 @@ features = {
 }
 
 
-def create_product(name, company):
-    return ProductModel(name, company)
+def create_product(company):
+    return ProductModel(company)
 
 
 def update_company(world, change):

@@ -11,7 +11,8 @@ def add_product(world, product):
 
 
 def create_world(money=5000, users=100, average_connections=20, companies=None):
-    companies = companies or [create_company('facebook'), create_company('twitter')]
+    companies = companies or [create_company('facebook', money), create_company('twitter', money),
+                              create_company('MyCompany', money)]
     users = users_selfishness(users_relations(usergen(users), average_connections))
-    model = WorldModel(money, users, companies)
+    model = WorldModel(users, companies)
     return WorldElement(model)

@@ -1,11 +1,10 @@
 from Game.Elements.GameElement import GameElement
-from Game.Models.CompanyModel import CompanyModel
 
 __author__ = 'eduar'
 
 
 class CompanyElement(GameElement):
-    def __init__(self, company_model: CompanyModel):
+    def __init__(self, company_model):
         self.company_model = company_model
 
     def update(self):
