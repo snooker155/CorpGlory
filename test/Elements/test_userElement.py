@@ -1,7 +1,7 @@
 from collections import defaultdict
 from unittest import TestCase
 from Game.Elements.UserElement import UserElement
-from Game.Managers.ProductsManager import create_company
+from Game.Managers.CompanyManager import create_company
 from Game.Managers.UserManager import users_selfishness, users_relations, usergen, product_generator, ceo_generator
 
 __author__ = 'eduar'
@@ -12,13 +12,13 @@ class TestUserElement(TestCase):
         users = list(users_selfishness(users_relations(usergen(100), 10)))
         facebook, twitter = create_company('facebook'), create_company('twitter')
 
-        product_generator(users, facebook)
-        ceo_generator(users, facebook)
+        list(product_generator(users, facebook.product_model))
+        ceo_generator(users, facebook.product_model)
 
         for i in range(100):
             if i == 10:
-                product_generator(users, twitter)
-                ceo_generator(users, twitter)
+                list(product_generator(users, twitter.product_model))
+                ceo_generator(users, twitter.product_model)
 
             sums = defaultdict(float)
             for user in users:

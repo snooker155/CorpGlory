@@ -1,4 +1,6 @@
 from collections import defaultdict
+from Game.Models.CompanyModel import CompanyModel
+from Game.Models.ProductModel import ProductModel
 from Game.Models.UserModel import User
 import json
 
@@ -11,9 +13,16 @@ def walk_user(user):
     return data
 
 
+def walk_product(product):
+    data = product.__dict__.copy()
+    del data['company']
+
+
 def walk(obj):
     if isinstance(obj, User):
         return walk_user(obj)
+    if isinstance(obj, ProductModel):
+        return walk_product(obj)
     if isinstance(obj, (bool, int, float, str)):
         return obj
     elif isinstance(obj, dict):

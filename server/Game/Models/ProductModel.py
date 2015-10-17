@@ -2,8 +2,10 @@ __author__ = 'eduar'
 
 
 class ProductModel:
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, company):
+        self.name = company.name
+        self.company = company
+
         self.tech = 0
         self.design = 0
 
