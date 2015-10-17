@@ -1,3 +1,3 @@
 class World:
     def __init__(self):
-        pass
+        self.money = 5000

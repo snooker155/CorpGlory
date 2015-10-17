@@ -1,10 +1,10 @@
 from threading import Thread, Lock
 from time import sleep
-
+from Models import World.World
 
 class Game:
     def __init__(self):
-        self.money = 5000
+        self.world = World()
         # -----------------
         self.thread = None
         self.killed = False
@@ -17,7 +17,8 @@ class Game:
         pass
 
     def update(self):
-        self.money -= 200
+        # TODO: move to the World game element
+        self.world.money -= 200
 
     # ========================
 
@@ -39,6 +40,7 @@ class Game:
             self.lockAll()
             self.update()
             self.unlockAll()
+            # TODO: notify connected client about the update
             sleep(1)
 
     def kill(self):
