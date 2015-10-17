@@ -51,3 +51,22 @@ def usergen(num):
         return "".join([chr(random.randint(ord('a'), ord('z'))) for _ in range(5)])
 
     yield from (User(id, name()) for id in range(1, num))
+
+
+def update_friends(user):
+    w = 0
+    for product in user.loyalty:
+        for friend in user.friends:
+            w += friend.weight * friend.user.loyalty[product]
+        w /= len(user.friends)
+
+        a = user.selfish
+        user.loyalty[product] = (a * user.loyalty[product] + (1 - a) * w)
+
+
+def add_product(user, product):
+    user.loyalty[product] = 0.0
+
+
+def update_loyalty(user, product, value):
+    user.loyalty[product] += value
