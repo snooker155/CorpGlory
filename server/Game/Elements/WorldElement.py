@@ -1,8 +1,7 @@
-from Game.Models.GameElement import GameElement
-from Game.Models.User import UsersGenerator
+from Game.Elements.GameElement import GameElement
 
 
-class World(GameElement):
+class WorldElement(GameElement):
     def __init__(self, money, users, average_connections):
         self.money = money
         # self.users = UsersGenerator.generate_users(users, average_connections)
@@ -18,4 +17,4 @@ class World(GameElement):
 
 
 def create_world(money=5000, users=100, average_connections=20):
-    return World(money, users, average_connections)
+    return WorldElement(money, users, average_connections)
