@@ -1,5 +1,3 @@
-__author__ = 'eduar'
-
 import numpy as np
 import random
 
@@ -7,28 +5,64 @@ from collections import namedtuple
 
 Follower = namedtuple('Follower', ['user', 'weight'])
 
-class User():
-    def __init__(self, id, name):
+
+class UsersParameters:
+    def __init__(self, loyalty):
+        self.loyalty = loyalty
+
+
+class User:
+    CEO_ID = 0
+
+    def __init__(self, id, name, loyalty, selfish):
         self.id = id
         self.name = name
         self.friends = []
+        self.parameters = UsersParameters(loyalty)
+        self.old_parameters = UsersParameters(loyalty)
+        self.selfish = selfish
 
-    def update_env(self, env):
+    def update_world(self, world):
         pass
 
+    def update_properties(self):
+        self.old_parameters = self.parameters
+
+    @property
+    def loyalty(self):
+        return self.old_parameters.loyalty
+
+    def is_seo(self):
+        return self.id == User.CEO_ID
+
     def __str__(self):
-        return self.name + "\n" + " ".join([friend.user.name for friend in self.friends])
+        return str(self.loyalty)
+
+    def recalc(self):
+        w = 0
+        for friend in self.friends:
+            w += friend.weight * friend.user.loyalty
+        w /= len(self.friends)
+
+        a = self.selfish
+        self.parameters.loyalty = (a * self.old_parameters.loyalty + (1 - a) * w)
 
 
-class UsersGenerator():
-    WEIGHT_MAX = 10
+class UsersGenerator:
+    WEIGHT_MAX = 1
 
     @staticmethod
     def generate_users(num, k=10):
-        def gen_name():
+        def name():
             return "".join([chr(random.randint(ord('a'), ord('z'))) for _ in range(5)])
 
-        users = [User(id, gen_name()) for id in range(num)]
+        def loyalty():
+            return 0
+
+        def selfish():
+            return random.random()
+
+        users = [User(0, name(), 1, 1)] + [User(id, name(), loyalty(), selfish()) for id in range(1, num)]
         return UsersGenerator.generate_friendships(users, k)
 
     @staticmethod
@@ -39,5 +73,14 @@ class UsersGenerator():
             user.friends = [Follower(users[i], random.random() * UsersGenerator.WEIGHT_MAX) for i in followers_indexes]
         return users
 
-# users = UsersGenerator.generate_users(100)
-# print(users[5].friends)
+
+users = UsersGenerator.generate_users(100)
+
+for i in range(100):
+    print(str(i) + " : " + str(sum(user.loyalty for user in users)))
+
+    for user in users:
+        user.recalc()
+
+    for user in users:
+        user.update_properties()
