@@ -2,7 +2,7 @@ import json
 
 from tornado import websocket, web, ioloop
 
-from Tools.Serialization import serialize
+from Tools.Serialization import world_state_serializer
 from Game.Managers.GameManager import GameManager
 
 
@@ -29,12 +29,12 @@ class SocketHandler(websocket.WebSocketHandler):
             res = handler(**obj.get('data', {}))
             if res:
                 print('on_message')
-                self.write_message(serialize(res))
+                self.write_message(world_state_serializer(res))
         finally:
             game.unlockAll()
 
     def on_update(self, game):
-        self.write_message(serialize(game.world.model, key='world'))
+        self.write_message(world_state_serializer(game.world.model))
 
     def on_close(self):
         id = self.connection_id()

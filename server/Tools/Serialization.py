@@ -4,6 +4,8 @@ from Game.Models.ProductModel import ProductModel
 from Game.Models.UserModel import User
 import json
 
+from functools import partial
+
 __author__ = 'eduar'
 
 
@@ -42,8 +44,13 @@ def walk(obj):
         return repr(obj)  # Don't know how to handle, convert to string
 
 
-def serialize(obj, key=None, **kwargs):
+def serialize(fields, obj, key=None, **kwargs):
+    obj = {k: v for k, v in obj.__dict__.items() if k in fields}
+
     if key:
         obj = {key: obj}
-    j =     walk(obj)
+    j = walk(obj)
     return json.dumps(j, **kwargs).encode()
+
+
+world_state_serializer = partial(serialize, ['users', 'companies'], key='world')
