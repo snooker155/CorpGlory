@@ -6,14 +6,14 @@ from Game.Models.WorldModel import WorldModel
 
 
 class WorldElement(GameElement):
-    def __init__(self, world_model: WorldModel):
-        self.world_model = world_model
-        self.users = [UserElement(user) for user in self.world_model.users]
-        self.companies = [create_company(company) for company in self.world_model.products]
+    def __init__(self, model: WorldModel):
+        self.model = model
+        self.users = [UserElement(userModel) for userModel in self.model.users]
+        self.companies = [create_company(company) for company in self.model.products]
         self.companies.append(create_company('MyCompany', player=True))
 
     def update(self):
-        self.world_model.money_model -= 200
+        self.model.money_model -= 200
 
         for user in self.users:
             user.update()
@@ -21,6 +21,3 @@ class WorldElement(GameElement):
         for company in self.companies:
             company.update()
 
-    @property
-    def model(self):
-        return self.world_model

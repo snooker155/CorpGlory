@@ -34,8 +34,7 @@ class SocketHandler(websocket.WebSocketHandler):
             game.unlockAll()
 
     def on_update(self, game):
-        print('on_update')
-        self.write_message(serialize(game.world))
+        self.write_message(serialize(game.world.model, key='world'))
 
     def on_close(self):
         id = self.connection_id()

@@ -25,7 +25,7 @@ def ceo_generator(users, product):
 
 def product_generator(users, product):
     for user in users:
-        user.add_product(product)
+        add_product(user, product)
         yield user
 
 

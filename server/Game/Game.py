@@ -11,7 +11,7 @@ class Game:
         self.world = create_world()
         self.communication = Communication(self)
 
-        self.onUpdate = None
+        self.on_update = None
         # -----------------
         self.thread = None
         self.killed = False
@@ -40,10 +40,9 @@ class Game:
             self.lockAll()
             self.update()
             self.unlockAll()
-            if self.onUpdate is not None:
-                self.onUpdate()
+            if self.on_update is not None:
+                self.on_update()
             sleep(1)
-            print(serialize(self.world.model))
 
     def kill(self):
         self.killed = True
