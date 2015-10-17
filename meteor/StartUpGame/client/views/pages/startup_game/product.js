@@ -1,14 +1,34 @@
-var status = new ReactiveVar(true);
+var max_level_number = new ReactiveVar(5);
+var level_number = new ReactiveVar(1);
 
 Template.product.helpers({
-	status: function(){
-		console.log(status.get());
-		return status.get();
-	}
+	level_number: function(){
+		return level_number.get();
+	},
+
+	max_level_number: function(){
+		return max_level_number.get();
+	},
+
+	tech_level_plus_enabled:function(){
+		return level_number.get()<max_level_number.get()?"":"disabled";
+	},
+
+	tech_level_minus_enabled:function(){
+		return level_number.get()>0?"":"disabled";
+	},
 });
 
 Template.product.events({
-	"click #disable": function(event){
-		status.set(status.get() === false? true:false);
+	"click #tech_level_minus": function(event){
+		if (!this.disabled){
+			level_number.set(level_number.get() - 1);
+		}
+	},
+
+	"click #tech_level_plus": function(event){
+		if (!this.disabled){
+			level_number.set(level_number.get() + 1);
+		}
 	}
 });
