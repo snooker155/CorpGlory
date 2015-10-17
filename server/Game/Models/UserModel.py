@@ -10,15 +10,10 @@ class User:
         self.ceo = False
         self.product = None
         self.name = name
-        self.liberal = Liberal.conservative
+        self.liberal = 0
         self.friends = []
         self.selfish = 0
         self.loyalty = defaultdict(float)
 
     def __str__(self):
         return str(self.loyalty)
-
-
-class Liberal(Enum):
-    conservative = 0
-    liberal = 1

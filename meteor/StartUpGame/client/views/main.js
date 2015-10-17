@@ -1,8 +1,8 @@
 var money = new ReactiveVar (1);
 
-ws.onmessage = function(event) {
-  money.set(event.data);
-};
+Communication.addSubscriber('money_model', function(value) {
+  console.log(value);
+});
 
 Template.main.helpers({
 	money: function () {
