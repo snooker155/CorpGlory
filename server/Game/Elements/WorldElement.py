@@ -1,6 +1,5 @@
 from Game.Elements.GameElement import GameElement
 
-
 class WorldElement(GameElement):
     def __init__(self, money, users, average_connections):
         self.money = money
