@@ -13,11 +13,13 @@ class GameManager:
         return GameManager.games[id]
 
     @staticmethod
-    def createNewGame(id):
-        GameManager.games[id] = Game()
-        pass
+    def startNewGame(id):
+        game = Game()
+        GameManager.games[id] = game
+        game.start()
 
     @staticmethod
     def killGame(id):
         if(id in GameManager.games):
+            GameManager.games[id].kill()
             del GameManager.games[id]
