@@ -5,9 +5,13 @@ var iillkkk = 0;
 $(function() {
 	var i = 0;
 	var first = true;
+	
+	function foo(obj) {
+		return "<td ><pre style='width:350px'>" + JSON.stringify(obj, null, 2) + "</pre></td>";
+	}
+	
 	Communication.addSubscriber("users", function(users) {
-		$("#userstablebody").html();
-		
+
 		var hh = "";
 		iillkkk++;
 		
@@ -16,13 +20,10 @@ $(function() {
 			hh += "<tr>";
 			hh += "<td>" + u.id + "</td>";
 			hh += "<td>" + u.name + "</td>";
-			hh += "<td>" + u.product + "</td>";
-			hh += "<td>" + u.loyalty + "</td>";
-			hh += "<td>" + iillkkk + "</td>"
+			hh += foo(u.product);
+			hh += foo(u.loyalty);
 			hh += "<td>" + u.selfish + "</td>";
 			hh += "<td>" + u.threshold + "</td>";
-			
-			
 			hh += "<td>" + u.friends + "</td>";
 			
 
