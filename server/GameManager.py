@@ -17,6 +17,7 @@ class GameManager:
         game = Game()
         GameManager.games[id] = game
         game.start()
+        return game
 
     @staticmethod
     def killGame(id):

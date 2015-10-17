@@ -1,17 +1,18 @@
 from threading import Thread, Lock
 from time import sleep
-from Models import World.World
+from Game.Models.World import World
 
 class Game:
     def __init__(self):
         self.world = World()
+        self.onUpdate = None
         # -----------------
         self.thread = None
         self.killed = False
         self.lock = Lock()
 
     def public_getMoney(self):
-        return {'money': self.money}
+        return {'money': self.world.money}
 
     def public_goDaddy(self):
         pass
@@ -40,7 +41,8 @@ class Game:
             self.lockAll()
             self.update()
             self.unlockAll()
-            # TODO: notify connected client about the update
+            if self.onUpdate is not None:
+                self.onUpdate()
             sleep(1)
 
     def kill(self):

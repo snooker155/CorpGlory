@@ -11,13 +11,14 @@ class SocketHandler(websocket.WebSocketHandler):
         return self.request.headers['Sec-Websocket-Key']
 
     def open(self):
-        GameManager.startNewGame(self.connectionId())
+        game = GameManager.startNewGame(self.connectionId())
+        game.onUpdate = lambda: self.onUpdate(game)
         self.write_message(json.dumps({'ok': 'ok'}))
 
     def on_message(self, data):
         obj = json.loads(data)
-        command = obj['command']
         game = GameManager.gameById(self.connectionId())
+        command = obj['command']
         mt = getattr(game, 'public_' + command)
         game.lockAll()
         try:
@@ -29,6 +30,11 @@ class SocketHandler(websocket.WebSocketHandler):
                 self.write_message(json.dumps(res))
         finally:
             game.unlockAll()
+    
+    def onUpdate(self, game):
+        # possible race condition
+        self.write_message(game.world.__dict__)
+
 
     def on_close(self):
         id = self.connectionId()
