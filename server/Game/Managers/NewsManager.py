@@ -1,12 +1,10 @@
-__author__ = 'Bakharev'
-
 class NewsManager:
     news = []
 
     @staticmethod
-    def tick_news(self):
+    def get_news():
         return NewsManager.news
 
     @staticmethod
-    def add_news(self, current_news):
-        news = current_news
+    def add_news(current_news):
+        NewsManager.news = current_news
