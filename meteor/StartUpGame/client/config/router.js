@@ -25,3 +25,8 @@ Router.route('/team', function () {
 Router.route('/investments', function () {
     this.render('investments');
 });
+
+Router.route('/customers', function () {
+    this.render('customers');
+});
+
