@@ -20,34 +20,39 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
+                                <th>Name</th>
+                                <th>Product</th>
+                                <th>Loyalty</th>
+                                <th>Liberal</th>
+                                <th>Selfish</th>
+                                <th>Threshold</th>
+                                <th>Friends</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+                            {{#each customers}}
+                                {{>customer}}
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+</template>
+
+
+
+
+<template name="customer">
+    <tr>
+        <td>{{id}}</td>
+        <td>{{name}}</td>
+        <td>{{product}}</td>
+        <td>{{loyalty}}</td>
+        <td>{{liberal}}</td>
+        <td>{{selfish}}</td>
+        <td>{{threshold}}</td>
+        <td>{{friends}}</td>
+    </tr>
 </template>
