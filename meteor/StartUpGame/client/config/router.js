@@ -8,6 +8,7 @@ Router.configure({
 // Dashboards routes
 //
 
+
 Router.route('/dashboard', function () {
     this.render('dashboard');
 });

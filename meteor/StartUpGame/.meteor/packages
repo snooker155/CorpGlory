@@ -18,7 +18,7 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 
 #natestrauser:font-awesome
-#reactive-var
+reactive-var
 
 
 
@@ -46,7 +46,6 @@ twbs:bootstrap
 fortawesome:fontawesome
 zimme:iron-router-active
 #jquery
-okgrow:iron-router-autoscroll
 dbarrett:dropzonejs
 joncursi:socket-io-client
 ddp

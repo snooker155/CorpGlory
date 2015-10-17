@@ -1,11 +1,14 @@
+var status = new ReactiveVar(true);
+
 Template.product.helpers({
 	status: function(){
-		return true;
+		console.log(status.get());
+		return status.get();
 	}
 });
 
 Template.product.events({
 	"click #disable": function(event){
-		Meteor.call('disable');
+		status.set(status.get() === false? true:false);
 	}
 });
