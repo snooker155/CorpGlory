@@ -23,12 +23,24 @@ Template.product.events({
 	"click #tech_level_minus": function(event){
 		if (!this.disabled){
 			level_number.set(level_number.get() - 1);
+			var obj = {
+				"feature": "tech_level",
+				"value": -1
+			};
+			send('company_change', obj);
+			console.log(obj);
 		}
 	},
 
 	"click #tech_level_plus": function(event){
 		if (!this.disabled){
 			level_number.set(level_number.get() + 1);
+			var obj = {
+				"feature": "tech_level",
+				"value": 1
+			};
+			send('company_change', obj);
+			console.log(obj);
 		}
 	}
 });
