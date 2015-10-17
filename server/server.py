@@ -1,18 +1,34 @@
+
 from tornado import websocket, web, ioloop
+import json
+from GameManager import GameManager
 
 class SocketHandler(websocket.WebSocketHandler):
     def check_origin(self, origin):
         return True
 
+    def connectionId(self):
+        return self.request.headers['Sec-Websocket-Key']
+
     def open(self):
-        print("open!")
-        self.write_message("hihih!")
+        GameManager.createNewGame(self.connectionId())
+        self.write_message(json.dumps({'ok': 'ok'}))
 
     def on_message(self, data):
-        print(data)
+        obj = json.loads(data)
+        command = obj['command']
+        game = GameManager.gameById(self.connectionId())
+        mt = getattr(game, command)
+        if 'data' in obj:
+            res = mt(obj['data'])
+        else:
+            res = mt()
+        if res is not None:
+            self.write_message(json.dumps(res))
 
     def on_close(self):
-        print("close")
+        id = self.connectionId()
+        GameManager.killGame(id)
 
 app = web.Application([
     (r'/', SocketHandler),

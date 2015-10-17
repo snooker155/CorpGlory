@@ -1,17 +1,23 @@
-import uuid
+
+from Game.Game import Game
+#game game game :)
+
 
 class GameManager:
-
     games = dict()
 
     @staticmethod
-    def generateGameUID():
-        return uuid.uuid4()
-
-    @staticmethod
     def gameById(id):
+        if id not in GameManager.games:
+            return None
         return GameManager.games[id]
 
     @staticmethod
-    def createNewGame():
-        uid = GameManager.generateGameUID()
+    def createNewGame(id):
+        GameManager.games[id] = Game()
+        pass
+
+    @staticmethod
+    def killGame(id):
+        if(id in GameManager.games):
+            del GameManager.games[id]
