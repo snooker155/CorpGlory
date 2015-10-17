@@ -10,6 +10,7 @@ class User:
         self.product = None
         self.name = name
         self.friends = []
+        self.threshold = 0.15
         self.selfish = 0
         self.loyalty = defaultdict(float)
 

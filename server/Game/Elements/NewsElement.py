@@ -1,4 +1,6 @@
+from Game.Elements.GameElement import GameElement
 
-class NewsElement:
+
+class NewsElement(GameElement):
     def update(self):
         pass
