@@ -63,7 +63,7 @@ Template.team.events({
 			tech_team_level_number.set(tech_team_level_number.get() - 1);
 			var obj = {
 				"feature": "tech_team_level",
-				"value": -1
+				"value": tech_team_level_number.get()
 			};
 			send('company_change', obj);
 			console.log(obj);
@@ -73,7 +73,7 @@ Template.team.events({
 			tech_team_level_number.set(tech_team_level_number.get() + 1);
 			var obj = {
 				"feature": "tech_team_level",
-				"value": 1
+				"value": tech_team_level_number.get()
 			};
 			send('company_change', obj);
 			console.log(obj);
@@ -83,7 +83,7 @@ Template.team.events({
 			market_team_level_number.set(market_team_level_number.get() - 1);
 			var obj = {
 				"feature": "market_team_level",
-				"value": -1
+				"value": market_team_level_number.get()
 			};
 			send('company_change', obj);
 			console.log(obj);
@@ -93,7 +93,7 @@ Template.team.events({
 			market_team_level_number.set(market_team_level_number.get() + 1);
 			var obj = {
 				"feature": "market_team_level",
-				"value": 1
+				"value": market_team_level_number.get()
 			};
 			send('company_change', obj);
 			console.log(obj);
@@ -103,7 +103,7 @@ Template.team.events({
 			design_team_level_number.set(design_team_level_number.get() - 1);
 			var obj = {
 				"feature": "design_team_level",
-				"value": -1
+				"value": design_team_level_number.get()
 			};
 			send('company_change', obj);
 			console.log(obj);
@@ -113,7 +113,7 @@ Template.team.events({
 			design_team_level_number.set(design_team_level_number.get() + 1);
 			var obj = {
 				"feature": "design_team_level",
-				"value": 1
+				"value": design_team_level_number.get()
 			};
 			send('company_change', obj);
 			console.log(obj);
