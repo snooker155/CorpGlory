@@ -1,11 +1,11 @@
 from threading import Thread, Lock
 from time import sleep
-from Game.Models.World import World
+from Game.Models.World import create_world
 
 
 class Game:
     def __init__(self):
-        self.world = World()
+        self.world = create_world()
         self.onUpdate = None
         # -----------------
         self.thread = None
@@ -38,6 +38,7 @@ class Game:
         while True:
             if self.killed:
                 return
+
             self.lockAll()
             self.update()
             self.unlockAll()

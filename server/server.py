@@ -1,4 +1,5 @@
 from tornado import websocket, web, ioloop
+from Tools.Serialization import serialize
 import json
 from GameManager import GameManager
 
@@ -12,7 +13,7 @@ class SocketHandler(websocket.WebSocketHandler):
 
     def open(self):
         game = GameManager.start_new_game(self.connection_id())
-        game.onUpdate = lambda: self.onUpdate(game)
+        game.on_update = lambda: self.on_update(game)
         self.write_message(json.dumps({'ok': 'ok'}))
 
     def on_message(self, data):
@@ -27,13 +28,15 @@ class SocketHandler(websocket.WebSocketHandler):
             else:
                 res = mt()
             if res is not None:
-                self.write_message(json.dumps(res))
+                print('on_message')
+                self.write_message(res)
         finally:
             game.unlockAll()
 
-    def onUpdate(self, game):
-        # possible race condition
-        self.write_message(game.world.__dict__)
+    def on_update(self, game):
+        print('on_update')
+        print(serialize(game.world))
+        self.write_message(serialize(game.world))
 
     def on_close(self):
         id = self.connection_id()

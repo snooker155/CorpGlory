@@ -2,7 +2,11 @@ var money = new ReactiveVar (1);
 
 var ws = new WebSocket('ws://localhost:8888/');
 ws.onmessage = function(event) {
+<<<<<<< HEAD
   money.set(event.data);
+=======
+    var world = event.data;
+>>>>>>> e1de1c6eae0bcc61602a66cf81fe0b09e4d5eae4
 };
 
 function send(command, data) {
