@@ -1,12 +1,8 @@
-from Game.Elements.GameElement import GameElement
-
-
 class WorldModel:
-    def __init__(self, moneyModel, users, average_connections):
-        self.moneyModel = moneyModel
+    def __init__(self, money_model, users, products):
+        self.money_model = money_model
+        self.products = products
         self.users = users
-        # self.users = UsersGenerator.generate_users(users, average_connections)
 
 
-def create_world(money=5000, users=100, average_connections=20):
-    return WorldModel(money, users, average_connections)
+

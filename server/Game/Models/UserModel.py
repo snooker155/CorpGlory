@@ -2,6 +2,7 @@ from collections import namedtuple, defaultdict
 
 Follower = namedtuple('Follower', ['user', 'weight'])
 
+
 class User:
     def __init__(self, id, name):
         self.id = id

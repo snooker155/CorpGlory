@@ -1,14 +1,31 @@
+from Game.Models.ProductModel import ProductModel
+from Game.Elements.CompanyElement import PlayerCompanyElement, AICompanyElement
+
 __author__ = 'eduar'
 
-from Game.Models.ProductModel import Product
+
+features = {
+    'tech_level': 'tech',
+    'design_level': 'design',
+    'tech_team_level': 'tech_team',
+    'market_team_level': 'marketing_team',
+    'design_team_level': 'design_team'
+}
 
 
-def create_product(name):
-    if not hasattr(create_product, 'id'):
-        create_product.id = 0
-    product = Product(name)
+def update_company(world, change):
+    company = [p for p in world.companies if isinstance(p, PlayerCompanyElement)][0]
+    feature, value = change['feature'], change['value']
+    setattr(company.product, features[feature], value)
 
-    product.id = create_product.id
-    create_product.id += 1
 
-    return product
+def create_company(name, player=False):
+    if not hasattr(create_company, 'id'):
+        create_company.id = 0
+    product = ProductModel(name)
+
+    product.id = create_company.id
+    create_company.id += 1
+
+    cls = PlayerCompanyElement if player else AICompanyElement
+    return cls(product)

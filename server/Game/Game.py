@@ -1,6 +1,8 @@
 from threading import Thread, Lock
 from time import sleep
-from Game.Models.World import create_world
+from Game.Managers.WorldManager import create_world
+from Game.Managers import ProductsManager
+from Tools.Serialization import serialize
 
 
 class Game:
@@ -15,8 +17,8 @@ class Game:
     def public_getMoney(self):
         return {'money': self.world.money}
 
-    def public_goDaddy(self):
-        pass
+    def public_company_change(self, change):
+        ProductsManager.update_company(self.world, change)
 
     def update(self):
         self.world.update()
@@ -45,6 +47,7 @@ class Game:
             if self.onUpdate is not None:
                 self.onUpdate()
             sleep(1)
+            print(serialize(self.world.model))
 
     def kill(self):
         self.killed = True
