@@ -1,9 +1,6 @@
-from Game.Managers import NewsManager
-
-__author__ = 'eduard'
+__author__ = 'eduar'
 
 from Game.Managers.UserManager import *
-from Game.Managers.NewsManager import NewsManager
 from Game.Elements.GameElement import GameElement
 
 
@@ -15,7 +12,7 @@ class UserElement(GameElement):
         update_friends(self.user_model)
         update_relation_coefficient(self.user_model)
 
-        update_news(self.user_model, NewsManager.news)
+        update_news(self.user_model)
         update_news_coefficient(self.user_model)
 
         update_inary(self.user_model)

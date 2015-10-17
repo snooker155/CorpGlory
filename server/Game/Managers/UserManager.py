@@ -1,11 +1,10 @@
 import random
+
 import numpy as np
-from Game.Models.UserModel import User
-from collections import namedtuple
 
-Follower = namedtuple('Follower', ['user', 'weight'])
+from Game.Models.UserModel import Follower, User
 
-__author__ = 'eduard'
+__author__ = 'eduar'
 
 
 def ceo_generator(users, product):
@@ -26,7 +25,7 @@ def ceo_generator(users, product):
 
 def product_generator(users, product):
     for user in users:
-        add_product(user, product)
+        user.add_product(product)
         yield user
 
 
@@ -36,9 +35,9 @@ def users_selfishness(generator):
         yield user
 
 
-def users_thresholds(generator):
+def users_tresholders(generator):
     for user in generator:
-        user.coefficients.threshold = random.random() * 0.5
+        user.threshold = random.random()
         yield user
 
 
@@ -60,11 +59,6 @@ def usergen(num):
     yield from (User(id, name()) for id in range(1, num))
 
 
-def add_product(user, product):
-    user.loyalty[product] = 0.0
-
-
-# ============================
 def update_friends(user):
     w = 0
     for product in user.loyalty:
@@ -72,13 +66,13 @@ def update_friends(user):
             w += friend.weight * friend.user.loyalty[product]
         w /= len(user.friends)
 
-        a = user.coefficients.selfish
-        user.loyalty[product] = (a * user.loyalty[product] + (1 - a) * w) * user.coefficients.c1
+        a = user.selfish
+        user.loyalty[product] = (a * user.loyalty[product] + (1 - a) * w)
 
 
 def update_products(user):
     for product in user.loyalty:
-        if user.loyalty[product] > user.coefficients.threshold:
+        if user.loyalty[product] > user.threshold:
             user.product = product
 
 
@@ -86,19 +80,20 @@ def update_relation_coefficient(user):
     pass
 
 
-def update_news(user, news):
-    for new in news:
-        user.loyalty[new.product] += new.value * user.coefficients.c2
+def update_news(user):
+    pass
 
 
 def update_news_coefficient(user):
     pass
-    #coeff = user.coefficients
-    #coeff = coeff * user.alpha + (1 - user.alpha) * user.delta
 
 
 def update_inary(user):
     pass
+
+
+def add_product(user, product):
+    user.loyalty[product] = 0.0
 
 
 def update_loyalty(user, product, value):
