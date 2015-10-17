@@ -10,12 +10,14 @@ __author__ = 'eduar'
 def walk_user(user):
     data = user.__dict__.copy()
     data['friends'] = [d.user.id for d in data['friends']]
-    return data
+    data['loyalty'] = {k.name: v for k, v in data['loyalty'].items()}
+    return walk(data)
 
 
 def walk_product(product):
     data = product.__dict__.copy()
     del data['company']
+    return walk(data)
 
 
 def walk(obj):
@@ -43,5 +45,5 @@ def walk(obj):
 def serialize(obj, key=None, **kwargs):
     if key:
         obj = {key: obj}
-    j = walk(obj)
+    j =     walk(obj)
     return json.dumps(j, **kwargs).encode()
