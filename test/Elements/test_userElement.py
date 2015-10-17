@@ -27,7 +27,7 @@ class TestUserElement(TestCase):
 
             line = []
             for prod, sum in sorted(sums.items(), key=lambda x: x[0].id):
-                line.append('[{}: {}]'.format(prod, sum))
+                line.append('[{}: {}]'.format(prod.product.name, sum))
 
             print(str(i) + " : " + ' '.join(line))
 
