@@ -1,6 +1,5 @@
 __author__ = 'eduar'
 
-
-class Environment():
+class Environment:
     def __init__(self):
         pass

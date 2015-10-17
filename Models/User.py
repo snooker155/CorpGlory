@@ -12,12 +12,15 @@ class UsersParameters:
 
 
 class User:
-    def __init__(self, id, name, loyalty):
+    CEO_ID = 0
+
+    def __init__(self, id, name, loyalty, selfish):
         self.id = id
         self.name = name
         self.friends = []
         self.parameters = UsersParameters(loyalty)
         self.old_parameters = UsersParameters(loyalty)
+        self.selfish = selfish
 
     def update_world(self, world):
         pass
@@ -29,44 +32,37 @@ class User:
     def loyalty(self):
         return self.old_parameters.loyalty
 
+    def is_seo(self):
+        return self.id == User.CEO_ID
+
     def __str__(self):
         return str(self.loyalty)
-        # res = "{} {}\n".format(self.name, self.loyalty)
-        # for friend in self.friends:
-        #     res += str(friend.weight) + " " + str(friend.user.loyalty) + ", "
-        # return res
 
-
-    # TODO bakharevk: a * self + (1 - a) * other
     def recalc(self):
-        def change(w):
-            if self.id == 0:
-                self.parameters.loyalty = 1
-            else:
-                self.parameters.loyalty = (self.old_parameters.loyalty + w) * 0.5
-
         w = 0
         for friend in self.friends:
             w += friend.weight * friend.user.loyalty
         w /= len(self.friends)
 
-        change(w)
+        a = self.selfish
+        self.parameters.loyalty = (a * self.old_parameters.loyalty + (1 - a) * w)
 
 
 class UsersGenerator:
     WEIGHT_MAX = 1
-    LOYALTY_MAX = 2
 
     @staticmethod
     def generate_users(num, k=10):
         def name():
             return "".join([chr(random.randint(ord('a'), ord('z'))) for _ in range(5)])
 
-        def loyalty(id):
-            return 0 if id > 0 else 1
-            # return random.random() * UsersGenerator.LOYALTY_MAX - 1.0
+        def loyalty():
+            return 0
 
-        users = [User(id, name(), loyalty(id)) for id in range(num)]
+        def selfish():
+            return random.random()
+
+        users = [User(0, name(), 1, 1)] + [User(id, name(), loyalty(), selfish()) for id in range(1, num)]
         return UsersGenerator.generate_friendships(users, k)
 
     @staticmethod
@@ -88,6 +84,3 @@ for i in range(100):
 
     for user in users:
         user.update_properties()
-
-    # print(" ".join(str(user) for user in users))
-    # print()
