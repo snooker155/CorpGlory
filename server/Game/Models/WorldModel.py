@@ -4,6 +4,7 @@ from Game.Elements.GameElement import GameElement
 class WorldModel:
     def __init__(self, moneyModel, users, average_connections):
         self.moneyModel = moneyModel
+        self.users = users
         # self.users = UsersGenerator.generate_users(users, average_connections)
 
 
