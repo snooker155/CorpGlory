@@ -65,7 +65,7 @@ Template.team.events({
 				"feature": "tech_team_level",
 				"value": tech_team_level_number.get()
 			};
-			send('company_change', obj);
+			Communication.send('company_change', obj);
 			console.log(obj);
 	},
 
@@ -75,7 +75,7 @@ Template.team.events({
 				"feature": "tech_team_level",
 				"value": tech_team_level_number.get()
 			};
-			send('company_change', obj);
+			Communication.send('company_change', obj);
 			console.log(obj);
 	},
 
@@ -85,7 +85,7 @@ Template.team.events({
 				"feature": "market_team_level",
 				"value": market_team_level_number.get()
 			};
-			send('company_change', obj);
+			Communication.send('company_change', obj);
 			console.log(obj);
 	},
 
@@ -95,7 +95,7 @@ Template.team.events({
 				"feature": "market_team_level",
 				"value": market_team_level_number.get()
 			};
-			send('company_change', obj);
+			Communication.send('company_change', obj);
 			console.log(obj);
 	},
 
@@ -105,7 +105,7 @@ Template.team.events({
 				"feature": "design_team_level",
 				"value": design_team_level_number.get()
 			};
-			send('company_change', obj);
+			Communication.send('company_change', obj);
 			console.log(obj);
 	},
 
@@ -115,7 +115,7 @@ Template.team.events({
 				"feature": "design_team_level",
 				"value": design_team_level_number.get()
 			};
-			send('company_change', obj);
+			Communication.send('company_change', obj);
 			console.log(obj);
 	}
 });
