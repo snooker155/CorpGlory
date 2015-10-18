@@ -96,3 +96,15 @@ def update_product(user):
 
     if best_prod is not None and user.choice[best_prod] > user.threshold and user.product != best_prod:
         user.product = best_prod
+
+
+def update_news(user, news):
+    product, value = news.product, news.value
+    a = user.selfish
+    b = user.loyalty
+
+    impact = 0
+    if value < 0:
+        impact = user.loyalty
+
+    user.choice[product] = (a * user.choice[product] + (1 - a) * value)

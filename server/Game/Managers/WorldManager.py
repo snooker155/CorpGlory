@@ -5,8 +5,8 @@ from Game.Models.WorldModel import WorldModel
 from Game.Managers.UserManager import usergen, users_relations, users_selfishness, product_generator, ceo_generator
 
 
-def add_product(world, product):
-    world.products.append(product)
+def add_company(world, company):
+    world.companies.append(company)
 
 
 def create_world(money=5000, users=100, average_connections=20, companies=None):
