@@ -27,7 +27,7 @@ if(Meteor.isClient) {
 		}
 	};
 
-	Template.company_card.game_over = function () {
+	Template.company_card.win = function () {
 		console.log(Session.get('world').game_over);
 		if (Session.get('world').game_over && first){
 			$("#game_over_button").click();
