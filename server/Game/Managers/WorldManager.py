@@ -10,7 +10,7 @@ def add_company(world, company):
     world.add_company(company)
 
 
-def create_world(money=5000, users=100, average_connections=20, companies=None):
+def create_world(money=50000, users=300, average_connections=20, companies=None):
     companies = companies or [
         create_company('PlayerCompany', money),  # my company is always first
         create_company('facebook', money),

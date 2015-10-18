@@ -61,6 +61,7 @@ def update_inner(user):
     if user.product is not None:
         user.loyalty -= user.loyalty_decrease
         if user.loyalty <= 0:
+            user.product.users -= 1
             user.product = None
             user.c1 *= 0.95
             user.c2 *= 0.95

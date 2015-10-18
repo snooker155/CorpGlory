@@ -18,7 +18,7 @@ class User:
         self.loyalty = 0
         self.loyalty_decrease = 20
         self.max_loyalty = 400
-
+  
         self.news_const = random.random()
 
         self.c1 = 1.0

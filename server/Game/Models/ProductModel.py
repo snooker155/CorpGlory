@@ -5,6 +5,7 @@ class ProductModel:
     def __init__(self, company):
         self.name = company.name
         self.company = company
+        self.users = 0
 
         self.tech = 0
         self.design = 0

@@ -26,10 +26,17 @@ class UserElement(GameElement):
 
         if best_prod is not None \
                 and self.user_model.choice[best_prod] > self.user_model.threshold \
-                and self.user_model.product != best_prod:
+                and self.user_model.product is not best_prod:
+            
+            if self.user_model.product: 
+                print(self.user_model.product.name, best_prod.name)
+            
+            if self.user_model.product:
+                self.user_model.product.users -= 1
+            best_prod.users += 1
+
             self.user_model.product = best_prod
             self.user_model.loyalty = self.user_model.max_loyalty
-            best_prod.company.money += int(100 * random.random())
 
     def help_news(self, world_model):
         for product, value in self.user_model.choice.items():

@@ -41,7 +41,7 @@ class Game:
             self.unlockAll()
             if self.on_update is not None:
                 self.on_update()
-            sleep(1)
+            sleep(0.1)
 
     def kill(self):
         self.killed = True

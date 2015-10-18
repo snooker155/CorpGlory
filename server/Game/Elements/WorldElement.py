@@ -24,6 +24,13 @@ class WorldElement(GameElement):
     def update(self):
         self.update_ticks += 1
 
+
+        print("Users with companies: {}".format(len([user for user in self.users if user.user_model.product])))
+
+        res = 0
+        for company in self.companies:
+            res += company.model.product.users
+
         if self.companies[0].model.money <= 0:
             self.model.game_over = True
 

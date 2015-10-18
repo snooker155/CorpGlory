@@ -53,4 +53,4 @@ def serialize(fields, obj, key=None, **kwargs):
     return json.dumps(j, **kwargs).encode()
 
 
-world_state_serializer = partial(serialize, ['users', 'companies', 'news'], key='world')
+world_state_serializer = partial(serialize, ['users', 'companies', 'news', 'game_over'], key='world')
