@@ -8,6 +8,10 @@ class NewsManager:
         return news_gen.next_news(company.product)
 
     @staticmethod
+    def random_news(world_model, product, change):
+        return world_model.all_news.next_random_news(product, change)
+
+    @staticmethod
     def on_user_feedback(world_model, user, product, feedback):
         world_model.all_news.add_feedback(user, product, feedback)
 
