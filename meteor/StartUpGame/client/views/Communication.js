@@ -30,6 +30,9 @@ Communication = {
           'data': data
         };
         this.webSocket.send(JSON.stringify(obj));
+    },
+    close: function() {
+        this.webSocket.close();
     }
 };
 Communication.open();
