@@ -1,3 +1,9 @@
+if(Meteor.isClient) {
+	Template.company_card.companyBalance = function() {
+		return Session.get('world').companies[0].money;
+	}
+}
+
 Template.company_card.onRendered(function () {
 
 	$("#sparkline1").sparkline([5,6,7,9,9,5,3,4,5,4,6,7], {
@@ -15,3 +21,5 @@ Template.company_card.onRendered(function () {
 	    lineColor: 'green',
 	    fillColor: '#f5f5f5'});
 });
+	
+	

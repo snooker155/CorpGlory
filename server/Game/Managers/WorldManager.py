@@ -10,8 +10,12 @@ def add_product(world, product):
 
 
 def create_world(money=5000, users=100, average_connections=20, companies=None):
-    companies = companies or [create_company('facebook', money), create_company('twitter', money),
-                              create_company('MyCompany', money)]
+    companies = companies or [
+        create_company('PlayerCompany', money),  # my company is always first
+        create_company('facebook', money),
+        create_company('twitter', money)
+    ]
+
     users = list(users_selfishness(users_relations(usergen(users), average_connections)))
 
     for company in companies:

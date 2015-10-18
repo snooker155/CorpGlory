@@ -11,6 +11,7 @@ Communication = {
         var self = this;
         ws.onmessage = function(event) {
             var world = JSON.parse(event.data)['world'];
+            Session.set('world', world);
             for(var f in world) {
                 if(self.subscribers[f + ''] !== undefined) {
                     for(var it in self.subscribers[f + '']) {
@@ -18,7 +19,8 @@ Communication = {
                     }
                 }
             }
-        }
+        };
+        
     },
     send: function (command, data) {
         var obj = {

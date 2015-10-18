@@ -11,10 +11,10 @@ class CompanyElement(GameElement):
 
 class PlayerCompanyElement(CompanyElement):
     def update(self):
-        print('Update PlayerCompany')
+        self.company_model.money -= 10
 
 
 class AICompanyElement(CompanyElement):
     def update(self):
-        print('Update AICompany')
+        self.company_model.money -= 10
 
