@@ -4,8 +4,6 @@ from Game.Models.NewsStat import NewsStat
 from Game.Models.WorldModel import WorldModel
 from Game.Managers.UserManager import usergen, users_relations, users_selfishness, product_generator, ceo_generator
 
-__author__ = 'eduar'
-
 
 def add_product(world, product):
     world.products.append(product)

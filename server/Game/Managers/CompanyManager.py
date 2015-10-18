@@ -1,7 +1,5 @@
 from Game.Models.CompanyModel import CompanyModel
 
-__author__ = 'alexeyvelikiy'
-
 
 def create_company(name, money):
     if not hasattr(create_company, 'id'):

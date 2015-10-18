@@ -1,7 +1,5 @@
 from Game.Elements.GameElement import GameElement
 
-__author__ = 'eduar'
-
 
 class CompanyElement(GameElement):
     def __init__(self, company_model):

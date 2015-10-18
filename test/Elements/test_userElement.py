@@ -9,24 +9,24 @@ __author__ = 'eduar'
 
 class TestUserElement(TestCase):
     def test_simple(self):
-        users = list(users_selfishness(users_relations(usergen(100), 10)))
-        facebook, twitter = create_company('facebook'), create_company('twitter')
+        users = list(users_selfishness(users_relations(usergen(1000), 10)))
+        facebook, twitter = create_company('facebook', 5000), create_company('twitter', 5000)
 
         list(product_generator(users, facebook.product_model))
         ceo_generator(users, facebook.product_model)
 
         for i in range(100):
-            if i == 10:
+            if i == 0:
                 list(product_generator(users, twitter.product_model))
                 ceo_generator(users, twitter.product_model)
 
             sums = defaultdict(float)
             for user in users:
-                for product in user.loyalty:
-                    sums[product] += user.loyalty[product]
+                for product in user.choice:
+                    sums[product] += (user.product == product)
 
             line = []
-            for prod, sum in sorted(sums.items(), key=lambda x: x[0].id):
+            for prod, sum in sums.items():
                 line.append('[{}: {}]'.format(prod, sum))
 
             print(str(i) + " : " + ' '.join(line))

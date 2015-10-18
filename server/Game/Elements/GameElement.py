@@ -1,5 +1,3 @@
-__author__ = 'eduar'
-
 from abc import ABCMeta, abstractmethod
 
 

@@ -1,8 +1,6 @@
 from Game.Models.ProductModel import ProductModel
 from Game.Elements.CompanyElement import PlayerCompanyElement
 
-__author__ = 'eduar'
-
 
 features = {
     'tech_level': 'tech',

@@ -6,13 +6,19 @@ Follower = namedtuple('Follower', ['user', 'weight'])
 class User:
     def __init__(self, id, name):
         self.id = id
+        self.name = name
+
         self.ceo = False
         self.product = None
-        self.name = name
-        self.friends = []
-        self.threshold = 0.15
+
+        self.threshold = 0.5
         self.selfish = 0
-        self.loyalty = defaultdict(float)
+
+        self.loyalty = 0
+        self.loyalty_decrease = 20
+
+        self.friends = []
+        self.choice = defaultdict(float)
 
     def __str__(self):
-        return str(self.loyalty)
+        return str(self.choice)
