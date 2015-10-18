@@ -2,6 +2,7 @@ from Game.Elements.CompanyElement import PlayerCompanyElement, AICompanyElement
 from Game.Elements.GameElement import GameElement
 from Game.Elements.UserElement import UserElement
 from Game.Managers.CompanyManager import create_company
+from Game.Managers.NewsManager import NewsManager
 from Game.Models.WorldModel import WorldModel
 
 
@@ -20,4 +21,7 @@ class WorldElement(GameElement):
 
         for company in self.companies:
             company.update()
+
+        news = NewsManager.get_news(self.model)
+        self.model.news = news
 

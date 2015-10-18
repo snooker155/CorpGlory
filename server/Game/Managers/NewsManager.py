@@ -1,10 +1,15 @@
 class NewsManager:
-    news = []
+    @staticmethod
+    def get_news(world_model):
+        pass
 
     @staticmethod
-    def get_news():
-        return NewsManager.news
+    def on_user_feedback(world_model, user, product, feedback):
+        world_model.all_news.add_feeback(user, product, feedback)
 
     @staticmethod
-    def add_news(current_news):
-        NewsManager.news = current_news
+    def on_product_release(world_model, product, changenotes):
+        pass
+
+
+

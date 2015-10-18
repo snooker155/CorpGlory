@@ -1,5 +1,6 @@
 from Game.Elements.WorldElement import WorldElement
 from Game.Managers.CompanyManager import create_company
+from Game.Models.NewsStat import NewsStat
 from Game.Models.WorldModel import WorldModel
 from Game.Managers.UserManager import usergen, users_relations, users_selfishness, product_generator, ceo_generator
 
@@ -19,5 +20,7 @@ def create_world(money=5000, users=100, average_connections=20, companies=None):
         list(product_generator(users, company.product))
         ceo_generator(users, company.product)
 
-    model = WorldModel(users, companies)
+    all_news = NewsStat()
+
+    model = WorldModel(users, companies, all_news)
     return WorldElement(model)

@@ -84,8 +84,8 @@ def update_inner(user):
 
 
 def update_friends(user):
-    w = 0
     for product in user.loyalty:
+        w = 0
         for friend in user.friends:
             w += friend.weight * friend.user.loyalty[product]
         w /= len(user.friends)
