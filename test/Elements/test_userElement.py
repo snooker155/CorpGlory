@@ -14,7 +14,7 @@ class TestUserElement(TestCase):
         world = create_world(5000, 100, 10, [facebook])
 
         for i in range(100):
-            if i == 10:
+            if i == 0:
                 ceo_generator(world.model.users, twitter.product)
                 add_company(world, twitter)
 

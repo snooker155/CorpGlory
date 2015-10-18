@@ -7,7 +7,7 @@ from Game.Managers.UserManager import usergen, users_relations, users_selfishnes
 
 
 def add_company(world, company):
-    world.companies.append(AICompanyElement(company))
+    world.add_company(company)
 
 
 def create_world(money=5000, users=100, average_connections=20, companies=None):
