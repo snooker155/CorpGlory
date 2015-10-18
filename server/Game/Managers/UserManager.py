@@ -51,7 +51,9 @@ def usergen(num):
 def add_product(user, product):
     user.choice[product] = 0.0
 
-
+def compute_market_share_for_product(worldModel):
+    pass
+    
 # ============================================================================ #
 
 def update_inner(user):
@@ -83,6 +85,7 @@ def update_friends(user):
         user.choice[product] = (a * user.choice[product] + (1 - a) * w)
 
 
+#TODO: move it to UserElement
 def update_product(user):
     if user.ceo:
         return

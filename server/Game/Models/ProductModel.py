@@ -12,6 +12,7 @@ class ProductModel:
         self.tech_team = 0
         self.marketing_team = 0
         self.design_team = 0
+        self.market_share = 0
 
     def __str__(self):
         return self.name
