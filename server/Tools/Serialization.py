@@ -12,7 +12,7 @@ __author__ = 'eduar'
 def walk_user(user):
     data = user.__dict__.copy()
     data['friends'] = [d.user.id for d in data['friends']]
-    data['loyalty'] = {k.name: v for k, v in data['loyalty'].items()}
+    data['choice'] = {k.name: v for k, v in data['choice'].items()}
     return walk(data)
 
 
