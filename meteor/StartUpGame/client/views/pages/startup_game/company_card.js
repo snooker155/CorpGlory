@@ -20,7 +20,7 @@ if(Meteor.isClient) {
 
 	Template.company_card.game_over = function () {
 		console.log(Session.get('world').game_over);
-		if (Session.get('world').game_over && first){
+		if (Session.get('world').game_over && first_game_over){
 			$("#game_over_button").click();
 			first_game_over = false;
 			Communication.close();
@@ -29,8 +29,9 @@ if(Meteor.isClient) {
 
 	Template.company_card.win = function () {
 		console.log(Session.get('world').game_over);
-		if (Session.get('world').game_over && first){
-			$("#game_over_button").click();
+		var market_share = Session.get('world').companies[0].product_model.users + 0.0;
+		if (Math.round((market_share / users.length) * 100) > 90 && first_win){
+			$("#win_button").click();
 			first_win = false;
 			Communication.close();
 		}
