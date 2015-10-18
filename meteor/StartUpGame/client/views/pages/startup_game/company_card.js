@@ -4,7 +4,7 @@ if(Meteor.isClient) {
 		return Session.get('world').companies[0].money;
 	};
 	
-	Template.company_card.companyBalanceStat = [];
+	Template.company_card.companyBalanceStat = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 	
 }
 
@@ -17,9 +17,7 @@ Template.company_card.onRendered(function () {
 		}
 		
 		Template.company_card.companyBalanceStat.push(Template.company_card.companyBalance());
-		if(Template.company_card.companyBalanceStat.length > 10) {
-			Template.company_card.companyBalanceStat.shift()
-		}
+		Template.company_card.companyBalanceStat.shift();
 		
 		$("#balanceGraph").sparkline(
 			Template.company_card.companyBalanceStat, {
