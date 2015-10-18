@@ -51,9 +51,10 @@ def usergen(num):
 def add_product(user, product):
     user.choice[product] = 0.0
 
+
 def compute_market_share_for_product(worldModel):
     pass
-    
+
 # ============================================================================ #
 
 def update_inner(user):
@@ -79,35 +80,15 @@ def update_friends(user):
         w = 0
         for friend in user.friends:
             if friend.user.choice[product] > 0:
-                w += friend.weight * (0.85 if friend.user.product == product else -0.85)
+                w += friend.weight * (0.1 if friend.user.product == product else -0.1)
 
         a = user.selfish
         user.choice[product] = (a * user.choice[product] + (1 - a) * w)
 
-
-#TODO: move it to UserElement
-def update_product(user):
+def update_news(user, news):
     if user.ceo:
         return
 
-    max_value = 0.0
-    best_prod = None
-    for i, prod in enumerate(user.choice):
-        if user.choice[prod] > max_value:
-            max_value = user.choice[prod]
-            best_prod = prod
-
-    if best_prod is not None and user.choice[best_prod] > user.threshold and user.product != best_prod:
-        user.product = best_prod
-
-
-def update_news(user, news):
     product, value = news.product, news.value
-    a = user.selfish
-    b = user.loyalty
+    user.choice[product] += user.news_const * value
 
-    impact = 0
-    if value < 0:
-        impact = user.loyalty
-
-    user.choice[product] = (a * user.choice[product] + (1 - a) * value)

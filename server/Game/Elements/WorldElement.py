@@ -17,6 +17,10 @@ class WorldElement(GameElement):
         self.companies = [PlayerCompanyElement(self.model.companies[0])]
         self.companies.extend([AICompanyElement(company_model) for company_model in self.model.companies[1:]])
 
+    def add_company(self, company):
+        self.companies.append(AICompanyElement(company))
+        self.model.companies.append(company)
+
     def update(self):
         self.update_ticks += 1
 

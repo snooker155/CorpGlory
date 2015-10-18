@@ -16,6 +16,9 @@ class User:
 
         self.loyalty = 0
         self.loyalty_decrease = 20
+        self.max_loyalty = 400
+
+        self.news_const = 1.0
 
         self.friends = []
         self.choice = defaultdict(float)
