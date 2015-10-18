@@ -4,7 +4,7 @@ Template.marketing.events({
 				"feature": "social_market",
 				"value": 1500
 			};
-			send('company_change', obj);
+			Communication.send('company_change', obj);
 			console.log(obj);
 	},
 
@@ -13,7 +13,7 @@ Template.marketing.events({
 				"feature": "conference_market",
 				"value": 300
 			};
-			send('company_change', obj);
+			Communication.send('company_change', obj);
 			console.log(obj);
 	},
 
@@ -22,7 +22,7 @@ Template.marketing.events({
 				"feature": "article_market",
 				"value": 700
 			};
-			send('company_change', obj);
+			Communication.send('company_change', obj);
 			console.log(obj);
 	},
 

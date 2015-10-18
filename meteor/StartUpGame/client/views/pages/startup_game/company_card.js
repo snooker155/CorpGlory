@@ -28,8 +28,6 @@ if(Meteor.isClient) {
 	Template.company_card.companyBalanceStat = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 }
 
-
-
 Template.company_card.onRendered(function () {
 	Tracker.autorun(function () {
 		if(Session.get('world') === undefined) {
