@@ -1,7 +1,6 @@
 from Game.Elements.CompanyElement import PlayerCompanyElement, AICompanyElement
 from Game.Elements.GameElement import GameElement
 from Game.Elements.UserElement import UserElement
-from Game.Managers.CompanyManager import create_company
 from Game.Models.WorldModel import WorldModel
 
 
@@ -20,4 +19,3 @@ class WorldElement(GameElement):
 
         for company in self.companies:
             company.update()
-

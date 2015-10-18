@@ -1,40 +1,19 @@
 import random
-
 import numpy as np
-
 from Game.Models.UserModel import Follower, User
-
-__author__ = 'eduar'
-
-
-def update_product(user):
-    if user.ceo:
-        return
-
-    max_value = 0.0
-    best_prod = None
-    for i, prod in enumerate(user.loyalty):
-        if user.loyalty[prod] > max_value:
-            max_value = user.loyalty[prod]
-            best_prod = prod
-
-    if best_prod != None and user.loyalty[best_prod] > user.threshold and user.product != best_prod:
-        print(best_prod)
-        user.product = best_prod
 
 
 def ceo_generator(users, product):
     while True:
         user = random.choice(users)
-
         if not user.ceo:
             user.ceo = True
             user.selfish = 1
 
-            for prod in user.loyalty:
-                user.loyalty[prod] = 0
+            for prod in user.choice:
+                user.choice[prod] = 0
 
-            user.loyalty[product] = 1
+            user.choice[product] = 1
             user.product = product
             return user
 
@@ -69,34 +48,51 @@ def usergen(num):
     yield from (User(id, name()) for id in range(1, num))
 
 
+def add_product(user, product):
+    user.choice[product] = 0.0
+
+
+# ============================================================================ #
+
 def update_inner(user):
-    for prod in user.loyalty:
-        if user.ceo or user.product == prod or user.loyalty[prod] == 0:
+    if user.product is not None:
+        user.loyalty -= user.loyalty_decrease
+        if user.loyalty <= 0:
+            user.product = None
+            user.loyalty = 0
+        return
+
+    for prod in user.choice:
+        if user.ceo or user.choice[prod] == 0:
             continue
 
-        solve = (random.random() * 2 - 1.0) * 0.20
-        if user.loyalty[prod] + solve < 0:
-            user.loyalty[prod] = 0
-        elif user.loyalty[prod] + solve > 1:
-            user.loyalty[prod] = 1
-        else:
-            user.loyalty[prod] += solve
+        user.choice[prod] += np.random.normal()
 
 
 def update_friends(user):
-    w = 0
-    for product in user.loyalty:
+    if user.product is not None:
+        return
+
+    for product in user.choice:
+        w = 0
         for friend in user.friends:
-            w += friend.weight * friend.user.loyalty[product]
-        w /= len(user.friends)
+            if friend.user.choice[product] > 0:
+                w += friend.weight * (0.85 if friend.user.product == product else -0.85)
 
         a = user.selfish
-        user.loyalty[product] = (a * user.loyalty[product] + (1 - a) * w)
+        user.choice[product] = (a * user.choice[product] + (1 - a) * w)
 
 
-def add_product(user, product):
-    user.loyalty[product] = 0.0
+def update_product(user):
+    if user.ceo:
+        return
 
+    max_value = 0.0
+    best_prod = None
+    for i, prod in enumerate(user.choice):
+        if user.choice[prod] > max_value:
+            max_value = user.choice[prod]
+            best_prod = prod
 
-def update_loyalty(user, product, value):
-    user.loyalty[product] += value
+    if best_prod is not None and user.choice[best_prod] > user.threshold and user.product != best_prod:
+        user.product = best_prod
