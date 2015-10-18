@@ -5,9 +5,10 @@ from Game.Managers.CompanyManager import create_company
 from Game.Managers.NewsManager import NewsManager
 from Game.Models.WorldModel import WorldModel
 
+import random
 
 class WorldElement(GameElement):
-    NEWS_GENERATION_INTERVAL = 5
+    NEWS_GENERATION_INTERVAL = 10
     def __init__(self, model: WorldModel):
         self.update_ticks = 0
         self.model = model
@@ -23,9 +24,6 @@ class WorldElement(GameElement):
 
     def update(self):
         self.update_ticks += 1
-
-
-        print("Users with companies: {}".format(len([user for user in self.users if user.user_model.product])))
 
         res = 0
         for company in self.companies:
@@ -45,5 +43,8 @@ class WorldElement(GameElement):
             news = NewsManager.get_news(self.model)
             self.model.news = news
             print('News generated: {}, {}'.format(news.product.name, news.value))
-            for user in self.users:
-                user.update_news(self.model.news)
+
+        print(self.model.news)
+        # for user in random.sample(self.users, int(len(self.users) / 10)):
+        for user in self.users:
+            user.update_news(self.model.news)

@@ -28,9 +28,6 @@ class UserElement(GameElement):
                 and self.user_model.choice[best_prod] > self.user_model.threshold \
                 and self.user_model.product is not best_prod:
             
-            if self.user_model.product: 
-                print(self.user_model.product.name, best_prod.name)
-            
             if self.user_model.product:
                 self.user_model.product.users -= 1
             best_prod.users += 1
@@ -43,4 +40,5 @@ class UserElement(GameElement):
             NewsManager.on_user_feedback(world_model, self, product, value)
 
     def update_news(self, news):
-        update_news(self.user_model, news)
+        if news:
+            update_news(self.user_model, news)

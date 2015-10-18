@@ -95,3 +95,8 @@ def update_news(user, news):
 
     product, value = news.product, news.value
     user.choice[product] += user.news_const * value * user.c2
+
+    if value < 0:
+        user.loyalty -= 50 * value
+    elif value > 0:
+        user.loyalty += 25 * value

@@ -45,7 +45,7 @@ Template.product.events({
 				"feature": "tech_level",
 				"value": tech_level_number.get()
 			};
-			send('company_change', obj);
+			Communication.send('company_change', obj);
 			console.log(obj);
 	},
 
@@ -55,7 +55,7 @@ Template.product.events({
 				"feature": "tech_level",
 				"value": tech_level_number.get()
 			};
-			send('company_change', obj);
+			Communication.send('company_change', obj);
 			console.log(obj);
 	},
 
@@ -65,7 +65,7 @@ Template.product.events({
 				"feature": "design_level",
 				"value": design_level_number.get()
 			};
-			send('company_change', obj);
+			Communication.send('company_change', obj);
 			console.log(obj);
 	},
 
@@ -75,7 +75,7 @@ Template.product.events({
 				"feature": "design_level",
 				"value": design_level_number.get()
 			};
-			send('company_change', obj);
+			Communication.send('company_change', obj);
 			console.log(obj);
 	}
 });
