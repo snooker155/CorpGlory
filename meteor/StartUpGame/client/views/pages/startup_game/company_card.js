@@ -14,6 +14,16 @@ if(Meteor.isClient) {
 		
 		return Math.round((market_share / users.length) * 100);
 	};
+
+	var first = true;
+
+	Template.company_card.game_over = function () {
+		console.log(Session.get('world').game_over);
+		if (Session.get('world').game_over && first){
+			$("#game_over_button").click();
+			first = false;
+		}
+	};
 	
 	Template.company_card.companyBalanceStat = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 }
