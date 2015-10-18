@@ -1,15 +1,17 @@
 Communication = {
     subscribers: {},
+    // use the Meteor Session 
     addSubscriber: function(worldField, handler) {
         if(this.subscribers[worldField] === undefined) {
             this.subscribers[worldField] = [];
         }
         this.subscribers[worldField].push(handler);
     },
+    webSocket: null,
     open: function() {
-        ws = new WebSocket('ws://localhost:8888/');
         var self = this;
-        ws.onmessage = function(event) {
+        this.webSocket = new WebSocket('ws://localhost:8888/');
+        this.webSocket.onmessage = function(event) {
             var world = JSON.parse(event.data)['world'];
             Session.set('world', world);
             for(var f in world) {
@@ -27,7 +29,7 @@ Communication = {
           'command': command,
           'data': data
         };
-        ws.send(JSON.stringify(obj));
+        this.webSocket.send(JSON.stringify(obj));
     }
 };
 Communication.open();
