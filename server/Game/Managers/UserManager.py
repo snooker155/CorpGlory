@@ -80,9 +80,15 @@ def update_friends(user):
         w = 0
         for friend in user.friends:
             if friend.user.choice[product] > 0:
-                w += friend.weight * (0.85 if friend.user.product == product else -0.85)
+                w += friend.weight * (0.1 if friend.user.product == product else -0.1)
 
         a = user.selfish
         user.choice[product] = (a * user.choice[product] + (1 - a) * w)
 
+def update_news(user, news):
+    if user.ceo:
+        return
+
+    product, value = news.product, news.value
+    user.choice[product] += user.news_const * value
 
