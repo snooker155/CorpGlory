@@ -22,7 +22,7 @@ class WorldElement(GameElement):
 
         for user in self.users:
             user.update()
-            user.help_news(self.model.all_news)
+            user.help_news(self.model)
 
         for company in self.companies:
             company.update()

@@ -14,6 +14,6 @@ class NewsStat:
 
     def next_news(self, product):
         our_news = [prod[2] for prod in self.feedback if product == self.feedback[1]]
-        average_feedback = sum(our_news) / len(our_news)
+        average_feedback = sum(our_news) / len(our_news) if our_news else 0
         average_feedback = (average_feedback + random.random()) * 0.5
         return NewsModel(product, average_feedback, 0)

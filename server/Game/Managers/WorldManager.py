@@ -1,3 +1,4 @@
+from Game.Elements.CompanyElement import AICompanyElement
 from Game.Elements.WorldElement import WorldElement
 from Game.Managers.CompanyManager import create_company
 from Game.Models.NewsStat import NewsStat
@@ -6,7 +7,7 @@ from Game.Managers.UserManager import usergen, users_relations, users_selfishnes
 
 
 def add_company(world, company):
-    world.companies.append(company)
+    world.companies.append(AICompanyElement(company))
 
 
 def create_world(money=5000, users=100, average_connections=20, companies=None):

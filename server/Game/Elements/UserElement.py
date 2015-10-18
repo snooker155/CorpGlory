@@ -1,3 +1,4 @@
+from Game.Managers.NewsManager import NewsManager
 from Game.Managers.UserManager import update_friends, update_inner, update_product, update_news
 from Game.Elements.GameElement import GameElement
 
@@ -12,8 +13,8 @@ class UserElement(GameElement):
         update_product(self.user_model)
 
     def help_news(self, world_model):
-        for product, value in self.user_model.loyalty.items():
-            world_model.all_news.on_user_feedback(self, product, value)
+        for product, value in self.user_model.choice.items():
+            NewsManager.on_user_feedback(world_model, self, product, value)
 
     def update_news(self, news):
         update_news(self.user_model, news)
