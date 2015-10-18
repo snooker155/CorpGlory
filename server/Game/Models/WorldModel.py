@@ -5,4 +5,5 @@ class WorldModel:
         self.news = None
 
         self.all_news = all_news
+        self.game_over = False
 

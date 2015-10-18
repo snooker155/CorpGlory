@@ -20,6 +20,9 @@ class WorldElement(GameElement):
     def update(self):
         self.update_ticks += 1
 
+        if self.companies[0].model.money <= 0:
+            self.model.game_over = True
+
         for user in self.users:
             user.update()
             user.help_news(self.model)
