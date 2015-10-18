@@ -1,4 +1,5 @@
 from collections import namedtuple, defaultdict
+import random
 
 Follower = namedtuple('Follower', ['user', 'weight'])
 
@@ -18,7 +19,12 @@ class User:
         self.loyalty_decrease = 20
         self.max_loyalty = 400
 
-        self.news_const = 1.0
+        self.news_const = random.random()
+
+        self.c1 = 1.0
+        self.c2 = 1.0
+        self.c3 = 1.0
+
 
         self.friends = []
         self.choice = defaultdict(float)

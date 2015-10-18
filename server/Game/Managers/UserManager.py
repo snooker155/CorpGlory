@@ -62,14 +62,16 @@ def update_inner(user):
         user.loyalty -= user.loyalty_decrease
         if user.loyalty <= 0:
             user.product = None
-            user.loyalty = 0
+            user.c1 *= 0.95
+            user.c2 *= 0.95
+            user.c3 *= 0.95
         return
 
     for prod in user.choice:
         if user.ceo or user.choice[prod] == 0:
             continue
 
-        user.choice[prod] += np.random.normal()
+        user.choice[prod] += np.random.normal() * user.c3
 
 
 def update_friends(user):
@@ -80,15 +82,15 @@ def update_friends(user):
         w = 0
         for friend in user.friends:
             if friend.user.choice[product] > 0:
-                w += friend.weight * (0.1 if friend.user.product == product else -0.1)
+                w += friend.weight * (1 if friend.user.product == product else -1) * user.c1 * 0.1
 
         a = user.selfish
         user.choice[product] = (a * user.choice[product] + (1 - a) * w)
+
 
 def update_news(user, news):
     if user.ceo:
         return
 
     product, value = news.product, news.value
-    user.choice[product] += user.news_const * value
-
+    user.choice[product] += user.news_const * value * user.c2

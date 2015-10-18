@@ -13,7 +13,7 @@ class TestUserElement(TestCase):
         facebook, twitter = create_company('facebook', 5000), create_company('twitter', 5000)
         world = create_world(5000, 100, 10, [facebook])
 
-        for i in range(100):
+        for i in range(2000):
             if i == 0:
                 ceo_generator(world.model.users, twitter.product)
                 add_company(world, twitter)

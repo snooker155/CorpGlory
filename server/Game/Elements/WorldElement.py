@@ -40,5 +40,3 @@ class WorldElement(GameElement):
             print('News generated: {}, {}'.format(news.product.name, news.value))
             for user in self.users:
                 user.update_news(self.model.news)
-
-

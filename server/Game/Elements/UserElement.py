@@ -1,4 +1,3 @@
-
 from Game.Managers.NewsManager import NewsManager
 from Game.Managers.UserManager import update_friends, update_inner, update_news
 from Game.Elements.GameElement import GameElement
@@ -25,11 +24,12 @@ class UserElement(GameElement):
                 max_value = self.user_model.choice[prod]
                 best_prod = prod
 
-        if best_prod is not None and self.user_model.choice[best_prod] > self.user_model.threshold and self.user_model.product != best_prod:
+        if best_prod is not None \
+                and self.user_model.choice[best_prod] > self.user_model.threshold \
+                and self.user_model.product != best_prod:
             self.user_model.product = best_prod
             self.user_model.loyalty = self.user_model.max_loyalty
             best_prod.company.money += int(100 * random.random())
-
 
     def help_news(self, world_model):
         for product, value in self.user_model.choice.items():
