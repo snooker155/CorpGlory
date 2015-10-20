@@ -10,7 +10,7 @@ Communication = {
     webSocket: null,
     open: function() {
         var self = this;
-        this.webSocket = new WebSocket('ws://localhost:8888/');
+        this.webSocket = new WebSocket('ws://' + location.hostname + ':8888/');
         this.webSocket.onmessage = function(event) {
             var world = JSON.parse(event.data)['world'];
             Session.set('world', world);
