@@ -1,4 +1,4 @@
-var myaddon = require("/home/ees/ClionProjects/CorpGloryGame/Game/NodeWrapper/build/Release/GameWrapper.node");
+var myaddon = require("../Game/NodeWrapper/build/Release/GameWrapper.node");
 
 var game = myaddon.NewGame();
 
