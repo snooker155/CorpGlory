@@ -12,16 +12,9 @@ using namespace v8;
 using v8::Local;
 using v8::Object;
 
-//Handle<Value> Method(const Arguments& args)
-//{
-//  HandleScope scope;
-//  return scope.Close(String::New("world"));
-//}
-
 void init(Local<Object> target)
 {
   GameWrapper::init(target);
-//  target->Set(String::NewSymbol("hello"), FunctionTemplate::New(Method)->GetFunction());
 }
 
 NODE_MODULE(GameWrapper, init)
