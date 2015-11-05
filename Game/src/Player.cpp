@@ -4,12 +4,12 @@
 
 #include "Player.hpp"
 
-Player::Player(int id)
-  : m_id(id)
+Player::Player(const std::string& name)
+  : m_name(name)
 {
 }
 
-int Player::id() const
+const std::string& Player::name() const
 {
-  return m_id;
+  return m_name;
 }

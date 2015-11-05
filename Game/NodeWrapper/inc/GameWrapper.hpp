@@ -15,7 +15,7 @@ class GameWrapper : public node::ObjectWrap
 public:
   static void init(v8::Handle<v8::Object> exports);
 private:
-  explicit GameWrapper(const std::vector<Player>& playerIds);
+  explicit GameWrapper(const std::vector<Player>& players);
   ~GameWrapper();
   Game m_game;
 
@@ -23,6 +23,7 @@ private:
   static v8::Handle<v8::Value> createGame(const v8::Arguments& args);
   static v8::Persistent<v8::Function> constructor;
   static v8::Handle<v8::Value> gameState(const v8::Arguments& args);
+  static Player createPlayer(v8::Handle<v8::Object> object);
 };
 
 #endif //CORPGLORYGAME_GAMEWRAPPER_HPP

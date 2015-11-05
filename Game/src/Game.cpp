@@ -32,7 +32,7 @@ Game::Game(const std::vector<Player>& players)
   std::cout << "Game constructing with ";
   for (auto&& player : players)
   {
-    std::cout << player.id() << " ";
+    std::cout << player.name() << " ";
   }
   std::cout << std::endl;
 }

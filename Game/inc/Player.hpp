@@ -5,15 +5,16 @@
 #ifndef CORPGLORYGAME_PLAYER_HPP
 #define CORPGLORYGAME_PLAYER_HPP
 
+#include <string>
 
 class Player
 {
 public:
-  Player(int id);
-  int id() const;
+  Player(const std::string& name);
+  const std::string& name() const;
 
 private:
-  int m_id;
+  std::string m_name;
 };
 
 

@@ -16,8 +16,8 @@ GameWrapper::~GameWrapper()
 {
 }
 
-GameWrapper::GameWrapper(const std::vector<Player>& playerIds)
-  : m_game(playerIds)
+GameWrapper::GameWrapper(const std::vector<Player>& players)
+  : m_game(players)
 {
 }
 
@@ -43,14 +43,14 @@ v8::Handle<v8::Value> GameWrapper::New(const v8::Arguments& args)
   {
     auto idsArray = v8::Local<v8::Array>::Cast(args[0]);
 
-    std::vector<Player> playerIds;
+    std::vector<Player> players;
     auto playersCount = idsArray->Length();
     for (size_t i = 0; i < playersCount; ++i) {
-      auto playerId = idsArray->Get(v8::Integer::New(i))->ToNumber()->Int32Value();
-      playerIds.push_back(Player(playerId));
+      auto player = idsArray->Get(v8::Integer::New(i))->ToObject();
+      players.push_back(createPlayer(player));
     }
 
-    GameWrapper* wrapper = new GameWrapper(playerIds);
+    GameWrapper* wrapper = new GameWrapper(players);
     wrapper->Wrap(args.This());
     return args.This();
   }
@@ -69,4 +69,15 @@ v8::Handle<v8::Value> GameWrapper::gameState(const v8::Arguments& args)
   int state = wrapper->m_game.state();
 
   return scope.Close(v8::Number::New(state));
+}
+
+Player GameWrapper::createPlayer(v8::Handle<v8::Object> object)
+{
+  // TODO REMOVE HACKS
+  auto jsname = object->Get(v8::String::New("name"))->ToString();
+  std::vector<char> nameBuffer(jsname->Length());
+  jsname->WriteAscii(&nameBuffer.front(), 0, jsname->Length());
+
+  auto name = std::string(nameBuffer.begin(), nameBuffer.end());
+  return Player(name);
 }
