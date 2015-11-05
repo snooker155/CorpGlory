@@ -2,8 +2,11 @@
 // Created by ees on 11/3/15.
 //
 
-#include <node.h>
 #include "GameWrapper.hpp"
+
+#include <node.h>
+
+#include <algorithm>
 
 using v8::HandleScope;
 
@@ -13,7 +16,8 @@ GameWrapper::~GameWrapper()
 {
 }
 
-GameWrapper::GameWrapper()
+GameWrapper::GameWrapper(const std::vector<Player>& playerIds)
+  : m_game(playerIds)
 {
 }
 
@@ -37,7 +41,16 @@ v8::Handle<v8::Value> GameWrapper::New(const v8::Arguments& args)
 
   if (args.IsConstructCall())
   {
-    GameWrapper* wrapper = new GameWrapper();
+    auto idsArray = v8::Local<v8::Array>::Cast(args[0]);
+
+    std::vector<Player> playerIds;
+    auto playersCount = idsArray->Length();
+    for (size_t i = 0; i < playersCount; ++i) {
+      auto playerId = idsArray->Get(v8::Integer::New(i))->ToNumber()->Int32Value();
+      playerIds.push_back(Player(playerId));
+    }
+
+    GameWrapper* wrapper = new GameWrapper(playerIds);
     wrapper->Wrap(args.This());
     return args.This();
   }
@@ -53,7 +66,7 @@ v8::Handle<v8::Value> GameWrapper::gameState(const v8::Arguments& args)
 {
   HandleScope scope;
   GameWrapper* wrapper = node::ObjectWrap::Unwrap<GameWrapper>(args.This());
-  int state = wrapper->game.state();
+  int state = wrapper->m_game.state();
 
   return scope.Close(v8::Number::New(state));
 }

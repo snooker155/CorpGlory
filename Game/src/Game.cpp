@@ -12,22 +12,29 @@
 
 struct Game::GameImpl
 {
-  GameImpl()
+  GameImpl(const std::vector<Player>& players)
     : m_stateRecalcThread(std::bind(&Game::GameImpl::recalcState, this)),
+      m_players(players),
       m_state(0)
   {
   }
 
   std::thread m_stateRecalcThread;
+  std::vector<Player> m_players;
   std::atomic<int> m_state;
 
   void recalcState();
 };
 
-Game::Game()
-  : m_impl(std::make_shared<GameImpl>())
+Game::Game(const std::vector<Player>& players)
+  : m_impl(std::make_shared<GameImpl>(players))
 {
-  std::cout << "Game constructing!" << std::endl;
+  std::cout << "Game constructing with ";
+  for (auto&& player : players)
+  {
+    std::cout << player.id() << " ";
+  }
+  std::cout << std::endl;
 }
 
 void Game::hello()

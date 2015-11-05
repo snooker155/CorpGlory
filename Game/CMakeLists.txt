@@ -20,6 +20,6 @@ ENDMACRO()
 header_directories(ALL_INCLUDES)
 include_directories(${ALL_INCLUDES})
 
-add_library(Game src/Game.cpp inc/Game.hpp)
+add_library(Game src/Game.cpp inc/Game.hpp src/Player.cpp inc/Player.hpp)
 add_executable(Main main.cpp)
 target_link_libraries(Main Game)

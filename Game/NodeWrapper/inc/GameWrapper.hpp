@@ -15,9 +15,9 @@ class GameWrapper : public node::ObjectWrap
 public:
   static void init(v8::Handle<v8::Object> exports);
 private:
-  explicit GameWrapper();
+  explicit GameWrapper(const std::vector<Player>& playerIds);
   ~GameWrapper();
-  Game game;
+  Game m_game;
 
   static v8::Handle<v8::Value> New(const v8::Arguments& args);
   static v8::Handle<v8::Value> createGame(const v8::Arguments& args);

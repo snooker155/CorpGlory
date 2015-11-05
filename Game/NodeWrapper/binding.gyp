@@ -2,7 +2,7 @@
   "targets": [
     {
       "target_name": "GameWrapper",
-      "sources": [ "src/GameWrapper.cpp", "src/GameModule.cpp",  "../src/Game.cpp"],
+      "sources": [ "src/GameWrapper.cpp", "src/GameModule.cpp",  "../src/Game.cpp", "../src/Player.cpp"],
       "libraries": [
       ],
 
