@@ -3,6 +3,5 @@ foreach(module ${submodules})
     add_subdirectory(${module})
 endforeach()
 
-
-include_directories(inc)
-SET(SOURCE_FILES ${SOURCE_FILES})
+SET(SOURCE_FILES inc/Action.hpp src/Action.cpp)
+add_library(Actions ${SOURCE_FILES})

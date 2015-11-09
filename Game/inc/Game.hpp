@@ -10,11 +10,11 @@
 
 #include "Player.hpp"
 
+//Probably creates World, WorldModel and goes on
 class Game {
 public:
     Game(const std::vector<Player>& players);
     ~Game();
-    void hello();
     int state();
 private:
     struct GameImpl;

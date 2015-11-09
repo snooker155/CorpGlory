@@ -3,6 +3,7 @@
 //
 
 #include "GameWrapper.hpp"
+#include "Player.hpp"
 
 #include <node.h>
 
