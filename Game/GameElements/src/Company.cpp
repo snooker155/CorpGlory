@@ -5,6 +5,8 @@
 #include "Company.hpp"
 #include "CompanyModel.hpp"
 
+#include <iostream>
+
 struct CompanyImpl: public GameElementImpl<CompanyModel>
 {
   using super = GameElementImpl<CompanyModel>;
@@ -12,7 +14,7 @@ struct CompanyImpl: public GameElementImpl<CompanyModel>
   CompanyImpl(const std::shared_ptr<CompanyModel>& model);
 
   void updateSelf();
-  uint64_t usersPenalty(size_t users) const;
+  int usersPenalty(int users) const;
 };
 
 Company::Company(const std::shared_ptr<CompanyModel>& companyModel, ParentObject* parent)
@@ -34,10 +36,19 @@ void Company::updateSelf()
 void CompanyImpl::updateSelf()
 {
   auto money = m_model->m_money;
-  m_model->m_money = money - (500 - usersPenalty(m_model->m_users.size()));
+  auto newMoney = money - (500 - usersPenalty(m_model->m_users.size()));
+
+  if (newMoney < 0)
+  {
+    newMoney = 0;
+    std::cerr << "Company: " << m_model->m_name << " has no moneyz! :(" << std::endl;
+  }
+
+  m_model->m_money = newMoney;
+
 }
 
-uint64_t CompanyImpl::usersPenalty(size_t users) const
+int CompanyImpl::usersPenalty(int users) const
 {
   const int WORLD_USERS = 300;
   return (3200 / WORLD_USERS) * users;

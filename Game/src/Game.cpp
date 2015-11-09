@@ -66,7 +66,7 @@ Game::Game(const std::vector<Player>& players)
 
 int Game::state()
 {
-  return m_impl->m_state;
+  return m_impl->m_world->model()->m_ticks;
 }
 
 void Game::GameImpl::recalcState()

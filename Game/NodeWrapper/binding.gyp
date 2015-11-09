@@ -17,6 +17,7 @@
         "../Models/src/WorldUsersModel.cpp",
         "../Actions/src/Action.cpp",
         "../Utils/src/Random.cpp",
+        "../GameElements/src/GameElement.cpp",
         "../GameElements/inc/GameElement.hpp"
       ],
       "libraries": [

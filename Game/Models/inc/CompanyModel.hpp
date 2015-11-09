@@ -17,7 +17,7 @@ struct UserModel;
 struct CompanyModel: Model
 {
   std::string m_name;
-  uint64_t m_money;
+  int64_t m_money;
 
   //TODO Sphere, Industry, various company options, stats, team, marketing
   std::set<std::weak_ptr<UserModel>, std::owner_less<std::weak_ptr<UserModel>>> m_users; // Ordering by owner
