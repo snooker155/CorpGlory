@@ -1,0 +1,158 @@
+<template name="team_creator_form">
+
+<div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <h2>
+                                Team starter form
+                            </h2>
+
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12">
+                                  <form class="form-horizontal" id="create_sphere">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="sphere_name"></label>
+                                        <div class="col-md-3">
+                                            <p>Department name</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <p>Number of employees</p>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <p class="text-center">Level</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <p class="text-center">Price per one</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <p class="text-center">Sum</p>
+                                        </div>
+                                    </div>
+                                    {{#each available_departments}}
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label" for="sphere_name">#{{value}} Department</label>
+                                            <div class="col-md-3">
+                                                <select class="form-control" name="department_name" id="department_name" aria-required="true">
+                                                    <option value="" selected>Select department</option>
+                                                    {{#each departments}}
+                                                        <option value="{{department_name}}">{{department_name}}</option>    
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <a href="#" id="employee_decrease" class="btn btn-white btn-xs {{employee_number_decrease_enabled}}"><i class="fa fa-lg fa-minus"></i></a>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p class="text-center">{{employee_number}} / {{max_employee_number}}</p>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <a href="#" id="employee_increase" class="btn btn-white btn-xs {{employee_number_increase_enabled}}"><i class="fa fa-lg fa-plus"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <p class="text-center">1</p>
+                                            </div>
+                                            <div class="col-md-2">
+                                               <p class="text-center">${{price_for_employee}}</p>
+                                            </div>
+                                            <div class="col-md-2">
+                                               <p class="text-center"><strong>${{sum_of_department}}</strong> / month</p>
+                                            </div>
+                                        </div>
+                                    {{/each}}
+                                    <div class="form-group">
+                                      <div class="col-md-9 col-md-offset-3">
+                                        <button type="submit" class="btn btn-sm btn-primary">Make team</button>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+
+
+<div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-content">
+
+                <form id="example-advanced-form" action="#">
+    <h3>Account</h3>
+    <fieldset>
+        <legend>Account Information</legend>
+ 
+        <label for="userName-2">User name *</label>
+        <input id="userName-2" name="userName" type="text" class="required">
+        <label for="password-2">Password *</label>
+        <input id="password-2" name="password" type="text" class="required">
+        <label for="confirm-2">Confirm Password *</label>
+        <input id="confirm-2" name="confirm" type="text" class="required">
+        <p>(*) Mandatory</p>
+    </fieldset>
+ 
+    <h3>Profile</h3>
+    <fieldset>
+        <legend>Profile Information</legend>
+ 
+        <label for="name-2">First name *</label>
+        <input id="name-2" name="name" type="text" class="required">
+        <label for="surname-2">Last name *</label>
+        <input id="surname-2" name="surname" type="text" class="required">
+        <label for="email-2">Email *</label>
+        <input id="email-2" name="email" type="text" class="required email">
+        <label for="address-2">Address</label>
+        <input id="address-2" name="address" type="text">
+        <label for="age-2">Age (The warning step will show up if age is less than 18) *</label>
+        <input id="age-2" name="age" type="text" class="required number">
+        <p>(*) Mandatory</p>
+    </fieldset>
+ 
+    <h3>Warning</h3>
+    <fieldset>
+        <legend>You are to young</legend>
+ 
+        <p>Please go away ;-)</p>
+    </fieldset>
+ 
+    <h3>Finish</h3>
+    <fieldset>
+        <legend>Terms and Conditions</legend>
+ 
+        <input id="acceptTerms-2" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms-2">I agree with the Terms and Conditions.</label>
+    </fieldset>
+</form>
+</div>
+</div>
+</div>
+</div> -->
+
+
+</template>

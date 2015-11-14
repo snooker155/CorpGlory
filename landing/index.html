@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Corp.GLORY-online building simulator</title>
+</head>
+<style>
+    body, html { 
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    #logoHolder {
+        position: absolute;
+        left: 50%;
+        top: 35%;
+        width: 50%;
+        height: 50%;
+    }
+    #logo {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        left: -50%;
+        top: -50%;
+        background-image: url("/img/logo.png");
+        background-size:contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    h1 {
+        font-family: monospace;
+        font-weight: normal;
+        text-align: center;
+        position: absolute;
+        bottom: 20%;
+        width: 100%;
+        font-size: 5vh;
+    }
+    #socialButtons {
+        position: absolute;
+        height: 55px;
+        margin: auto;
+        bottom: 5%;
+        width: 100%;
+    }
+    #socialButtons a {
+        display: block;
+        float: left;
+        width: 55px;
+        height: 55px;
+        background: url("/img/socialIcons.gif");
+        margin: auto;
+    }
+    #socialButtons #vk {
+        background-position: -210px 0px;
+    }
+    #socialButtons #youTube {
+        background-position: -72px 0px;
+    }
+    #socialButtons #twitter {
+        background-position: -0px 83px;
+    }
+    #socialButtonsHolder {
+        width: 220px;
+        margin: auto;
+        height: 55px;
+    }
+</style>
+<body>
+
+<h1> Online building simulator</h1>
+
+<div id="logoHolder">
+    <div id="logo">
+        
+    </div>
+</div>
+
+<div id="socialButtons">
+    <div id="socialButtonsHolder">
+        <a href="http://www.facebook.com/groups/corpglory/" id="fb"></a>
+        <a href="https://vk.com/corpglory" id="vk"></a>
+        <a href="http://www.youtube.com/channel/UC_NDgFaz_XNuelF3tONS6Sw" id="youTube"></a>
+        <a href="https://twitter.com/corpglory" id="twitter"></a>
+    </div>
+</div>
+
+</body>
+</html>

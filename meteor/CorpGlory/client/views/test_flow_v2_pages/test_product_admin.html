@@ -1,0 +1,1426 @@
+<template name="test_product_admin">
+
+
+<div class="wrapper"> 
+
+<!-- {{>test_header}} -->
+
+
+
+  <header class="main-header">
+  <a href="/test" class="logo">
+    <!-- LOGO -->
+    <!-- mini logo for sidebar mini 50x50 pixels -->
+    <span class="logo-mini"><b>F</b></span>
+    <!-- logo for regular state and mobile devices -->
+    <span class="logo-lg"><b>FLow</b></span>
+  </a>
+  <!-- Header Navbar: style can be found in header.less -->
+  <nav class="navbar navbar-static-top" role="navigation">
+    <!-- Sidebar toggle button-->
+    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </a>
+  </nav>
+</header>
+
+
+
+{{>test_sidebar}}
+
+
+<div class="content-wrapper" style="min-height: 901px;">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Product
+          </h1>
+
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li>Product</li>
+            <li class="active">ABC</li>
+          </ol>
+          </section>
+
+          <section class="content">
+          <div class="row">
+
+
+
+           <div class="col-md-3 col-sm-12">
+
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                  <img class="profile-user-img img-responsive" src="House_Stark.png" alt="User profile picture">
+                  <h2 class="profile-username text-center">Nut 16+/526596/524.4556</h2>
+                  <p class="text-muted text-center">Zippin</p>
+
+                  <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                      <b>Followers</b> <a class="pull-right">1,322</a>
+                    </li>
+                    <li class="list-group-item">
+                      <b>Following</b> <a class="pull-right">543</a>
+                    </li>
+                  </ul>
+
+                  <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                </div>
+              </div>
+
+
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Main info</h3>
+              </div>
+                
+
+              <div class="box-body">
+
+                <table class="table table-condensed">
+                      <tbody>
+                      <tr>
+                        <td>Sphere</td>
+                        <td>
+                          Industrial
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Segment</td>
+                        <td>
+                          Equipment
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Creator</td>
+                        <td>
+                          <img src="http://placehold.it/20x20" alt="..."> Zippin
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Quality</td>
+                        <td>
+                          3
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Stock</td>
+                        <td>
+                          1000000
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Usefull period</td>
+                        <td>
+                          12
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Used in</td>
+                        <td>
+                          <strong>Industrial machines</strong>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+     
+
+                  <button type="button" class="btn btn-warning" id="edit_product">Edit</button>
+                  <button type="button" class="btn btn-danger" id="edit_product">Delete</button>
+
+                </div>
+              </div>
+            </div>
+
+
+          <div class="col-md-9 col-sm-12">
+
+          <div class="box box-primary">      
+                <div class="box-header">
+                  <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation"><a href="#companies_tab" aria-controls="companies_tab" role="tab" data-toggle="tab">Characteristics</a></li>
+                        <li role="presentation"><a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">Timeline</a></li>
+                        <li role="presentation"><a href="#products_tab" aria-controls="products_tab" role="tab" data-toggle="tab">Change history</a></li>
+                        <li role="presentation" class="active"><a href="#product_positions_tab" aria-controls="product_positions_tab" role="tab" data-toggle="tab">Reports</a></li>
+                        <li role="presentation"><a href="#orders_tab" aria-controls="orders_tab" role="tab" data-toggle="tab">Research</a></li>
+                        <li role="presentation"><a href="#technologies" aria-controls="technologies" role="tab" data-toggle="tab">Settings</a></li>
+                      </ul>
+                  </div>
+                  <div class="box-body">
+                      <!-- Tab panes -->
+                      <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane" id="companies_tab">
+                          {{>product_characteristics}}
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="activity">
+                          {{>product_timeline}}
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="products_tab">
+                          {{>product_change_history}}
+                        </div>
+                        <div role="tabpanel" class="tab-pane active" id="product_positions_tab">
+                          {{>product_reports}}
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="orders_tab">
+                          {{>product_research}}
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="technologies">
+                          {{>product_settings}}
+                        </div>
+                      </div>
+            </div>
+            </div>
+
+              
+
+              </div>
+              </div>
+              </section>
+           	
+
+            <!-- <div class="col-md-1 visible-md visible-lg"></div> -->
+        
+
+      </div>
+      </div>
+
+</template>
+
+
+
+
+
+
+<template name="product_characteristics">
+                <dl class="dl-horizontal">
+                    <dt>Color</dt>
+                    <dd>White and gold</dd>
+                    <dt>Type</dt>
+                    <dd>Party</dd>
+                    <dt>Size</dt>
+                    <dd>XS</dd>
+                    <dt>Description</dt>
+                    <dd>Bootstrap easily and efficiently scales your websites and applications with a single code base, from phones to tablets to desktops with CSS media queries. Bootstrap easily and efficiently scales your websites and applications with a single code base, from phones to tablets to desktops with CSS media queries. Bootstrap easily and efficiently scales your websites and applications with a single code base, from phones to tablets to desktops with CSS media queries.</dd>
+                </dl>
+                <table class="table table-condensed">
+                    <tbody><tr>
+                      <th style="width: 10px">#</th>
+                      <th>Feature</th>
+                      <th>Value</th>
+                      <th style="width: 40px">Action</th>
+                    </tr>
+                    <tr>
+                      <td>1.</td>
+                      <td>Color:</td>
+                      <td>
+                        White and gold
+                      </td>
+                      <td><button type="button" class="btn btn-danger" aria-label="Delete">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"> </span>
+                    </button></td>
+                    </tr>
+                    <tr>
+                      <td>2.</td>
+                      <td>Type:</td>
+                      <td>
+                        Party
+                      </td>
+                        <td><button type="button" class="btn btn-danger" aria-label="Delete">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"> </span>
+                    </button></td>
+                    </tr>
+                    <tr>
+                      <td>3.</td>
+                      <td>Size:</td>
+                      <td>
+                        XS
+                      </td>
+                      <td><button type="button" class="btn btn-danger" aria-label="Delete">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"> </span>
+                    </button></td>
+                    </tr>
+                    <tr>
+                      <td>4.</td>
+                      <td>Radius:</td>
+                      <td>
+                        16 mm
+                      </td>
+                      <td><button type="button" class="btn btn-danger" aria-label="Delete">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"> </span>
+                    </button></td>
+                    </tr>
+                    <tr>
+                      <td>5.</td>
+                      <td>Height:</td>
+                      <td>
+                        56 mm
+                      </td>
+                      <td><button type="button" class="btn btn-danger" aria-label="Delete">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"> </span>
+                    </button></td>
+                    </tr>
+                    <tr>
+                      <td>6.</td>
+                      <td>Durability:</td>
+                      <td>
+                        25 h/mm
+                      </td>
+                      <td><button type="button" class="btn btn-danger" aria-label="Delete">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"> </span>
+                    </button></td>
+                    </tr>
+                  </tbody>
+                </table>
+            <div class="row">
+            <div class="col-md-6 col-sm-12">
+
+            <button type="button" class="btn btn-primary">Publish</button>
+            <button type="button" class="btn btn-success">Published</button>
+            <button type="button" class="btn btn-warning" id="edit_product">Edit</button>
+            <button type="button" class="btn btn-danger" id="edit_product">Delete</button>
+
+            </div>
+            </div>
+
+            <div class="box box-solid box-info" style="margin-top:50px;">
+                <div class="box-header">
+                  <h3 class="box-title">Comments</h3>
+                </div>
+                <div class="box-body">
+                  <div class="list-group-item">
+                    <p>Bootstrap easily and efficiently scales your websites and applications with a single code base, from phones to tablets to desktops with CSS media queries.</p>
+                    <h6 class="quote-author">John Kennedy 12.02.2010</h6>
+                </div>
+                <div class="list-group-item">
+                     <p>Bootstrap easily and efficiently scales your websites and applications with a single code base, from phones to tablets to desktops with CSS media queries.</p>
+                     <h6 class="quote-author">John Kennedy 12.02.2010</h6>
+                </div>
+                <div class="list-group-item">
+                     <p>Bootstrap easily and efficiently scales your websites and applications with a single code base, from phones to tablets to desktops with CSS media queries.</p>
+                     <h6 class="quote-author">John Kennedy 12.02.2010</h6>
+                </div>
+                <div class="list-group-item">
+                     <p>Bootstrap easily and efficiently scales your websites and applications with a single code base, from phones to tablets to desktops with CSS media queries.</p>
+                     <h6 class="quote-author">John Kennedy 12.02.2010</h6>
+                </div>
+                <div class="list-group-item">
+                     <form> 
+                        <label>Оставить отзыв</label>
+                        <textarea class="form-control" rows="3"></textarea>
+                        <input type="button" class="btn btn-default" value="Добавить">
+                     </form> 
+                </div>
+                </div>
+              </div>
+</template>
+
+
+
+<template name="product_reports">
+  <div class="row">
+            <div class="col-md-12">
+              <div class="box box-primary box-solid">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Monthly Recap Report</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <div class="btn-group">
+                      <button class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-wrench"></i></button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                      </ul>
+                    </div>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <p class="text-center">
+                        <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
+                      </p>
+                      <div class="chart">
+                        <!-- Sales Chart Canvas -->
+                        <!-- <canvas id="salesChart" style="height: 85px; width: 507px;" width="507" height="85"></canvas> -->
+                        {{> chartCanvas id='salesChart' width="507" height="135"}}
+                      </div><!-- /.chart-responsive -->
+                    </div><!-- /.col -->
+                    <div class="col-md-4">
+                      <p class="text-center">
+                        <strong>Goal Completion</strong>
+                      </p>
+                      <div class="progress-group">
+                        <span class="progress-text">Add Products to Cart</span>
+                        <span class="progress-number"><b>160</b>/200</span>
+                        <div class="progress sm">
+                          <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                        </div>
+                      </div><!-- /.progress-group -->
+                      <div class="progress-group">
+                        <span class="progress-text">Complete Purchase</span>
+                        <span class="progress-number"><b>310</b>/400</span>
+                        <div class="progress sm">
+                          <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                        </div>
+                      </div><!-- /.progress-group -->
+                      <div class="progress-group">
+                        <span class="progress-text">Visit Premium Page</span>
+                        <span class="progress-number"><b>480</b>/800</span>
+                        <div class="progress sm">
+                          <div class="progress-bar progress-bar-green" style="width: 80%"></div>
+                        </div>
+                      </div><!-- /.progress-group -->
+                      <div class="progress-group">
+                        <span class="progress-text">Send Inquiries</span>
+                        <span class="progress-number"><b>250</b>/500</span>
+                        <div class="progress sm">
+                          <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>
+                        </div>
+                      </div><!-- /.progress-group -->
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+                </div><!-- ./box-body -->
+                <div class="box-footer">
+                  <div class="row">
+                    <div class="col-sm-3 col-xs-6">
+                      <div class="description-block border-right">
+                        <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
+                        <h5 class="description-header">$35,210.43</h5>
+                        <span class="description-text">TOTAL REVENUE</span>
+                      </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-3 col-xs-6">
+                      <div class="description-block border-right">
+                        <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
+                        <h5 class="description-header">$10,390.90</h5>
+                        <span class="description-text">TOTAL COST</span>
+                      </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-3 col-xs-6">
+                      <div class="description-block border-right">
+                        <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
+                        <h5 class="description-header">$24,813.53</h5>
+                        <span class="description-text">TOTAL PROFIT</span>
+                      </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-3 col-xs-6">
+                      <div class="description-block">
+                        <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
+                        <h5 class="description-header">1200</h5>
+                        <span class="description-text">GOAL COMPLETIONS</span>
+                      </div><!-- /.description-block -->
+                    </div>
+                  </div><!-- /.row -->
+                </div><!-- /.box-footer -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+          </div>
+</template>
+
+
+
+
+
+<template name="product_research">
+<div class="row">
+  <div class="col-md-4 col-sm-12">
+    <div class="box box-solid box-success">
+      <div class="box-header">
+        <h3 class="box-title">To_abc</h3>
+      </div>
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-condensed">
+              <tbody>
+                <tr>
+                  <td>Creator:</td>
+                  <td>ACCA</td>
+                </tr>
+                <tr>
+                  <td>Output product:</td>
+                  <td>ABC</td>
+                </tr>
+                <tr>
+                  <td>Sphere:</td>
+                  <td>abc</td>
+                </tr>
+                <tr>
+                  <td>Segment:</td>
+                  <td>abc_abc</td>
+                </tr>
+                <tr>
+                  <td>Available quantity to make:</td>
+                  <td>235</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Per one</th>
+                  <th>Needed</th>
+                  <th>In Storehouse</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1.</td>
+                  <td>Abc1</td>
+                  <td>2</td>
+                  <td>112</td>
+                  <td>122</td>
+                </tr>
+                <tr>
+                  <td>2.</td>
+                  <td>Abc2</td>
+                  <td>3</td>
+                  <td>112</td>
+                  <td>102</td>
+                </tr>
+                <tr>
+                  <td>3.</td>
+                  <td>Abc3</td>
+                  <td>1</td>
+                  <td>112</td>
+                  <td>102</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-sm-12">
+    <div class="box box-solid box-success">
+      <div class="box-header">
+        <h3 class="box-title">To_abc</h3>
+      </div>
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-condensed">
+              <tbody>
+                <tr>
+                  <td>Creator:</td>
+                  <td>ACCA</td>
+                </tr>
+                <tr>
+                  <td>Output product:</td>
+                  <td>ABC</td>
+                </tr>
+                <tr>
+                  <td>Sphere:</td>
+                  <td>abc</td>
+                </tr>
+                <tr>
+                  <td>Segment:</td>
+                  <td>abc_abc</td>
+                </tr>
+                <tr>
+                  <td>Available quantity to make:</td>
+                  <td>235</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Per one</th>
+                  <th>Needed</th>
+                  <th>In Storehouse</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1.</td>
+                  <td>Abc1</td>
+                  <td>2</td>
+                  <td>112</td>
+                  <td>122</td>
+                </tr>
+                <tr>
+                  <td>2.</td>
+                  <td>Abc2</td>
+                  <td>3</td>
+                  <td>112</td>
+                  <td>102</td>
+                </tr>
+                <tr>
+                  <td>3.</td>
+                  <td>Abc3</td>
+                  <td>1</td>
+                  <td>112</td>
+                  <td>102</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-4 col-sm-12">
+    <div class="box box-solid box-success">
+      <div class="box-header">
+        <h3 class="box-title">To_abc</h3>
+      </div>
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-condensed">
+              <tbody>
+                <tr>
+                  <td>Creator:</td>
+                  <td>ACCA</td>
+                </tr>
+                <tr>
+                  <td>Output product:</td>
+                  <td>ABC</td>
+                </tr>
+                <tr>
+                  <td>Sphere:</td>
+                  <td>abc</td>
+                </tr>
+                <tr>
+                  <td>Segment:</td>
+                  <td>abc_abc</td>
+                </tr>
+                <tr>
+                  <td>Available quantity to make:</td>
+                  <td>235</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Per one</th>
+                  <th>Needed</th>
+                  <th>In Storehouse</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1.</td>
+                  <td>Abc1</td>
+                  <td>2</td>
+                  <td>112</td>
+                  <td>122</td>
+                </tr>
+                <tr>
+                  <td>2.</td>
+                  <td>Abc2</td>
+                  <td>3</td>
+                  <td>112</td>
+                  <td>102</td>
+                </tr>
+                <tr>
+                  <td>3.</td>
+                  <td>Abc3</td>
+                  <td>1</td>
+                  <td>112</td>
+                  <td>102</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+    <div class="box box-solid box-success">
+      <div class="box-header">
+        <h3 class="box-title">To_abc</h3>
+      </div>
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-condensed">
+              <tbody>
+                <tr>
+                  <td>Creator:</td>
+                  <td>ACCA</td>
+                </tr>
+                <tr>
+                  <td>Output product:</td>
+                  <td>ABC</td>
+                </tr>
+                <tr>
+                  <td>Sphere:</td>
+                  <td>abc</td>
+                </tr>
+                <tr>
+                  <td>Segment:</td>
+                  <td>abc_abc</td>
+                </tr>
+                <tr>
+                  <td>Available quantity to make:</td>
+                  <td>235</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Per one</th>
+                  <th>Needed</th>
+                  <th>In Storehouse</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1.</td>
+                  <td>Abc1</td>
+                  <td>2</td>
+                  <td>112</td>
+                  <td>122</td>
+                </tr>
+                <tr>
+                  <td>2.</td>
+                  <td>Abc2</td>
+                  <td>3</td>
+                  <td>112</td>
+                  <td>102</td>
+                </tr>
+                <tr>
+                  <td>3.</td>
+                  <td>Abc3</td>
+                  <td>1</td>
+                  <td>112</td>
+                  <td>102</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-6 col-sm-12">
+    <div class="box box-solid box-success">
+      <div class="box-header">
+        <h3 class="box-title">To_abc</h3>
+      </div>
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-condensed">
+              <tbody>
+                <tr>
+                  <td>Creator:</td>
+                  <td>ACCA</td>
+                </tr>
+                <tr>
+                  <td>Output product:</td>
+                  <td>ABC</td>
+                </tr>
+                <tr>
+                  <td>Sphere:</td>
+                  <td>abc</td>
+                </tr>
+                <tr>
+                  <td>Segment:</td>
+                  <td>abc_abc</td>
+                </tr>
+                <tr>
+                  <td>Available quantity to make:</td>
+                  <td>235</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Per one</th>
+                  <th>Needed</th>
+                  <th>In Storehouse</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1.</td>
+                  <td>Abc1</td>
+                  <td>2</td>
+                  <td>112</td>
+                  <td>122</td>
+                </tr>
+                <tr>
+                  <td>2.</td>
+                  <td>Abc2</td>
+                  <td>3</td>
+                  <td>112</td>
+                  <td>102</td>
+                </tr>
+                <tr>
+                  <td>3.</td>
+                  <td>Abc3</td>
+                  <td>1</td>
+                  <td>112</td>
+                  <td>102</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+
+
+
+
+
+
+<template name="product_timeline">
+  <ul class="timeline">
+
+    <!-- timeline time label -->
+    <li class="time-label">
+        <span class="bg-red">
+            10 Feb. 2014
+        </span>
+    </li>
+    <!-- /.timeline-label -->
+
+    <!-- timeline item -->
+    <li>
+        <!-- timeline icon -->
+        <i class="fa fa-envelope bg-blue"></i>
+        <div class="timeline-item">
+            <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+
+            <h3 class="timeline-header"><a href="#">Support Team</a> ...</h3>
+
+            <div class="timeline-body">
+                ...
+                Content goes here
+            </div>
+
+            <div class="timeline-footer">
+                <a class="btn btn-primary btn-xs">...</a>
+            </div>
+        </div>
+    </li>
+    <!-- END timeline item -->
+
+
+                <!-- timeline time label -->
+                <li class="time-label">
+                  <span class="bg-red">
+                    10 Feb. 2014
+                  </span>
+                </li>
+                <!-- /.timeline-label -->
+                <!-- timeline item -->
+                <li>
+                  <i class="fa fa-envelope bg-blue"></i>
+                  <div class="timeline-item">
+                    <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+                    <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+                    <div class="timeline-body">
+                      Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+                      weebly ning heekya handango imeem plugg dopplr jibjab, movity
+                      jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
+                      quora plaxo ideeli hulu weebly balihoo...
+                    </div>
+                    <div class="timeline-footer">
+                      <a class="btn btn-primary btn-xs">Read more</a>
+                      <a class="btn btn-danger btn-xs">Delete</a>
+                    </div>
+                  </div>
+                </li>
+                <!-- END timeline item -->
+                <!-- timeline item -->
+                <li>
+                  <i class="fa fa-user bg-aqua"></i>
+                  <div class="timeline-item">
+                    <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+                    <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request</h3>
+                  </div>
+                </li>
+                <!-- END timeline item -->
+                <!-- timeline item -->
+                <li>
+                  <i class="fa fa-comments bg-yellow"></i>
+                  <div class="timeline-item">
+                    <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
+                    <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+                    <div class="timeline-body">
+                      Take me to your leader!
+                      Switzerland is small and neutral!
+                      We are more like Germany, ambitious and misunderstood!
+                    </div>
+                    <div class="timeline-footer">
+                      <a class="btn btn-warning btn-flat btn-xs">View comment</a>
+                    </div>
+                  </div>
+                </li>
+                <!-- END timeline item -->
+                <!-- timeline time label -->
+                <li class="time-label">
+                  <span class="bg-green">
+                    3 Jan. 2014
+                  </span>
+                </li>
+                <!-- /.timeline-label -->
+                <!-- timeline item -->
+                <li>
+                  <i class="fa fa-camera bg-purple"></i>
+                  <div class="timeline-item">
+                    <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
+                    <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+                    <div class="timeline-body">
+                      <img src="http://placehold.it/150x100" alt="..." class="margin">
+                      <img src="http://placehold.it/150x100" alt="..." class="margin">
+                      <img src="http://placehold.it/150x100" alt="..." class="margin">
+                      <img src="http://placehold.it/150x100" alt="..." class="margin">
+                    </div>
+                  </div>
+                </li>
+                <!-- END timeline item -->
+                <li>
+                  <i class="fa fa-clock-o bg-gray"></i>
+                </li>
+              </ul>
+</template>
+
+
+
+
+<template name="product_change_history">
+  <table class="table table-condensed">
+                      <thead>
+                        <tr>
+                          <th>When</th>
+                          <th>Who</th>
+                          <th>What</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>10-12-2014:</td>
+                          <td>Admin</td>
+                          <td>Order created;</td>
+                        </tr>
+                        <tr>
+                          <td>12-12-2014:</td>
+                          <td>Admin</td>
+                          <td>Order changed; add new product: abc2-1123-in_stock-121-3-363</td>
+                        </tr>
+                        <tr>
+                          <td>15-12-2014:</td>
+                          <td>Admin</td>
+                          <td>Order date changed; current date - 15-01-2015</td>
+                        </tr>
+                        <tr>
+                          <td>19-12-2014:</td>
+                          <td>Admin</td>
+                          <td>Order is delivering;</td>
+                        </tr>
+                        <tr>
+                        <td>15-01-2015:</td>
+                          <td>Admin</td>
+                          <td>Order has been delivered;</td>
+                        </tr>
+                        <tr>
+                        <td>20-01-2015:</td>
+                          <td>Admin</td>
+                          <td>Order is closed;</td>
+                        </tr>
+                      </tbody>
+                    </table>
+</template>
+
+
+
+
+
+<template name="product_settings">
+  <div class="row">
+                <div class="col-lg-12">
+                    <div class="tabs-container">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true"> Product info</a></li>
+                                <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false"> Data</a></li>
+                                <li class=""><a data-toggle="tab" href="#tab-3" aria-expanded="false"> Discount</a></li>
+                                <li class=""><a data-toggle="tab" href="#tab-4" aria-expanded="false"> Images</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="tab-1" class="tab-pane active">
+                                    <div class="panel-body">
+
+                                        <fieldset class="form-horizontal">
+                                            <div class="form-group"><label class="col-sm-2 control-label">Name:</label>
+                                                <div class="col-sm-10"><input type="text" class="form-control" placeholder="Product name"></div>
+                                            </div>
+                                            <div class="form-group"><label class="col-sm-2 control-label">Price:</label>
+                                                <div class="col-sm-10"><input type="text" class="form-control" placeholder="$160.00"></div>
+                                            </div>
+                                            <div class="form-group"><label class="col-sm-2 control-label">Description:</label>
+                                                <div class="col-sm-10">
+                                                  <textarea class="form-control" placeholder="Enter text ..."></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group"><label class="col-sm-2 control-label">Meta Tag Title:</label>
+                                                <div class="col-sm-10"><input type="text" class="form-control" placeholder="..."></div>
+                                            </div>
+                                            <div class="form-group"><label class="col-sm-2 control-label">Meta Tag Description:</label>
+                                                <div class="col-sm-10"><input type="text" class="form-control" placeholder="Sheets containing Lorem"></div>
+                                            </div>
+                                            <div class="form-group"><label class="col-sm-2 control-label">Meta Tag Keywords:</label>
+                                                <div class="col-sm-10"><input type="text" class="form-control" placeholder="Lorem, Ipsum, has, been"></div>
+                                            </div>
+                                        </fieldset>
+
+                                    </div>
+                                </div>
+                                <div id="tab-2" class="tab-pane">
+                                    <div class="panel-body">
+
+                                        <fieldset class="form-horizontal">
+                                            <div class="form-group"><label class="col-sm-2 control-label">ID:</label>
+                                                <div class="col-sm-10"><input type="text" class="form-control" placeholder="543"></div>
+                                            </div>
+                                            <div class="form-group"><label class="col-sm-2 control-label">Model:</label>
+                                                <div class="col-sm-10"><input type="text" class="form-control" placeholder="..."></div>
+                                            </div>
+                                            <div class="form-group"><label class="col-sm-2 control-label">Location:</label>
+                                                <div class="col-sm-10"><input type="text" class="form-control" placeholder="location"></div>
+                                            </div>
+                                            <div class="form-group"><label class="col-sm-2 control-label">Tax Class:</label>
+                                                <div class="col-sm-10">
+                                                    <select class="form-control">
+                                                        <option>option 1</option>
+                                                        <option>option 2</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group"><label class="col-sm-2 control-label">Quantity:</label>
+                                                <div class="col-sm-10"><input type="text" class="form-control" placeholder="Quantity"></div>
+                                            </div>
+                                            <div class="form-group"><label class="col-sm-2 control-label">Minimum quantity:</label>
+                                                <div class="col-sm-10"><input type="text" class="form-control" placeholder="2"></div>
+                                            </div>
+                                            <div class="form-group"><label class="col-sm-2 control-label">Sort order:</label>
+                                                <div class="col-sm-10"><input type="text" class="form-control" placeholder="0"></div>
+                                            </div>
+                                            <div class="form-group"><label class="col-sm-2 control-label">Status:</label>
+                                                <div class="col-sm-10">
+                                                    <select class="form-control">
+                                                        <option>option 1</option>
+                                                        <option>option 2</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+
+                                    </div>
+                                </div>
+                                <div id="tab-3" class="tab-pane">
+                                    <div class="panel-body">
+
+                                        <div class="table-responsive">
+                                            <table class="table table-stripped table-bordered">
+
+                                                <thead>
+                                                <tr>
+                                                    <th>
+                                                        Group
+                                                    </th>
+                                                    <th>
+                                                        Quantity
+                                                    </th>
+                                                    <th>
+                                                        Discount
+                                                    </th>
+                                                    <th style="width: 20%">
+                                                        Date start
+                                                    </th>
+                                                    <th style="width: 20%">
+                                                        Date end
+                                                    </th>
+                                                    <th>
+                                                        Actions
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option selected="">Group 1</option>
+                                                            <option>Group 2</option>
+                                                            <option>Group 3</option>
+                                                            <option>Group 4</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" placeholder="10">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" placeholder="$10.00">
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group date">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="07/01/2014">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group date">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="07/01/2014">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                            <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option selected="">Group 1</option>
+                                                            <option>Group 2</option>
+                                                            <option>Group 3</option>
+                                                            <option>Group 4</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" placeholder="10">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" placeholder="$10.00">
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group date">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="07/01/2014">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group date">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="07/01/2014">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option selected="">Group 1</option>
+                                                            <option>Group 2</option>
+                                                            <option>Group 3</option>
+                                                            <option>Group 4</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" placeholder="10">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" placeholder="$10.00">
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group date">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="07/01/2014">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group date">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="07/01/2014">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option selected="">Group 1</option>
+                                                            <option>Group 2</option>
+                                                            <option>Group 3</option>
+                                                            <option>Group 4</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" placeholder="10">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" placeholder="$10.00">
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group date">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="07/01/2014">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group date">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="07/01/2014">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option selected="">Group 1</option>
+                                                            <option>Group 2</option>
+                                                            <option>Group 3</option>
+                                                            <option>Group 4</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" placeholder="10">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" placeholder="$10.00">
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group date">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="07/01/2014">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group date">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="07/01/2014">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option selected="">Group 1</option>
+                                                            <option>Group 2</option>
+                                                            <option>Group 3</option>
+                                                            <option>Group 4</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" placeholder="10">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" placeholder="$10.00">
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group date">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="07/01/2014">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group date">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="07/01/2014">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <select class="form-control">
+                                                            <option selected="">Group 1</option>
+                                                            <option>Group 2</option>
+                                                            <option>Group 3</option>
+                                                            <option>Group 4</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" placeholder="10">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" placeholder="$10.00">
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group date">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="07/01/2014">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group date">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="07/01/2014">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                                    </td>
+                                                </tr>
+
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div id="tab-4" class="tab-pane">
+                                    <div class="panel-body">
+
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-stripped">
+                                                <thead>
+                                                <tr>
+                                                    <th>
+                                                        Image preview
+                                                    </th>
+                                                    <th>
+                                                        Image url
+                                                    </th>
+                                                    <th>
+                                                        Sort order
+                                                    </th>
+                                                    <th>
+                                                        Actions
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <img src="http://placehold.it/50x50">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" disabled="" value="http://mydomain.com/images/image1.png">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" value="1">
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <img src="http://placehold.it/50x50">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" disabled="" value="http://mydomain.com/images/image2.png">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" value="2">
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <img src="http://placehold.it/50x50">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" disabled="" value="http://mydomain.com/images/image3.png">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" value="3">
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <img src="http://placehold.it/50x50">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" disabled="" value="http://mydomain.com/images/image4.png">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" value="4">
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <img src="http://placehold.it/50x50">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" disabled="" value="http://mydomain.com/images/image5.png">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" value="5">
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <img src="http://placehold.it/50x50">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" disabled="" value="http://mydomain.com/images/image6.png">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" value="6">
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <img src="http://placehold.it/50x50">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" disabled="" value="http://mydomain.com/images/image7.png">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control" value="7">
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+</template>

@@ -1,0 +1,495 @@
+<template name="test_in_productions">
+
+{{> pageHeading title='Production management' category='Production' }}
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+
+
+
+
+
+
+
+            <div class="ibox-content m-b-sm border-bottom">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="order_id">Order ID</label>
+                            <input type="text" id="order_id" name="order_id" value="" placeholder="Order ID" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="status">Order status</label>
+                            <input type="text" id="status" name="status" value="" placeholder="Status" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="customer">Customer</label>
+                            <input type="text" id="customer" name="customer" value="" placeholder="Customer" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="date_added">Date added</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date_added" type="text" class="form-control" value="03/04/2014">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="date_modified">Date modified</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="date_modified" type="text" class="form-control" value="03/06/2014">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label" for="amount">Amount</label>
+                            <input type="text" id="amount" name="amount" value="" placeholder="Amount" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+
+                    <div class="ibox-header">
+
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <ul class="nav nav-tabs" role="tablist">
+                          <li role="presentation" class="active"><a href="#companies_tab" aria-controls="companies_tab" role="tab" data-toggle="tab">Create</a></li>
+                          <li role="presentation"><a href="#products_tab" aria-controls="products_tab" role="tab" data-toggle="tab">Planned</a></li>
+                          <li role="presentation"><a href="#product_positions_tab" aria-controls="product_positions_tab" role="tab" data-toggle="tab">Current</a></li>
+                          <li role="presentation"><a href="#orders_tab" aria-controls="orders_tab" role="tab" data-toggle="tab">Finished</a></li>
+                          <li role="presentation"><a href="#technologies" aria-controls="technologies" role="tab" data-toggle="tab">Cancelled</a></li>
+                          <li role="presentation"><a href="#cancelled" aria-controls="cancelled" role="tab" data-toggle="tab">Archive</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                          <div role="tabpanel" class="tab-pane active" id="companies_tab">
+
+                          </div>
+                          <div role="tabpanel" class="tab-pane" id="products_tab">
+
+                          </div>
+                          <div role="tabpanel" class="tab-pane" id="product_positions_tab">
+
+                          </div>
+                          <div role="tabpanel" class="tab-pane" id="orders_tab">
+
+                          </div>
+                          <div role="tabpanel" class="tab-pane" id="technologies">
+
+                          </div>
+                          <div role="tabpanel" class="tab-pane" id="cancelled">
+
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                
+
+                <div class="ibox-content">
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Process production <span class="fa fa-caret-down"></span></button>
+                    </div>
+                  </div>
+
+                            <table class="footable table table-stripped toggle-arrow-tiny default footable-loaded" data-page-size="15">
+                                <thead>
+                                  <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">#</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Name</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Creator</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Output product</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Available quantity to make</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Quantity for production</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Make</th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Actions</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  
+                                                               
+                                <tr role="row" class="odd clickable" data-target="#collapse1" data-toggle="collapse">
+                                    <td class="sorting_1">1.</td>
+                                    <td>To abc</td>
+                                    <td>Win 98+ / OSX.2+</td>
+                                    <td>Abc</td>
+                                    <td>235</td>
+                                    <td>
+                                      <input type="text" id="quantity_for_order" placeholder="Quantity" class="form-control">
+                                    </td>
+                                    <td><button class="btn btn-default" id="make_product" href="#">Make</button></td>
+                                    <td>
+                                      <button class="edit">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                      </button>
+                                      <button class="delete">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                      </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                  <td colspan="7" style="padding:0px;">
+                                    <div id="collapse1" class="collapse">
+                                      {{> tech_description}}
+                                    </div>
+                                    </td>
+                                  </tr>
+                                  <tr role="row" class="even clickable" data-target="#collapse2" data-toggle="collapse">
+                                    <td class="sorting_1">2.</td>
+                                    <td>To abc1</td>
+                                    <td>Win 98+ / OSX.2+</td>
+                                    <td>Abc1</td>
+                                    <td>525</td>
+                                    <td>
+                                      <input type="text" id="quantity_for_order" placeholder="Quantity" class="form-control">
+                                    </td>
+                                    <td><button class="btn btn-default" id="make_product" href="#">Make</button></td>
+                                      <td>
+                                        <button class="edit">
+                                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        </button>
+                                        <button class="delete">
+                                          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        </button>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                  <td colspan="7" style="padding:0px;">
+                                    <div id="collapse2" class="collapse">
+                                      {{> tech_description}}
+                                    </div>
+                                    </td>
+                                  </tr>
+                                  <tr role="row" class="odd clickable" data-target="#collapse3" data-toggle="collapse">
+                                    <td class="sorting_1">3.</td>
+                                    <td>To abc2</td>
+                                    <td>Win 98+ / OSX.2+</td>
+                                    <td>Abc2</td>
+                                    <td>755</td>
+                                    <td>
+                                      <input type="text" id="quantity_for_order" placeholder="Quantity" class="form-control">
+                                    </td>
+                                    <td><button class="btn btn-default" id="make_product" href="#">Make</button></td>
+                                      <td>
+                                        <button class="edit">
+                                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        </button>
+                                        <button class="delete">
+                                          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        </button>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                  <td colspan="7" style="padding:0px;">
+                                    <div id="collapse3" class="collapse">
+                                      {{> tech_description}}
+                                    </div>
+                                    </td>
+                                  </tr>
+                                  <tr role="row" class="even clickable" data-target="#collapse4" data-toggle="collapse">
+                                    <td class="sorting_1">4.</td>
+                                    <td>To abc3</td>
+                                    <td>Win 2k+ / OSX.3+</td>
+                                    <td>Abc3</td>
+                                    <td>258</td>
+                                    <td>
+                                      <input type="text" id="quantity_for_order" placeholder="Quantity" class="form-control">
+                                    </td>
+                                    <td><button class="btn btn-default" id="make_product" href="#">Make</button></td>
+                                      <td>
+                                        <button class="edit">
+                                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        </button>
+                                        <button class="delete">
+                                          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        </button>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                  <td colspan="7" style="padding:0px;">
+                                    <div id="collapse4" class="collapse">
+                                      {{> tech_description}}
+                                    </div>
+                                    </td>
+                                  </tr>
+                                  <tr role="row" class="odd clickable" data-target="#collapse5" data-toggle="collapse">
+                                    <td class="sorting_1">5.</td>
+                                    <td>To abc4</td>
+                                    <td>OSX.2+</td>
+                                    <td>Abc4</td>
+                                    <td>456</td>
+                                    <td>
+                                      <input type="text" id="quantity_for_order" placeholder="Quantity" class="form-control">
+                                    </td>
+                                    <td><button class="btn btn-default" id="make_product" href="#">Make</button></td>
+                                      <td>
+                                        <button class="edit">
+                                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        </button>
+                                        <button class="delete">
+                                          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        </button>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                  <td colspan="7" style="padding:0px;">
+                                    <div id="collapse5" class="collapse">
+                                      {{> tech_description}}
+                                    </div>
+                                    </td>
+                                  </tr>
+                                  <tr role="row" class="even clickable" data-target="#collapse6" data-toggle="collapse">
+                                    <td class="sorting_1">6.</td>
+                                    <td>To abc5</td>
+                                    <td>OSX.3+</td>
+                                    <td>Abc5</td>
+                                    <td>1455</td>
+                                    <td>
+                                      <input type="text" id="quantity_for_order" placeholder="Quantity" class="form-control">
+                                    </td>
+                                    <td><button class="btn btn-default" id="make_product" href="#">Make</button></td>
+                                      <td>
+                                        <button class="edit">
+                                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        </button>
+                                        <button class="delete">
+                                          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        </button>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                  <td colspan="7" style="padding:0px;">
+                                    <div id="collapse6" class="collapse">
+                                      {{> tech_description}}
+                                    </div>
+                                    </td>
+                                  </tr>
+                                  <tr role="row" class="odd clickable" data-target="#collapse7" data-toggle="collapse">
+                                    <td class="sorting_1">7.</td>
+                                    <td>To abc6</td>
+                                    <td>Win 95+ / Mac OS 8.6-9.2</td>
+                                    <td>Abc6</td>
+                                    <td>741</td>
+                                    <td>
+                                      <input type="text" id="quantity_for_order" placeholder="Quantity" class="form-control">
+                                    </td>
+                                    <td><button class="btn btn-default" id="make_product" href="#">Make</button></td>
+                                      <td>
+                                        <button class="edit">
+                                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        </button>
+                                        <button class="delete">
+                                          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        </button>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                  <td colspan="7" style="padding:0px;">
+                                    <div id="collapse7" class="collapse">
+                                      {{> tech_description}}
+                                    </div>
+                                    </td>
+                                  </tr>
+                                  <tr role="row" class="even clickable" data-target="#collapse8" data-toggle="collapse">
+                                    <td class="sorting_1">8.</td>
+                                    <td>To abc7</td>
+                                    <td>Win 98SE+</td>
+                                    <td>Abc7</td>
+                                    <td>24</td>
+                                    <td>
+                                      <input type="text" id="quantity_for_order" placeholder="Quantity" class="form-control">
+                                    </td>
+                                    <td><button class="btn btn-default" id="make_product" href="#">Make</button></td>
+                                      <td>
+                                        <button class="edit">
+                                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        </button>
+                                        <button class="delete">
+                                          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        </button>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                  <td colspan="7" style="padding:0px;">
+                                    <div id="collapse8" class="collapse">
+                                      {{> tech_description}}
+                                    </div>
+                                    </td>
+                                  </tr>
+                                  <tr role="row" class="odd clickable" data-target="#collapse9" data-toggle="collapse">
+                                    <td class="sorting_1">9.</td>
+                                    <td>To abc8</td>
+                                    <td>Win 98+ / OSX.2+</td>
+                                    <td>Abc8</td>
+                                    <td>577</td>
+                                    <td>
+                                      <input type="text" id="quantity_for_order" placeholder="Quantity" class="form-control">
+                                    </td>
+                                    <td><button class="btn btn-default" id="make_product" href="#">Make</button></td>
+                                      <td>
+                                        <button class="edit">
+                                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        </button>
+                                        <button class="delete">
+                                          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        </button>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                  <td colspan="7" style="padding:0px;">
+                                    <div id="collapse9" class="collapse">
+                                      {{> tech_description}}
+                                    </div>
+                                    </td>
+                                  </tr>
+                                  <tr role="row" class="even clickable" data-target="#collapse10" data-toggle="collapse">
+                                    <td class="sorting_1">10.</td>
+                                    <td>To abc9</td>
+                                    <td>Win 95+ / OSX.1+</td>
+                                    <td>Abc9</td>
+                                    <td>87</td>
+                                    <td>
+                                      <input type="text" id="quantity_for_order" placeholder="Quantity" class="form-control">
+                                    </td>
+                                    <td><button class="btn btn-default" id="make_product" href="#">Make</button></td>
+                                      <td>
+                                        <button class="edit">
+                                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        </button>
+                                        <button class="delete">
+                                          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        </button>
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                  <td colspan="7" style="padding:0px;">
+                                    <div id="collapse10" class="collapse">
+                                      {{> tech_description}}
+                                    </div>
+                                    </td>
+                                  </tr>
+                                  </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                      <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+                                    </td>
+                                    <td colspan="7" class="footable-visible">
+                                        <ul class="pagination pull-right"><li class="footable-page-arrow disabled"><a data-page="first" href="#first">«</a></li><li class="footable-page-arrow disabled"><a data-page="prev" href="#prev">‹</a></li><li class="footable-page active"><a data-page="0" href="#">1</a></li><li class="footable-page"><a data-page="1" href="#">2</a></li><li class="footable-page"><a data-page="2" href="#">3</a></li><li class="footable-page-arrow"><a data-page="next" href="#next">›</a></li><li class="footable-page-arrow"><a data-page="last" href="#last">»</a></li></ul>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                            <div class="row">
+                              <div class="col-md-12 col-sm-12">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Process production <span class="fa fa-caret-down"></span></button>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</template>
+
+
+
+
+<template name="tech_description">
+  <div class="box-body">
+    <h3>To_abc</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table table-condensed">
+          <tbody>
+            <tr>
+              <td>Creator:</td>
+              <td>ACCA</td>
+            </tr>
+            <tr>
+              <td>Output product:</td>
+              <td>ABC</td>
+            </tr>
+            <tr>
+              <td>Sphere:</td>
+              <td>abc</td>
+            </tr>
+            <tr>
+              <td>Segment:</td>
+              <td>abc_abc</td>
+            </tr>
+            <tr>
+              <td>Available quantity to make:</td>
+              <td>235</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-md-6">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Per one</th>
+              <th>Needed</th>
+              <th>In Storehouse</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1.</td>
+              <td>Abc1</td>
+              <td>2</td>
+              <td>112</td>
+              <td>122</td>
+              <td>
+                <button class="btn btn-warning">Buy</button>
+              </td>
+            </tr>
+            <tr>
+              <td>2.</td>
+              <td>Abc2</td>
+              <td>3</td>
+              <td>112</td>
+              <td>102</td>
+              <td>
+                <button class="btn btn-warning">Buy</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3.</td>
+              <td>Abc3</td>
+              <td>1</td>
+              <td>112</td>
+              <td>102</td>
+              <td>
+                <button class="btn btn-warning">Buy</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</template>
