@@ -9,6 +9,9 @@
 
 #include "GameElement.hpp"
 
+#include "cereal/archives/json.hpp"
+#include "cereal/types/memory.hpp"
+
 struct WorldModel;
 
 class World: public GameElement<WorldModel>
@@ -17,9 +20,14 @@ class World: public GameElement<WorldModel>
 public:
   World(const std::shared_ptr<WorldModel>& model, ParentObject* parent = nullptr);
 
+  template <class Archive>
+  void serialize(Archive& ar) const
+  {
+    ar(cereal::make_nvp("model", m_impl->m_model));
+  }
+
 protected:
   virtual void updateSelf() override;
-  virtual bool processAction(const Action& action) override;
 };
 
 

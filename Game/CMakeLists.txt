@@ -20,7 +20,7 @@ foreach(module ${submodules})
 endforeach()
 
 add_library(Game src/Game.cpp inc/Game.hpp src/Player.cpp inc/Player.hpp)
-target_link_libraries(Game GameElements Models Utils)
+target_link_libraries(Game GameElements Models Utils Actions)
 
 add_executable(Main src/Main.cpp)
 target_link_libraries(Main Game)

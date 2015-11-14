@@ -7,9 +7,11 @@
 
 #include <memory>
 
-struct Model: public std::enable_shared_from_this<Model>
+struct Model
 {
   Model() = default;
+  virtual ~Model() = default;
+
   Model(const Model&) = delete;
   const Model& operator=(const Model&) = delete;
 };

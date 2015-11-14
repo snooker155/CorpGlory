@@ -45,11 +45,16 @@ void CompanyImpl::updateSelf()
   }
 
   m_model->m_money = newMoney;
-
+  m_model->m_marketShare = static_cast<double>(m_model->m_users.size()) / m_model->m_totalUsers;
 }
 
 int CompanyImpl::usersPenalty(int users) const
 {
   const int WORLD_USERS = 300;
   return (3200 / WORLD_USERS) * users;
+}
+
+bool Company::processAction(const ActionBase* const action)
+{
+  return GameElement::processAction(action);
 }

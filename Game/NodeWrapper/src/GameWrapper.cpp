@@ -67,9 +67,9 @@ v8::Handle<v8::Value> GameWrapper::gameState(const v8::Arguments& args)
 {
   HandleScope scope;
   GameWrapper* wrapper = node::ObjectWrap::Unwrap<GameWrapper>(args.This());
-  int state = wrapper->m_game.state();
+  std::string state = wrapper->m_game.state();
 
-  return scope.Close(v8::Number::New(state));
+  return scope.Close(v8::String::New(state.c_str(), state.size()));
 }
 
 Player GameWrapper::createPlayer(v8::Handle<v8::Object> object)

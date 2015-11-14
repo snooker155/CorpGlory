@@ -16,9 +16,6 @@ class WorldUsers: GameElement<WorldUsersModel>
 public:
   // TODO Should
   WorldUsers(const std::shared_ptr<WorldUsersModel>& model, ParentObject* parent);
-
-protected:
-  virtual bool processAction(const Action& action) override;
 };
 
 #endif //CORPGLORYGAME_USERCONTROLLER_HPP

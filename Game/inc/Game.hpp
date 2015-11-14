@@ -6,8 +6,9 @@
 #define CORPGLORYGAME_GAME_HPP
 
 #include <memory>
-#include <vector>
+#include <string>
 
+#include <vector>
 #include "Player.hpp"
 
 //Probably creates World, WorldModel and goes on
@@ -15,7 +16,7 @@ class Game {
 public:
     Game(const std::vector<Player>& players);
     ~Game();
-    int state();
+    std::string state();
 private:
     struct GameImpl;
     std::shared_ptr<GameImpl> m_impl;

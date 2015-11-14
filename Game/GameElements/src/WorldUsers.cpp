@@ -35,9 +35,3 @@ WorldUsers::WorldUsers(const std::shared_ptr<WorldUsersModel>& model, ParentObje
 {
 	std::static_pointer_cast<WorldUsersImpl>(m_impl)->init(this);
 }
-
-
-bool WorldUsers::processAction(const Action& action)
-{
-  return GameElement::processAction(action);
-}

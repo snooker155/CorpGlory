@@ -4,6 +4,11 @@
 
 #include "Game.hpp"
 
+#include "cereal/types/polymorphic.hpp"
+#include "cereal/types/memory.hpp"
+#include "cereal/types/vector.hpp"
+#include "cereal/archives/json.hpp"
+
 #include <iostream>
 #include <thread>
 #include <functional>
@@ -14,7 +19,8 @@
 #include <cassert>
 #include <algorithm>
 
-
+#include "Action.hpp"
+#include "TeamActions.hpp"
 #include "CompanyModel.hpp"
 #include "UserModel.hpp"
 #include "Player.hpp"
@@ -22,6 +28,8 @@
 #include "World.hpp"
 #include "WorldUsersModel.hpp"
 #include "Random.hpp"
+#include "ProducerConsumerQueue.hpp"
+
 
 struct Game::GameImpl
 {
@@ -30,27 +38,28 @@ struct Game::GameImpl
   std::unique_ptr<std::thread> m_stateRecalcThread;
   std::vector<Player> m_players;
   std::shared_ptr<World> m_world;
-  std::atomic<int> m_state;
+  ProducerConsumerQueue<ActionBase*> m_actions;
+
+  size_t calcUserCount(size_t playersCount) const;
 
   void createDefaultGame(const std::shared_ptr<WorldModel>& model);
   void createCompanies(const std::shared_ptr<WorldModel>& model);
-  void createUsers(const std::shared_ptr<WorldUsersModel>& model, const std::vector<std::shared_ptr<CompanyModel>>& companies);
+  void createUsers(size_t usersCount,
+                   const std::shared_ptr<WorldUsersModel>& model,
+                   const std::vector<std::shared_ptr<CompanyModel>>& companies);
   void createCEOs(const std::shared_ptr<WorldModel>& model);
   void recalcState();
 };
 
 Game::GameImpl::GameImpl(const std::vector<Player>& players) : m_players(players),
-                                                               m_world(nullptr),
-                                                               m_state(0)
+                                                               m_world(nullptr)
 {
-//    std::unique_lock<std::mutex> lock(m_worldCreationMutex);
-
   auto worldModel = std::make_shared<WorldModel>();
+  worldModel->m_usersCount = calcUserCount(players.size());
+
   createDefaultGame(worldModel);
   m_world = std::make_shared<World>(worldModel);
-
   m_stateRecalcThread.reset(new std::thread(std::bind(&Game::GameImpl::recalcState, this)));
-//    m_worldCreationCondition.notify_all();
 }
 
 Game::Game(const std::vector<Player>& players)
@@ -64,9 +73,14 @@ Game::Game(const std::vector<Player>& players)
   std::cout << std::endl;
 }
 
-int Game::state()
+std::string Game::state()
 {
-  return m_impl->m_world->model()->m_ticks;
+  std::ostringstream ss;
+  {
+    cereal::JSONOutputArchive ar(ss);
+    ar(cereal::make_nvp("world", m_impl->m_world));
+  } // cereal archives are RAII
+  return ss.str();
 }
 
 void Game::GameImpl::recalcState()
@@ -75,21 +89,31 @@ void Game::GameImpl::recalcState()
   using std::chrono::duration;
   using std::chrono::duration_cast;
 
-//  std::unique_lock<std::mutex> lock(m_worldCreationMutex);
-//  m_worldCreationCondition.wait(lock, [&](){ return m_world != nullptr; });
   while (true)
   {
     auto before = steady_clock::now();
+
+    ActionBase* actions[] = {new TeamImproveAction("PlayerCompany"), new MarketingImprove("twitter")};
+    auto action = *Random::choice(actions, actions + 2);
+
+    m_actions.push(action);
+
+    while (!m_actions.empty())
+    {
+      m_world->acceptAction(m_actions.pop());
+    }
     m_world->update();
+
     auto after = std::chrono::steady_clock::now();
 
     double timeSpan = duration_cast<duration<double>>(after - before).count();
     std::cerr << "Update took: " << timeSpan << " seconds!" << std::endl;
     std::cerr << "World ticks: " << m_world->model()->m_ticks << std::endl;
-	for (auto& company : m_world->model()->m_companies)
-	{
-		std::cerr << company->m_name << ": " << company->m_money << "$" << std::endl;
-	}
+
+	  for (auto& company : m_world->model()->m_companies)
+  	{
+	  	std::cerr << company->m_name << ": " << company->m_money << "$" << std::endl;
+	  }
     assert(timeSpan <= 1);
 
     int64_t millisToSleep = 1000 - static_cast<int64_t>(timeSpan * 1000);
@@ -108,11 +132,12 @@ void Game::GameImpl::createDefaultGame(const std::shared_ptr<WorldModel>& model)
   model->m_population = worldUsers;
 
   createCompanies(model);
-  createUsers(worldUsers, model->m_companies);
+  createUsers(model->m_usersCount, worldUsers, model->m_companies);
   createCEOs(model);
 }
 
-void Game::GameImpl::createUsers(const std::shared_ptr<WorldUsersModel>& model,
+void Game::GameImpl::createUsers(size_t usersCount,
+                                 const std::shared_ptr<WorldUsersModel>& model,
                                  const std::vector<std::shared_ptr<CompanyModel>>& companies)
 {
   auto randomName = [](size_t n)
@@ -143,10 +168,7 @@ void Game::GameImpl::createUsers(const std::shared_ptr<WorldUsersModel>& model,
     auto followersSizes = Random::poisson(users.size(), averageConnections);
 
     std::vector<int> indexes(users.size());
-	
-	for (int i = 0; i < indexes.size(); ++i)
-		indexes[i] = i;
-//    std::iota(indexes.begin(), indexes.end(), 0);
+    std::iota(indexes.begin(), indexes.end(), 0);
 
     for (size_t i = 0; i < users.size(); ++i)
     {
@@ -156,8 +178,7 @@ void Game::GameImpl::createUsers(const std::shared_ptr<WorldUsersModel>& model,
     }
   };
 
-  const size_t USERS_COUNT = 300;
-  std::vector<std::shared_ptr<UserModel>> result(USERS_COUNT);
+  std::vector<std::shared_ptr<UserModel>> result(usersCount);
   std::generate(result.begin(), result.end(), createUser);
   setupRelations(result, 20);
 
@@ -177,6 +198,7 @@ void Game::GameImpl::createCompanies(const std::shared_ptr<WorldModel>& model)
     auto company = std::make_shared<CompanyModel>();
     company->m_name = name;
     company->m_money = 5000;
+    company->m_totalUsers = model->m_usersCount;
     result.push_back(company);
   }
 
@@ -200,11 +222,17 @@ void Game::GameImpl::createCEOs(const std::shared_ptr<WorldModel>& model)
         {
           user->m_confidence[prod.first] = 0;
         }
+
         user->m_confidence[product] = 1;
         user->m_usingProduct = product;
-		product->m_users.insert(user);
+		    product->m_users.insert(user);
 
         break;
       }
     }
+}
+
+size_t Game::GameImpl::calcUserCount(size_t playersCount) const
+{
+  return playersCount * 3;
 }

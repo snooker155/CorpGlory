@@ -125,18 +125,19 @@ void UserImpl::switchProduct(const std::shared_ptr<CompanyModel>& company)
 {
   if (m_model->m_usingProduct)
   {
-	size_t userCountBefore = m_model->m_usingProduct->m_users.size();
+    assert(m_model->m_usingProduct->m_users.count(m_model));
+    size_t userCountBefore = m_model->m_usingProduct->m_users.size();
 
-	m_model->m_usingProduct->m_users.erase(m_model);
+    m_model->m_usingProduct->m_users.erase(m_model);
 
-	size_t userCountAfter = m_model->m_usingProduct->m_users.size();
-	assert(userCountBefore == userCountAfter + 1);
-	assert(!m_model->m_usingProduct->m_users.count(m_model));
+    size_t userCountAfter = m_model->m_usingProduct->m_users.size();
+    assert(userCountBefore == userCountAfter + 1);
+    assert(!m_model->m_usingProduct->m_users.count(m_model));
   }
 
   m_model->m_usingProduct = company;
   if (company)
-  { 
-	m_model->m_usingProduct->m_users.insert(m_model);
+  {
+    m_model->m_usingProduct->m_users.insert(m_model);
   }
 }

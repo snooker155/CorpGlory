@@ -15,6 +15,11 @@ struct UserModel;
 struct WorldUsersModel: Model
 {
   std::vector<std::shared_ptr<UserModel>> m_people;
+
+  size_t size() const
+  {
+    return m_people.size();
+  }
 };
 
 

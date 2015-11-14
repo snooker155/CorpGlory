@@ -9,8 +9,9 @@
 #include <memory>
 
 #include "Action.hpp"
+#include "cereal/types/memory.hpp"
 
-class Action;
+class ActionBase;
 
 
 //TODO Probably need this to have updateSelf and processAction
@@ -30,7 +31,7 @@ GameElementImpl<Model>::GameElementImpl(const std::shared_ptr<Model>& model)
 class ActionAcceptor
 {
 public:
-  virtual void acceptAction(const Action& action) = 0;
+  virtual void acceptAction(const ActionBase* const action) = 0;
 };
 
 class Updatable
@@ -52,8 +53,9 @@ template <class Model>
 class GameElement: public ParentObject
 {
 public:
-  void update();
-  virtual void acceptAction(const Action& action);
+  virtual void update() final;
+  virtual void acceptAction(const ActionBase* const action) final;
+
   std::shared_ptr<Model> model() const;
 
 protected:
@@ -61,7 +63,7 @@ protected:
   virtual ~GameElement();
 
   virtual void updateSelf();
-  virtual bool processAction(const Action& action);
+  virtual bool processAction(const ActionBase* const action);
 
   std::shared_ptr<GameElementImpl<Model>> m_impl;
 };
@@ -96,7 +98,7 @@ void GameElement<Model>::update()
 }
 
 template <class Model>
-void GameElement<Model>::acceptAction(const Action& action)
+void GameElement<Model>::acceptAction(const ActionBase* const action)
 {
   if (processAction(action))
   {
@@ -107,10 +109,11 @@ void GameElement<Model>::acceptAction(const Action& action)
   }
 }
 
+
 template <class Model>
-bool GameElement<Model>::processAction(const Action& action)
+bool GameElement<Model>::processAction(const ActionBase* const action)
 {
-  return true;
+  return action->visit(model().get());
 }
 
 template <class Model>
