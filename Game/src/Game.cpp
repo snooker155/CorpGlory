@@ -166,6 +166,9 @@ void Game::GameImpl::createUsers(size_t usersCount,
   {
     double weightMax = 1;
     auto followersSizes = Random::poisson(users.size(), averageConnections);
+    std::transform(followersSizes.begin(), followersSizes.end(), followersSizes.begin(), [&](int var){
+      return std::min(static_cast<size_t>(var), users.size());
+    });
 
     std::vector<int> indexes(users.size());
     std::iota(indexes.begin(), indexes.end(), 0);
@@ -174,7 +177,9 @@ void Game::GameImpl::createUsers(size_t usersCount,
     {
       std::shuffle(indexes.begin(), indexes.end(), Random::gen());
       for (int j = 0; j < followersSizes[i]; ++j)
+      {
         users[i]->m_friends.push_back({users[indexes[j]], Random::uniform<double>({0, 1}) * weightMax});
+      }
     }
   };
 
@@ -234,5 +239,5 @@ void Game::GameImpl::createCEOs(const std::shared_ptr<WorldModel>& model)
 
 size_t Game::GameImpl::calcUserCount(size_t playersCount) const
 {
-  return playersCount * 3;
+  return playersCount * 100;
 }
