@@ -41,7 +41,9 @@
           ["OS=='mac'", {
             "xcode_settings": {
               "OTHER_CPLUSPLUSFLAGS" : ["-std=c++11", "-stdlib=libc++"],
-              "MACOSX_DEPLOYMENT_TARGET" : "10.8"
+              "MACOSX_DEPLOYMENT_TARGET" : "10.8",
+              "GCC_ENABLE_CPP_EXCEPTIONS": "YES",
+              "GCC_ENABLE_CPP_RTTI": "YES"
             },
             "defines": ["OS_OSX"],
           }]
