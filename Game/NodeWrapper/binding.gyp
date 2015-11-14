@@ -35,8 +35,17 @@
          "../Actions/inc"
       ],
 
+      "cflags_cc!": [ "-fno-rtti", "-fno-exceptions" ],
       "cflags": [ "-std=c++11", "-pthread" ],
-      "cflags_cc!": [ "-fno-rtti", "-fno-exceptions" ]
+      "conditions": [
+          ["OS=='mac'", {
+            "xcode_settings": {
+              "OTHER_CPLUSPLUSFLAGS" : ["-std=c++11", "-stdlib=libc++"],
+              "MACOSX_DEPLOYMENT_TARGET" : "10.8"
+            },
+            "defines": ["OS_OSX"],
+          }]
+      ]
     }
   ],
 }
