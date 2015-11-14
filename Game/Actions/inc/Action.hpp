@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-class Model;
+struct Model;
 class ActionAcceptor;
 
 class ActionBase
