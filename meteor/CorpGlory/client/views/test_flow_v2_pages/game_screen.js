@@ -202,7 +202,6 @@ function render_map(R,map,attr) {
         "stroke-width": .5,
         "stroke-linejoin": "round"
     };              
-    var map = {};
     
     var holder = document.getElementById("holder_1000");
     var width = document.getElementById('holder_1000').offsetWidth;
@@ -258,48 +257,57 @@ function render_map(R,map,attr) {
         stroke: "#000",
         opacity: .3
     };
-    function plot(lat,lon,size) {
+
+    function plot(lat,lon,size, lifetime) {
         size = size * .5 + 4;
-        return R.circle(lon2x(lon), lat2y(lat), size).attr(city_attr);
+        var circle = R.circle(lon2x(lon), lat2y(lat), size).attr(city_attr);
+        //var lifetime = Math.random()*5000*size;
+        setInterval(
+            function(){
+                circle.remove();
+            }
+        ,lifetime*1000);
     }
+
+    var dot = R.circle().attr({fill: "r#FE7727:50-#F57124:100", stroke: "#fff", "stroke-width": 2, r: 0});
 
 
     var cities = {};
 
-    cities.Afghanistan = plot(33.93911,67.709953,20);
-    cities.Azerbaijan = plot(40.143105,47.576927,2);
-    cities.Bolivia = plot(-16.290154,-63.588653,1);
-    cities.Brazil = plot(-14.235004,-51.92528,3);
-    cities.Cameroon = plot(7.369722,12.354722,1);
-    cities.Colombia = plot(4.570868,-74.297333,1);
-    cities.DRC = plot(-4.038333,21.758664,2);
-    cities.DR = plot(18.735693,-70.162651,1);
-    cities.Ecuador = plot(-1.831239,-78.183406,1);
-    cities.Georgia = plot(42.315407,43.356892,1);
-    cities.Guatemala = plot(15.783471,-90.230759,1);
-    cities.Indonesia = plot(-0.789275,113.921327,3);
-    cities.Iraq = plot(33.223191,43.679291,25);
-    cities.Ivory_Coast = plot(7.539989,-5.54708,1);
-    cities.Kazakhstan = plot(48.019573,66.923684,1);
-    cities.Kenya = plot(-0.023559,37.906193,1);
-    cities.Kyrgyzstan = plot(41.20438,74.766098,1);
-    cities.Libya = plot(26.3351,17.228331,7);
-    cities.Mexico = plot(23.634501,-102.552784,24);
-    cities.Nepal = plot(28.394857,84.124008,4);
-    cities.Nigeria = plot(9.081999,8.675277,3);
-    cities.Pakistan = plot(30.375321,69.345116,17);
-    cities.Philippines = plot(12.879721,121.774017,35);
-    cities.Russia = plot(61.52401,105.318756,5);
-    cities.Moscow = plot(55.755833,37.617778,40);
-    cities.Somalia = plot(5.152149,46.199616,11);
-    cities.Sri_Lanka = plot(7.873054,80.771797,6);
-    cities.Syria = plot(34.802075,38.996815,1);
-    cities.Tunisia = plot(33.886917,9.537499,1);
-    cities.Turkmenistan = plot(38.969719,59.556278,1);
-    cities.Uganda = plot(1.373333,32.290275,1);
-    cities.Venezuela = plot(6.42375,-66.58973,1);
-    cities.Yemen = plot(15.552727,48.516388,5);
-    cities.Zimbabwe = plot(-19.015438,29.154857,2);
+    cities.Afghanistan = plot(33.93911,67.709953,20,5);
+    cities.Azerbaijan = plot(40.143105,47.576927,2,5);
+    cities.Bolivia = plot(-16.290154,-63.588653,1,5);
+    cities.Brazil = plot(-14.235004,-51.92528,3,5);
+    cities.Cameroon = plot(7.369722,12.354722,1,5);
+    cities.Colombia = plot(4.570868,-74.297333,1,5);
+    cities.DRC = plot(-4.038333,21.758664,2,5);
+    cities.DR = plot(18.735693,-70.162651,1,5);
+    cities.Ecuador = plot(-1.831239,-78.183406,1,5);
+    cities.Georgia = plot(42.315407,43.356892,1,5);
+    cities.Guatemala = plot(15.783471,-90.230759,1,5);
+    cities.Indonesia = plot(-0.789275,113.921327,3,5);
+    cities.Iraq = plot(33.223191,43.679291,25,5);
+    cities.Ivory_Coast = plot(7.539989,-5.54708,1,5);
+    cities.Kazakhstan = plot(48.019573,66.923684,1,5);
+    cities.Kenya = plot(-0.023559,37.906193,1,5);
+    cities.Kyrgyzstan = plot(41.20438,74.766098,1,5);
+    cities.Libya = plot(26.3351,17.228331,7,5);
+    cities.Mexico = plot(23.634501,-102.552784,24,5);
+    cities.Nepal = plot(28.394857,84.124008,4,5);
+    cities.Nigeria = plot(9.081999,8.675277,3,5);
+    cities.Pakistan = plot(30.375321,69.345116,17,5);
+    cities.Philippines = plot(12.879721,121.774017,35,5);
+    cities.Russia = plot(66.416667,94.25,70,5);
+    cities.Moscow = plot(55.755833,37.617778,40,5);
+    cities.Somalia = plot(5.152149,46.199616,11,5);
+    cities.Sri_Lanka = plot(7.873054,80.771797,6,5);
+    cities.Syria = plot(34.802075,38.996815,1,5);
+    cities.Tunisia = plot(33.886917,9.537499,1,5);
+    cities.Turkmenistan = plot(38.969719,59.556278,1,5);
+    cities.Uganda = plot(1.373333,32.290275,1,5);
+    cities.Venezuela = plot(6.42375,-66.58973,1,5);
+    cities.Yemen = plot(15.552727,48.516388,5,5);
+    cities.Zimbabwe = plot(-19.015438,29.154857,2,5);
 
     var current_city = null;
     var city_box = null;
@@ -333,6 +341,13 @@ function render_map(R,map,attr) {
                         // t.style.top = e.clientY + 'px';
                     }
                     if (t = document.getElementById(city)) { 
+                        // console.log(st['attrs'].cx);
+                        // console.log(st['attrs']);
+                        // var attr = {
+                        //     cx: st['attrs'].cx,
+                        //     cy: st['attrs'].cy
+                        // };
+                        // dot.stop().attr(attr).animate({r: 5}, 1000, "elastic");
                         t.style.display = "block";
                         t.style.left = (e.clientX-100) + 'px';
                         t.style.top = (e.clientY-70) + 'px';

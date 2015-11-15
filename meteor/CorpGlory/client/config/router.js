@@ -12,7 +12,7 @@ Router.route('/startup', function () {
 });
 
 
-Router.route('/world_stat', function () {
+Router.route('/world', function () {
     this.render('world');
     this.layout('blankLayout');
 });

@@ -79,7 +79,7 @@
 
 
 
-        <div style="position:absolute; top:350px; left:30px; width:200px;">
+        <!-- <div style="position:absolute; top:350px; left:30px; width:200px;">
                             <h3 style="color:white;">Market shares</h3><hr>
                             <h5 style="color:white;">Product #1</h5>
                             <div class="progress progress-mini">
@@ -108,7 +108,7 @@
                                     <span class="sr-only">40% Complete (success)</span>
                                 </div>
                             </div>
-            </div>
+            </div> -->
 
 
 </template>
@@ -139,25 +139,61 @@
 				<div class="ibox-content">
 					<div class="profile-info"  style="margin-bottom:10px;">
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-7">
                                 <h3 class="no-margins">
                                     Telegram
                                 </h3>
-                                <h5>Messenger: Telegram</h5>
+                                <!-- <h5>Messenger: Telegram</h5>
                                 <small>Morality: 48%</small>
 								<div class="progress progress-mini">
                                     <div style="width: 48%;" class="progress-bar progress-bar-warning"></div>
-                                </div>
+                                </div> -->
                             </div>
-                           	<div class="col-md-7">
+                           	<div class="col-md-5">
 	                            <small>Balance</small>
 				                <h2 class="no-margins">$ 10245</h2>
-				                {{> sparkline type="line" array=someArray1 options=options1}}
+				                <!-- {{> sparkline type="line" array=someArray1 options=options1}} -->
 			                </div>
+                        </div>
+                        <div class="profile-info" style="margin-bottom:20px; margin-top:30px;">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <h4>
+                                        Sphere: <strong>IT</strong>
+                                    </h4>
+                                    <h4>
+                                        Segment: <strong>Messengers</strong>
+                                    </h4>
+                                </div>
+                                <div class="col-md-5">
+                                     <small>Time period</small>
+                                    <h2 class="no-margins">250</h2>
+                                </div>
+                            </div>
+                            <!-- <div class="row"> -->
+                                <!-- <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <small>Market share</small>
+                                            <h2 class="no-margins">45%</h2>
+                                        </div> -->
+                                        <!-- <div class="col-md-8">
+                                            {{> sparkline type="line" array=someArray options=options}}
+                                        </div> -->
+                                    <!-- </div>
+                                    <div class="progress progress-mini">
+                                        <div style="width: 45%;" class="progress-bar progress-bar-success"></div>
+                                    </div>
+                                </div> -->
+                                <!-- <div class="col-md-12">
+                                    <small>Time period</small>
+                                    <h2 class="no-margins">250</h2>
+                                </div>
+                            </div> -->
                         </div>
                     </div>
 
-                    <div class="row">
+                   <!--  <div class="row">
                     	<div class="col-md-12">
 		                    <table class="table small m-b-xs">
 		                        <tbody>
@@ -189,7 +225,7 @@
 		                        </tbody>
 		                    </table>
 	                    </div>
-	                </div>
+	                </div> -->
                 </div>
             </div>
 
@@ -198,7 +234,19 @@
 
 
 		<div class="col-lg-6">
-    		<div class="ibox" style="margin-bottom:10px;">
+                <h5 class="text-center">Overall progress</h5>
+                <div class="progress progress-striped">
+                            <div style="width: 30%" class="progress-bar progress-bar-success">
+                                    <span>30% Paid</span>
+                                </div>
+                                <div style="width: 20%" class="progress-bar progress-bar-warning">
+                                    <span>20% Users</span>
+                                </div>
+                                <div style="width: 50%" class="progress-bar progress-bar-danger">
+                                    <span>50% People</span>
+                                </div>
+                            </div>
+    		<!-- <div class="ibox" style="margin-bottom:10px;">
                     <div class="ibox-content inspinia-timeline" style="padding-bottom:0px;">
 
                         <div class="timeline-item">
@@ -246,7 +294,9 @@
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+
+
                         <!-- <div class="timeline-item">
                             <div class="row">
                                 <div class="col-xs-3 date">
@@ -339,8 +389,10 @@
                                 </div>
                             </div>
                         </div> -->
-                    </div>
-                </div>
+
+
+                    <!-- </div>
+                </div> -->
 
 
 
@@ -352,7 +404,35 @@
             <div class="col-lg-3">
             	<div class="ibox">
 					<div class="ibox-content">
-						<div class="profile-info" style="margin-bottom:20px;">
+                        <h3>Market shares</h3>
+                            <h5>Telegramm</h5>
+                            <div class="progress progress-mini">
+                                <div style="width: 30%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="35" role="progressbar" class="progress-bar progress-bar-success">
+                                    <span class="sr-only">30% Complete (success)</span>
+                                </div>
+                            </div>
+
+                            <h5>Product #1</h5>
+                            <div class="progress progress-mini">
+                                <div style="width: 43%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="43" role="progressbar" class="progress-bar">
+                                    <span class="sr-only">43% Complete (success)</span>
+                                </div>
+                            </div>
+
+                            <h5>Product #2</h5>
+                            <div class="progress progress-mini">
+                                <div style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="50" role="progressbar" class="progress-bar progress-bar-warning">
+                                    <span class="sr-only">50% Complete (success)</span>
+                                </div>
+                            </div>
+
+                            <h5>Product #3</h5>
+                            <div class="progress progress-mini">
+                                <div style="width: 75%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="75" role="progressbar" class="progress-bar progress-bar-danger">
+                                    <span class="sr-only">75% Complete (success)</span>
+                                </div>
+                            </div>
+						<!-- <div class="profile-info" style="margin-bottom:20px;">
 	                        <div class="row">
 	                            <div class="col-md-4">
 		                            <h4>
@@ -385,9 +465,9 @@
 					                <h2 class="no-margins">250</h2>
 				                </div>
 	                        </div>
-	                    </div>
+	                    </div> -->
 
-	                    <div class="row">
+	                    <!-- <div class="row">
 	                    	<div class="col-md-12">
 			                    <table class="table small m-b-xs">
 			                        <tbody>
@@ -410,7 +490,7 @@
 			                        </tbody>
 			                    </table>
 		                    </div>
-		                </div>
+		                </div> -->
 	                </div>
 	            </div>
 
@@ -420,19 +500,20 @@
 
 
 
-        <div class="row">
-        	<div class="col-lg-3">
+<!--         <div class="row"> -->
+
+        	<!-- <div class="col-lg-3">
         		<div class="row">
             		<div class="col-md-12">
             			<a href="{{pathFor route='startup'}}" class="btn btn-block btn-primary m-t" id="startup">STARTUP</a>
             		</div>
             	</div>
-        	</div>
+        	</div> -->
 
 
-        	<div class="col-lg-6">
+        	<!-- <div class="col-lg-6 col-lg-offset-3">
         		<h5 class="text-center">Overall progress</h5>
-                <div class="progress progress-striped active">
+                <div class="progress progress-striped">
 							<div style="width: 30%" class="progress-bar progress-bar-success">
                                     <span>30% Paid</span>
                                 </div>
@@ -443,19 +524,19 @@
                                     <span>50% People</span>
                                 </div>
                             </div>
-        	</div>
+        	</div> -->
 
 
-            <div class="col-lg-3">
+            <!-- <div class="col-lg-3">
                 <div class="row">
                     <div class="col-md-12">
                         <a href="{{pathFor route='world'}}" class="btn btn-block btn-success m-t" id="world">WORLD</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
 
-        </div>
+        <!-- </div> -->
 
     </div>
 </template>
