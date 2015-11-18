@@ -1,0 +1,8 @@
+{
+  "name": "CorpGlorySite",
+  "version": "0.0.1",
+  "description": "CorpGlory public website",
+  "dependencies": {
+    "express": "^4.10.2"
+  }
+}
