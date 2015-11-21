@@ -1,8 +1,25 @@
 Template.gameScreen.onRendered(function () {
-
-
-//////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////
+  
+  // [x, y] -> [x, y]
+  function svgPosToPAgePos(pos) {
+    var svgObj = $("#worldMapHolder svg");
+    var vbArray = svgObj[0].getAttribute("viewBox").split(/\s+|,/);
+    var xScale =  svgObj.width() / parseFloat(vbArray[2]);
+    var yScale = svgObj.height() / parseFloat(vbArray[3]);
+    var scale = Math.min(xScale, yScale);
+    var svgPos = svgObj.offset();
+    
+    var xRes = pos[0] * scale +  svgPos.left;
+    var yRes = pos[1] * scale +  svgPos.top;
+    
+    return [xRes, yRes];
+    
+  }
+  
+  $(window).resize(function() {
+    console.log($("#worldMapHolder svg").width());
+    console.log($("#worldMapHolder svg").height());
+  });
   
   function render_map(R, map, attr) {
     // TODO: move it to an external file
@@ -185,8 +202,8 @@ Template.gameScreen.onRendered(function () {
     
   }
   
-  
   var current = null;
+  var currentSelectedEvent = undefined;
   var map = {};
   var m = {};
   var attr = {
@@ -196,9 +213,6 @@ Template.gameScreen.onRendered(function () {
     "stroke-linejoin": "round"
   };
   
-  var holder = document.getElementById("worldMapHolder");
-  var width = holder.offsetWidth;
-  var height = holder.offsetHeight;
   
   var svgHeight = 400;
   var svgWidth = 1000;
@@ -229,8 +243,6 @@ Template.gameScreen.onRendered(function () {
       };
     })(map[state], state);
   }
-  ; // end for
-  
   
   function lon2x(lon) {
     var xfactor = 2.752;
@@ -255,16 +267,10 @@ Template.gameScreen.onRendered(function () {
   function plot(lat, lon, size, lifetime) {
     size = size * .5 + 4;
     var circle = R.circle(lon2x(lon), lat2y(lat), size).attr(city_attr);
-    //var lifetime = Math.random()*5000*size;
-    setInterval(
-        function () {
-          circle.remove();
-        }
-        , lifetime * 1000);
+    return circle;
   }
   
   var dot = R.circle().attr({fill: "r#FE7727:50-#F57124:100", stroke: "#fff", "stroke-width": 2, r: 0});
-  
   
   var cities = {};
   
@@ -303,95 +309,43 @@ Template.gameScreen.onRendered(function () {
   cities.Yemen = plot(15.552727, 48.516388, 5, 5);
   cities.Zimbabwe = plot(-19.015438, 29.154857, 2, 5);
   
-  var current_city = null;
-  var city_box = null;
+  // Tooltip
+  function activateEvent(ev) {
+    diactivateEvent();
+    currentSelectedEvent = ev;
+    var svgObj = cities[ev][0];
+    svgObj.style.display = "none";
+    var cPos = [
+      parseFloat($(svgObj).attr('cx')),
+      parseFloat($(svgObj).attr('cy'))
+    ];
+    var resPos = svgPosToPAgePos(cPos);
+    $("#tooltip")
+        .show()
+        .css("left", resPos[0] + "px")
+        .css("top", resPos[1] + "px");
+  }
+  
+  function diactivateEvent() {
+    $("#tooltip").hide();
+    if (currentSelectedEvent === undefined) {
+      return;
+    }
+    cities[currentSelectedEvent][0].style.display = "";
+    currentSelectedEvent = undefined;
+  }
+  
+  $("#tooltip #tooltipCancel").click(diactivateEvent);
+  
+  // Bind events to tooltip
   for (var city in cities) {
     map[state].color = Raphael.getColor();
     (function (st, city) {
       st[0].style.cursor = "pointer";
-      st[0].onmouseover = function () {
-        current_city && cities[current_city].animate({fill: "#0f0", opacity: .3}, 300);
-        st.animate({fill: "#0f0", opacity: 1}, 300);
-        R.safari();
-        current_city = city;
-      };
-      st[0].onmouseout = function () {
-        st.animate({fill: "#0f0", opacity: .3}, 300);
-        R.safari();
-      };
-      
       st[0].onclick = function (e) {
-        if (city_box == city) {
-          if (t = document.getElementById(city_box)) {
-            t.style.display = "none";
-            // t.style.left = e.clientX + 'px';
-            // t.style.top = e.clientY + 'px';
-          }
-          city_box = null;
-        } else {
-          if (t = document.getElementById(city_box)) {
-            t.style.display = "none";
-            // t.style.left = e.clientX + 'px';
-            // t.style.top = e.clientY + 'px';
-          }
-          if (t = document.getElementById(city)) {
-            // console.log(st['attrs'].cx);
-            // console.log(st['attrs']);
-            // var attr = {
-            //     cx: st['attrs'].cx,
-            //     cy: st['attrs'].cy
-            // };
-            // dot.stop().attr(attr).animate({r: 5}, 1000, "elastic");
-            t.style.display = "block";
-            t.style.left = (e.clientX - 100) + 'px';
-            t.style.top = (e.clientY - 70) + 'px';
-          }
-          city_box = city;
-        }
+        activateEvent(city);
       };
-      
-      
-      // if (t = document.getElementById(city)) {
-      // 	console.log(cities[city]);
-      //     t.style.left = cities[city].attr('cx') + 'px';
-      //     t.style.top = cities[city].attr('cy') -20 + 'px';
-      // }
-      
     })(cities[city], city);
   }
-  ; // end for
   
-});
-
-
-Template.stat_row.helpers({
-  someArray: function () {
-    var someArray = [10, 15, 25, 35, 30, 40, 45, 55, 50, 45];
-    return someArray;
-  },
-  
-  options: function () {
-    var options = {
-      width: '100%',
-      height: '50px',
-      lineColor: 'blue',
-      fillColor: '#fff'
-    };
-    return options;
-  },
-  
-  someArray1: function () {
-    var someArray = [10000, 9500, 8000, 6500, 6000, 6852, 7820, 9551, 11747, 13547];
-    return someArray;
-  },
-  
-  options1: function () {
-    var options = {
-      width: '100%',
-      height: '50px',
-      lineColor: 'green',
-      fillColor: '#fff'
-    };
-    return options;
-  },
 });

@@ -7,6 +7,7 @@
 
 body, html {
     overflow: hidden;
+    cursor: default;
 }
 
 #marketShareHolder {
@@ -33,4 +34,18 @@ body, html {
     height:85%;
     margin: auto;
     margin-top: 8%;
+}
+
+#tooltip {
+    position: absolute;
+    z-index: 999;
+    background: white;
+    padding: 10px;
+    border: 1px solid darkslategrey;
+    top: 0;
+    left: 0;
+}
+
+#tooltip p {
+    font-weight: normal;
 }
