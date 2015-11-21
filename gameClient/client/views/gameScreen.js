@@ -1,10 +1,10 @@
-Template.gameScreen.onRendered(function(){
+Template.gameScreen.onRendered(function () {
 
 
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
-
-function render_map(R,map,attr) {
+  
+  function render_map(R, map, attr) {
     // TODO: move it to an external file
     map.AE = R.path("M615.622,164.177l0.582,0.000l0.000,0.580l2.324,-0.289l2.326,0.000l1.455,0.000l2.033,-1.743l2.034,-1.743l1.745,-1.742l0.583,0.871l0.291,2.324l-1.456,0.000l-0.289,1.742l0.581,0.291l-1.163,0.580l0.000,1.161l-0.873,1.162l0.000,1.162l-0.580,0.580l-8.430,-1.452l-0.872,-2.613l0.291,0.871z").attr(attr);
     map.AF = R.path("M642.364,132.815l2.617,1.162l2.034,-0.291l0.581,-1.452l2.325,-0.291l1.454,-0.870l0.583,-2.323l2.326,-0.291l0.580,-1.162l1.164,0.871l0.871,0.000l1.453,0.000l2.035,0.582l0.871,0.290l2.036,-0.872l0.872,0.582l0.872,-1.162l1.745,0.000l0.289,-0.291l0.290,-1.161l1.455,-1.161l1.454,0.871l-0.291,0.871l0.581,0.000l0.000,2.323l0.873,0.872l1.161,-0.581l1.162,-0.291l1.744,-1.162l1.745,0.290l2.909,0.000l0.580,0.582l-1.743,0.290l-1.454,0.581l-2.907,0.291l-3.197,0.580l-1.454,1.161l0.581,1.162l0.289,1.452l-1.450,1.161l0.289,1.162l-0.872,0.871l-2.616,0.000l1.161,1.743l-1.742,0.580l-1.162,1.743l0.000,1.743l-0.875,0.580l-1.160,0.000l-2.036,0.290l-0.292,0.581l-2.034,0.000l-1.452,1.742l-0.291,2.323l-3.488,1.161l-2.035,-0.289l-0.581,0.580l-1.455,-0.291l-2.907,0.291l-4.649,-1.452l2.615,-2.323l-0.289,-1.742l-2.036,-0.581l-0.290,-1.743l-0.873,-2.032l1.163,-1.742l-1.163,-0.291l0.873,-2.032l-1.161,3.485z").attr(attr);
@@ -182,217 +182,216 @@ function render_map(R,map,attr) {
     map.ZA = R.path("M560.392,311.403l-0.29,0.291l-1.165,1.451l-0.87,1.451l-1.453,2.034l-3.198,2.902l-2.034,1.451l-2.036,1.453l-2.906,0.871l-1.452,0.29l-0.293,0.58l-1.743-0.29l-1.161,0.581l-3.199-0.581l-1.452,0.29h-1.164l-2.906,0.872l-2.325,0.58l-1.744,0.871l-1.162,0.29l-1.163-1.161h-0.871l-1.454-1.161v0.292l-0.29-0.583v-1.741l-0.873-1.742l0.873-0.581v-2.032l-2.034-2.613l-1.165-2.323l-2.034-3.484l1.163-1.453l1.163,0.58l0.582,1.162l1.162,0.29l1.744,0.581l1.452-0.29l2.325-1.451v-10.163l0.874,0.58l1.741,2.613l-0.289,1.741l0.582,0.872l2.033-0.29l1.164-1.162l1.452-0.87l0.582-1.453l1.454-0.58l1.162,0.29l1.162,0.872h2.326l1.744-0.582l0.289-0.87l0.584-1.161l1.452-0.293l0.874-1.16l0.871-1.742l2.324-2.032l4.07-2.033h1.163l1.163,0.581l0.871-0.289l1.454,0.289l1.452,3.774l0.582,2.033l-0.29,2.903v1.162l-1.163-0.58l-0.872,0.29l-0.293,0.581l-0.87,1.161l0.292,0.871l1.452,1.451l1.744-0.29l0.581-1.161h2.034l-0.582,2.031l-0.579,2.323l-0.584,1.162L560.392,311.403zM553.416,310.531l-1.162-0.87l-1.163,0.579l-1.453,1.163l-1.454,1.742l2.036,2.032l0.871-0.291l0.581-0.869l1.454-0.292l0.58-0.871l0.873-1.451L553.416,310.531z").attr(attr);
     map.ZM = R.path("M563.881,256.229l1.452,1.452l0.582,2.322l-0.582,0.582l-0.290,2.322l0.290,2.323l-0.872,0.873l-0.580,2.612l1.452,0.580l-8.429,2.325l0.292,2.033l-2.036,0.289l-1.744,1.162l-0.291,0.871l-0.872,0.291l-2.616,2.322l-1.454,1.744l-0.872,0.000l-0.872,-0.291l-3.197,-0.291l-0.291,-0.291l-0.290,-0.289l-0.871,-0.582l-1.745,0.000l-2.326,0.582l-1.745,-1.744l-2.034,-2.322l0.289,-8.711l5.524,0.000l0.000,-0.873l0.292,-1.161l-0.583,-1.161l0.291,-1.452l-0.291,-0.871l1.164,0.290l0.000,0.872l1.454,-0.291l1.743,0.291l0.871,1.452l2.036,0.291l1.745,-0.873l0.581,1.452l2.325,0.291l0.872,1.162l1.163,1.451l2.033,0.000l-0.289,-2.904l-0.581,0.581l-2.035,-1.160l-0.584,-0.291l0.293,-2.904l0.580,-3.195l-0.873,-1.161l0.873,-1.742l0.873,-0.290l3.490,-0.581l1.163,0.290l1.162,0.581l1.161,0.581l1.743,0.291l-1.456,-0.870z").attr(attr);
     map.ZW = R.path("M559.521,292.237l-1.454,-0.289l-0.871,0.289l-1.163,-0.581l-1.163,0.000l-1.745,-1.162l-2.326,-0.579l-0.580,-1.744l0.000,-0.870l-1.455,-0.292l-2.907,-2.903l-0.870,-1.742l-0.582,-0.580l-1.163,-2.034l3.197,0.291l0.872,0.291l0.872,0.000l1.454,-1.744l2.616,-2.322l0.872,-0.291l0.291,-0.871l1.744,-1.162l2.036,-0.289l0.000,0.870l2.325,0.000l1.452,0.581l0.582,0.582l1.163,0.289l1.452,0.871l0.000,3.486l-0.582,2.032l0.000,2.033l0.293,0.870l-0.293,1.452l-0.289,0.290l-0.874,2.033l2.904,-3.195z").attr(attr);
-        
-}
-
-
-
-    var current = null;
-    var map = {};
-    var m = {};
-    var attr = {
-        fill: "#fff",
-        stroke: "#888",
-        "stroke-width": .5,
-        "stroke-linejoin": "round"
-    };              
     
-    var holder = document.getElementById("worldMapHolder");
-    var width = holder.offsetWidth;
-    var height = holder.offsetHeight;
-
-    var svgHeight = 400;
-    var svgWidth = 1000;
-   	var left_offset = $("#worldMapHolder").offset().left * (-1);
-
-    var R = Raphael("worldMapHolder", "100%", "100%");
-                
-    R.setViewBox(0, 0, svgWidth, svgHeight, false);
-
-    render_map(R,map,attr);     
-    for (var state in map) {                                    
-        map[state].color = Raphael.getColor();
-        (function (st, state) {
-            st[0].style.cursor = "pointer";
-            st[0].onmouseover = function () {
-                current && map[current].animate({fill: "#fff", stroke: "#666"}, 300);
-                st.animate({fill: st.color, stroke: "#ccc"}, 300);
-                R.safari();
-                current = state;
-            };
-            st[0].onmouseout = function () {
-                st.animate({fill: "#fff", stroke: "#666"}, 300);
-                R.safari();
-            };
-            
-            st[0].onclick = function (e) {
-                alert(state);
-            };
-        })(map[state], state);
-    }; // end for
-                
-                
-
-    function lon2x(lon) {
-        var xfactor = 2.752;
-        var xoffset = 473.75;
-        var x = (lon * xfactor) + xoffset;
-        return x;
-    }
-    function lat2y(lat) {
-        var yfactor = -2.753;
-        var yoffset = 231;
-        var y = (lat * yfactor) + yoffset;
-        return y;
-    }
-
-    var city_attr = {
-        fill: "#0f0",
-        stroke: "#000",
-        opacity: .3
-    };
-
-    function plot(lat,lon,size, lifetime) {
-        size = size * .5 + 4;
-        var circle = R.circle(lon2x(lon), lat2y(lat), size).attr(city_attr);
-        //var lifetime = Math.random()*5000*size;
-        setInterval(
-            function(){
-                circle.remove();
-            }
-        ,lifetime*1000);
-    }
-
-    var dot = R.circle().attr({fill: "r#FE7727:50-#F57124:100", stroke: "#fff", "stroke-width": 2, r: 0});
-
-
-    var cities = {};
-
-    cities.Afghanistan = plot(33.93911,67.709953,20,5);
-    cities.Azerbaijan = plot(40.143105,47.576927,2,5);
-    cities.Bolivia = plot(-16.290154,-63.588653,1,5);
-    cities.Brazil = plot(-14.235004,-51.92528,3,5);
-    cities.Cameroon = plot(7.369722,12.354722,1,5);
-    cities.Colombia = plot(4.570868,-74.297333,1,5);
-    cities.DRC = plot(-4.038333,21.758664,2,5);
-    cities.DR = plot(18.735693,-70.162651,1,5);
-    cities.Ecuador = plot(-1.831239,-78.183406,1,5);
-    cities.Georgia = plot(42.315407,43.356892,1,5);
-    cities.Guatemala = plot(15.783471,-90.230759,1,5);
-    cities.Indonesia = plot(-0.789275,113.921327,3,5);
-    cities.Iraq = plot(33.223191,43.679291,25,5);
-    cities.Ivory_Coast = plot(7.539989,-5.54708,1,5);
-    cities.Kazakhstan = plot(48.019573,66.923684,1,5);
-    cities.Kenya = plot(-0.023559,37.906193,1,5);
-    cities.Kyrgyzstan = plot(41.20438,74.766098,1,5);
-    cities.Libya = plot(26.3351,17.228331,7,5);
-    cities.Mexico = plot(23.634501,-102.552784,24,5);
-    cities.Nepal = plot(28.394857,84.124008,4,5);
-    cities.Nigeria = plot(9.081999,8.675277,3,5);
-    cities.Pakistan = plot(30.375321,69.345116,17,5);
-    cities.Philippines = plot(12.879721,121.774017,35,5);
-    cities.Russia = plot(66.416667,94.25,70,5);
-    cities.Moscow = plot(55.755833,37.617778,40,5);
-    cities.Somalia = plot(5.152149,46.199616,11,5);
-    cities.Sri_Lanka = plot(7.873054,80.771797,6,5);
-    cities.Syria = plot(34.802075,38.996815,1,5);
-    cities.Tunisia = plot(33.886917,9.537499,1,5);
-    cities.Turkmenistan = plot(38.969719,59.556278,1,5);
-    cities.Uganda = plot(1.373333,32.290275,1,5);
-    cities.Venezuela = plot(6.42375,-66.58973,1,5);
-    cities.Yemen = plot(15.552727,48.516388,5,5);
-    cities.Zimbabwe = plot(-19.015438,29.154857,2,5);
-
-    var current_city = null;
-    var city_box = null;
-    for (var city in cities) {                                  
-        map[state].color = Raphael.getColor();
-        (function (st, city) {
-            st[0].style.cursor = "pointer";
-            st[0].onmouseover = function () {
-                current_city && cities[current_city].animate({fill: "#0f0", opacity: .3}, 300);
-                st.animate({fill: "#0f0", opacity: 1}, 300);
-                R.safari();
-                current_city = city;
-            };
-            st[0].onmouseout = function () {
-                st.animate({fill: "#0f0", opacity: .3}, 300);
-                R.safari();
-            };
-            
-            st[0].onclick = function (e) {
-                if (city_box == city){
-                    if (t = document.getElementById(city_box)) { 
-                        t.style.display = "none";
-                        // t.style.left = e.clientX + 'px';
-                        // t.style.top = e.clientY + 'px';
-                    }
-                    city_box = null;
-                }else{
-                    if (t = document.getElementById(city_box)) { 
-                        t.style.display = "none";
-                        // t.style.left = e.clientX + 'px';
-                        // t.style.top = e.clientY + 'px';
-                    }
-                    if (t = document.getElementById(city)) { 
-                        // console.log(st['attrs'].cx);
-                        // console.log(st['attrs']);
-                        // var attr = {
-                        //     cx: st['attrs'].cx,
-                        //     cy: st['attrs'].cy
-                        // };
-                        // dot.stop().attr(attr).animate({r: 5}, 1000, "elastic");
-                        t.style.display = "block";
-                        t.style.left = (e.clientX-100) + 'px';
-                        t.style.top = (e.clientY-70) + 'px';
-                    }
-                    city_box = city;
-                }
-            };
-
-
-            // if (t = document.getElementById(city)) {
-            // 	console.log(cities[city]);
-            //     t.style.left = cities[city].attr('cx') + 'px';
-            //     t.style.top = cities[city].attr('cy') -20 + 'px';
-            // }
-
-        })(cities[city], city);
-    }; // end for
-
+  }
+  
+  
+  var current = null;
+  var map = {};
+  var m = {};
+  var attr = {
+    fill: "#fff",
+    stroke: "#888",
+    "stroke-width": .5,
+    "stroke-linejoin": "round"
+  };
+  
+  var holder = document.getElementById("worldMapHolder");
+  var width = holder.offsetWidth;
+  var height = holder.offsetHeight;
+  
+  var svgHeight = 400;
+  var svgWidth = 1000;
+  var left_offset = $("#worldMapHolder").offset().left * (-1);
+  
+  var R = Raphael("worldMapHolder", "100%", "100%");
+  
+  R.setViewBox(0, 0, svgWidth, svgHeight, false);
+  
+  render_map(R, map, attr);
+  for (var state in map) {
+    map[state].color = Raphael.getColor();
+    (function (st, state) {
+      st[0].style.cursor = "pointer";
+      st[0].onmouseover = function () {
+        current && map[current].animate({fill: "#fff", stroke: "#666"}, 300);
+        st.animate({fill: st.color, stroke: "#ccc"}, 300);
+        R.safari();
+        current = state;
+      };
+      st[0].onmouseout = function () {
+        st.animate({fill: "#fff", stroke: "#666"}, 300);
+        R.safari();
+      };
+      
+      st[0].onclick = function (e) {
+        alert(state);
+      };
+    })(map[state], state);
+  }
+  ; // end for
+  
+  
+  function lon2x(lon) {
+    var xfactor = 2.752;
+    var xoffset = 473.75;
+    var x = (lon * xfactor) + xoffset;
+    return x;
+  }
+  
+  function lat2y(lat) {
+    var yfactor = -2.753;
+    var yoffset = 231;
+    var y = (lat * yfactor) + yoffset;
+    return y;
+  }
+  
+  var city_attr = {
+    fill: "#0f0",
+    stroke: "#000",
+    opacity: .3
+  };
+  
+  function plot(lat, lon, size, lifetime) {
+    size = size * .5 + 4;
+    var circle = R.circle(lon2x(lon), lat2y(lat), size).attr(city_attr);
+    //var lifetime = Math.random()*5000*size;
+    setInterval(
+        function () {
+          circle.remove();
+        }
+        , lifetime * 1000);
+  }
+  
+  var dot = R.circle().attr({fill: "r#FE7727:50-#F57124:100", stroke: "#fff", "stroke-width": 2, r: 0});
+  
+  
+  var cities = {};
+  
+  cities.Afghanistan = plot(33.93911, 67.709953, 20, 5);
+  cities.Azerbaijan = plot(40.143105, 47.576927, 2, 5);
+  cities.Bolivia = plot(-16.290154, -63.588653, 1, 5);
+  cities.Brazil = plot(-14.235004, -51.92528, 3, 5);
+  cities.Cameroon = plot(7.369722, 12.354722, 1, 5);
+  cities.Colombia = plot(4.570868, -74.297333, 1, 5);
+  cities.DRC = plot(-4.038333, 21.758664, 2, 5);
+  cities.DR = plot(18.735693, -70.162651, 1, 5);
+  cities.Ecuador = plot(-1.831239, -78.183406, 1, 5);
+  cities.Georgia = plot(42.315407, 43.356892, 1, 5);
+  cities.Guatemala = plot(15.783471, -90.230759, 1, 5);
+  cities.Indonesia = plot(-0.789275, 113.921327, 3, 5);
+  cities.Iraq = plot(33.223191, 43.679291, 25, 5);
+  cities.Ivory_Coast = plot(7.539989, -5.54708, 1, 5);
+  cities.Kazakhstan = plot(48.019573, 66.923684, 1, 5);
+  cities.Kenya = plot(-0.023559, 37.906193, 1, 5);
+  cities.Kyrgyzstan = plot(41.20438, 74.766098, 1, 5);
+  cities.Libya = plot(26.3351, 17.228331, 7, 5);
+  cities.Mexico = plot(23.634501, -102.552784, 24, 5);
+  cities.Nepal = plot(28.394857, 84.124008, 4, 5);
+  cities.Nigeria = plot(9.081999, 8.675277, 3, 5);
+  cities.Pakistan = plot(30.375321, 69.345116, 17, 5);
+  cities.Philippines = plot(12.879721, 121.774017, 35, 5);
+  cities.Russia = plot(66.416667, 94.25, 70, 5);
+  cities.Moscow = plot(55.755833, 37.617778, 40, 5);
+  cities.Somalia = plot(5.152149, 46.199616, 11, 5);
+  cities.Sri_Lanka = plot(7.873054, 80.771797, 6, 5);
+  cities.Syria = plot(34.802075, 38.996815, 1, 5);
+  cities.Tunisia = plot(33.886917, 9.537499, 1, 5);
+  cities.Turkmenistan = plot(38.969719, 59.556278, 1, 5);
+  cities.Uganda = plot(1.373333, 32.290275, 1, 5);
+  cities.Venezuela = plot(6.42375, -66.58973, 1, 5);
+  cities.Yemen = plot(15.552727, 48.516388, 5, 5);
+  cities.Zimbabwe = plot(-19.015438, 29.154857, 2, 5);
+  
+  var current_city = null;
+  var city_box = null;
+  for (var city in cities) {
+    map[state].color = Raphael.getColor();
+    (function (st, city) {
+      st[0].style.cursor = "pointer";
+      st[0].onmouseover = function () {
+        current_city && cities[current_city].animate({fill: "#0f0", opacity: .3}, 300);
+        st.animate({fill: "#0f0", opacity: 1}, 300);
+        R.safari();
+        current_city = city;
+      };
+      st[0].onmouseout = function () {
+        st.animate({fill: "#0f0", opacity: .3}, 300);
+        R.safari();
+      };
+      
+      st[0].onclick = function (e) {
+        if (city_box == city) {
+          if (t = document.getElementById(city_box)) {
+            t.style.display = "none";
+            // t.style.left = e.clientX + 'px';
+            // t.style.top = e.clientY + 'px';
+          }
+          city_box = null;
+        } else {
+          if (t = document.getElementById(city_box)) {
+            t.style.display = "none";
+            // t.style.left = e.clientX + 'px';
+            // t.style.top = e.clientY + 'px';
+          }
+          if (t = document.getElementById(city)) {
+            // console.log(st['attrs'].cx);
+            // console.log(st['attrs']);
+            // var attr = {
+            //     cx: st['attrs'].cx,
+            //     cy: st['attrs'].cy
+            // };
+            // dot.stop().attr(attr).animate({r: 5}, 1000, "elastic");
+            t.style.display = "block";
+            t.style.left = (e.clientX - 100) + 'px';
+            t.style.top = (e.clientY - 70) + 'px';
+          }
+          city_box = city;
+        }
+      };
+      
+      
+      // if (t = document.getElementById(city)) {
+      // 	console.log(cities[city]);
+      //     t.style.left = cities[city].attr('cx') + 'px';
+      //     t.style.top = cities[city].attr('cy') -20 + 'px';
+      // }
+      
+    })(cities[city], city);
+  }
+  ; // end for
+  
 });
 
 
-
-
 Template.stat_row.helpers({
-    someArray: function(){
-        var someArray = [10,15,25,35,30,40,45,55,50,45];
-        return someArray;
-    },
-
-    options: function(){
-        var options = {
-            width: '100%',
-            height: '50px',
-            lineColor: 'blue',
-            fillColor: '#fff'
-        };
-        return options;
-    },
-
-    someArray1: function(){
-        var someArray = [10000,9500,8000,6500,6000,6852,7820,9551,11747,13547];
-        return someArray;
-    },
-
-    options1: function(){
-        var options = {
-            width: '100%',
-            height: '50px',
-            lineColor: 'green',
-            fillColor: '#fff'
-        };
-        return options;
-    },
+  someArray: function () {
+    var someArray = [10, 15, 25, 35, 30, 40, 45, 55, 50, 45];
+    return someArray;
+  },
+  
+  options: function () {
+    var options = {
+      width: '100%',
+      height: '50px',
+      lineColor: 'blue',
+      fillColor: '#fff'
+    };
+    return options;
+  },
+  
+  someArray1: function () {
+    var someArray = [10000, 9500, 8000, 6500, 6000, 6852, 7820, 9551, 11747, 13547];
+    return someArray;
+  },
+  
+  options1: function () {
+    var options = {
+      width: '100%',
+      height: '50px',
+      lineColor: 'green',
+      fillColor: '#fff'
+    };
+    return options;
+  },
 });
