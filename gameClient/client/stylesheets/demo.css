@@ -1,10 +1,36 @@
-#worldMap {
-    position: relative;
+#gameScreenHolder {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+}
+
+body, html {
+    overflow: hidden;
 }
 
 #marketShareHolder {
     position: absolute;
     width: 20%;
-    bottom: 10%;
-    left: 2%;
+    bottom: 15%;
+    left: 4%;
+}
+
+#marketShareHolder hr {
+    border-top: 1px solid #555555;
+    width: 70%;
+    margin-left: 0;
+    cursor: default;
+} 
+
+#balanceHolder {
+    font-size: larger;
+}
+
+#worldMapHolder {
+    position:relative; 
+    width:90%; 
+    height:85%;
+    margin: auto;
+    margin-top: 8%;
 }
