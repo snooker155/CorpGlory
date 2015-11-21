@@ -198,8 +198,8 @@ function render_map(R,map,attr) {
     };              
     
     var holder = document.getElementById("holder_1000");
-    var width = document.getElementById('holder_1000').offsetWidth;
-    var height = document.getElementById('holder_1000').offsetHeight;
+    var width = holder.offsetWidth;
+    var height = holder.offsetHeight;
 
     var svgHeight = 400;
     var svgWidth = 1000;
