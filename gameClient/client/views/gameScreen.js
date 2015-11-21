@@ -348,4 +348,10 @@ Template.gameScreen.onRendered(function () {
     })(cities[city], city);
   }
   
+  // Communications
+  Communication.onNextState = function(stage) {
+    var money = stage.world.ptr_wrapper.data.model.ptr_wrapper.data.companies[0].ptr_wrapper.data.money;
+    $("#balanceHolderValue").text(money + "$");
+  }
+  
 });
