@@ -23,6 +23,3 @@ Communication = {
     )
   }
 };
-$(function() {
-  Communication.open();
-});
