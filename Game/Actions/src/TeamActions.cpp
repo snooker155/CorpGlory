@@ -4,8 +4,10 @@
 
 #include "TeamActions.hpp"
 
-TeamImproveAction::TeamImproveAction(const std::string& companyName)
-  : m_companyName(companyName)
+TeamImproveAction::TeamImproveAction(const ActionParams& params)
+  : Action(params),
+    m_companyName(params.at("company_name")),
+    m_level(std::stoi(params.at("level")))
 {
 }
 
@@ -17,7 +19,7 @@ bool TeamImproveAction::visit(CompanyModel* model) const
   {
     std::cerr << "TeamImproveAction: " << model->m_teamLevel << " -> ";
     if (model->m_teamLevel < MAX_TEAM_LEVEL)
-      model->m_teamLevel += 1;
+      model->m_teamLevel += m_level;
     std::cerr << model->m_teamLevel << "!" << std::endl;
     return true;
   }
@@ -28,8 +30,10 @@ bool TeamImproveAction::visit(CompanyModel* model) const
   return false;
 }
 
-MarketingImprove::MarketingImprove(const std::string& companyName)
-  : m_companyName(companyName)
+MarketingImprove::MarketingImprove(const ActionParams& params)
+  : Action(params),
+    m_companyName(params.at("company_name")),
+    m_level(std::stoi(params.at("level")))
 {
 }
 
@@ -40,7 +44,7 @@ bool MarketingImprove::visit(CompanyModel* model) const
   {
     std::cerr << "MarketingImproveAction: " << model->m_marketingLevel << " -> ";
     if (model->m_marketingLevel < MAX_TEAM_LEVEL)
-      model->m_marketingLevel += 1;
+      model->m_marketingLevel += m_level;
     std::cerr << model->m_marketingLevel << "!" << std::endl;
     return true;
   }

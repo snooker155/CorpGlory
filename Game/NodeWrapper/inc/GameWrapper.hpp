@@ -24,6 +24,7 @@ private:
   static v8::Persistent<v8::Function> constructor;
   static v8::Handle<v8::Value> gameState(const v8::Arguments& args);
   static Player createPlayer(v8::Handle<v8::Object> object);
+  static v8::Handle<v8::Value> processAction(const v8::Arguments& args);
 };
 
 #endif //CORPGLORYGAME_GAMEWRAPPER_HPP

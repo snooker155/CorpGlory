@@ -23,7 +23,7 @@ public:
   template <class Archive>
   void serialize(Archive& ar) const
   {
-    ar(cereal::make_nvp("model", m_impl->m_model));
+    ar(cereal::make_nvp("model", *m_impl->m_model));
   }
 
 protected:

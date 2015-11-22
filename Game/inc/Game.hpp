@@ -9,17 +9,19 @@
 #include <string>
 
 #include <vector>
+#include <Action.hpp>
 #include "Player.hpp"
 
 //Probably creates World, WorldModel and goes on
 class Game {
 public:
-    Game(const std::vector<Player>& players);
-    ~Game();
-    std::string state();
+  Game(const std::vector<Player>& players);
+  ~Game();
+  std::string state();
+  void processAction(const std::shared_ptr<ActionBase>& action);
 private:
-    struct GameImpl;
-    std::shared_ptr<GameImpl> m_impl;
+  struct GameImpl;
+  std::shared_ptr<GameImpl> m_impl;
 };
 
 

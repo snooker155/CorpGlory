@@ -9,6 +9,7 @@
 
 #include <vector>
 #include <memory>
+#include <algorithm>
 
 #include "cereal/types/vector.hpp"
 #include "cereal/types/memory.hpp"
@@ -29,7 +30,13 @@ struct WorldModel: Model
   template <class Archive>
   void serialize(Archive& ar)
   {
-    ar(cereal::make_nvp("companies", m_companies));
+    // TODO SERIALIZATION HACKS
+    std::vector<CompanyModel> companies(m_companies.size());
+    std::transform(m_companies.begin(), m_companies.end(), companies.begin(), [&](const std::shared_ptr<CompanyModel>& ptr) {
+      return *ptr;
+    });
+
+    ar(cereal::make_nvp("companies", companies));
   }
 };
 
