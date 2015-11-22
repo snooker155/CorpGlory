@@ -50,3 +50,22 @@ body, html {
 #tooltip p {
     font-weight: normal;
 }
+
+.window {
+    position: absolute;
+    width: 50%;
+    height: 30%;
+    left:25%;
+    top:30%;
+    background: #fff;
+    text-align: center;
+    z-index: 9999;
+}
+
+.window .windowTitle {
+    margin-top: 5%;
+}
+
+#windowError {
+    
+}
