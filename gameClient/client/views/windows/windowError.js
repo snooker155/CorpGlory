@@ -1,6 +1,10 @@
 WindowError = {
-  show: function(title) {
-    $("#windowError").show();
+  show: function(title, message) {
+    $("#windowError")
+        .show()
+        .find(".windowTitle").text(title);
+    $("#windowError .windowDescription")
+        .text(message);
   },
   hide: function() {
     $("#windowError").hide();

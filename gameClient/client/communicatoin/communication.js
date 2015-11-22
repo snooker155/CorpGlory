@@ -17,7 +17,11 @@ Communication = {
     });
   },
   onNextState: undefined,
-  onConnectionLost: undefined
+  onConnectionLost: function () {
+    WindowError.show(
+      "Can't connect to the server", "Please reload the page"
+    )
+  }
 };
 $(function() {
   Communication.open();

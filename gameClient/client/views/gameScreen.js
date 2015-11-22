@@ -1,7 +1,7 @@
 Template.gameScreen.onRendered(function () {
   
   // [x, y] -> [x, y]
-  function svgPosToPAgePos(pos) {
+  function svgPosToPagePos(pos) {
     var svgObj = $("#worldMapHolder svg");
     var vbArray = svgObj[0].getAttribute("viewBox").split(/\s+|,/);
     var xScale =  svgObj.width() / parseFloat(vbArray[2]);
@@ -319,7 +319,7 @@ Template.gameScreen.onRendered(function () {
       parseFloat($(svgObj).attr('cx')),
       parseFloat($(svgObj).attr('cy'))
     ];
-    var resPos = svgPosToPAgePos(cPos);
+    var resPos = svgPosToPagePos(cPos);
     $("#tooltip")
         .show()
         .css("left", resPos[0] + "px")
