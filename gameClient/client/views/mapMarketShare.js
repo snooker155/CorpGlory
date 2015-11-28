@@ -1,4 +1,4 @@
-MapMarketShare = function(id, svg, region, companies) {
+MapMarketShare = function(id, cx, cy, svg, region, companies) {
   function mkSVG(tag) {
     return document.createElementNS("http://www.w3.org/2000/svg", tag);
   }
@@ -11,8 +11,8 @@ MapMarketShare = function(id, svg, region, companies) {
   
   // find center
   var box = region.getBBox();
-  this.cx = box.x + box.width / 2;
-  this.cy = box.y + box.height / 2;
+  this.cx = cx;
+  this.cy = cy;
   this.r = Math.max(box.width, box.height);
   
   // make sectors
@@ -24,7 +24,6 @@ MapMarketShare = function(id, svg, region, companies) {
   }
   $(svg).append(group);
   this.g = group;
-  
   this.updateValues([0.3, 0.4, 0.1]);
   
 };
