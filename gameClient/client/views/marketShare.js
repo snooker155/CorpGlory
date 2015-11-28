@@ -1,4 +1,7 @@
 MarketShare = {
+  init: function(data) {
+    $("#marketShareHolder").show();
+  },
   updateBalance: function(value) {
     $("#balanceHolderValue").text(value + "$");
   },

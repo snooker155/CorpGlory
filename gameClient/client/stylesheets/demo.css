@@ -15,6 +15,7 @@ body, html {
     width: 20%;
     bottom: 15%;
     left: 4%;
+    display: none;
 }
 
 #marketShareHolder hr {
@@ -30,10 +31,9 @@ body, html {
 
 #worldMapHolder {
     position:relative; 
-    width:90%; 
+    width:76%; 
     height:85%;
     margin: auto;
-    margin-top: 8%;
 }
 
 #tooltip {
