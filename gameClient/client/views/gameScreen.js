@@ -17,8 +17,14 @@ Template.gameScreen.init = function(data) {
   var R = Raphael("worldMapHolder", "100%", "100%");
   R.setViewBox(0, 0, svgWidth, svgHeight, false);
   
+  
   for(var c in MapData) {
-    map[c] = R.path(MapData[c]).attr(regionAttr);
+    
+    var region = R.path(MapData[c]).attr(regionAttr);
+    map[c] = {
+      region: region,
+      marketShare: new MapMarketShare(c, R.canvas, region[0], data)
+    }
   }
   
   MarketShare.init();

@@ -2,6 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Country share test</title>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script>
 
         function getSectorPath(cx, cy, r, startAngle, endAngle) {
@@ -26,6 +27,12 @@
             var cntr = getCenter(document.getElementById("country-12-contour"));
             c.setAttribute("cx", cntr[0]);
             c.setAttribute("cy", cntr[1]);
+            
+            var node = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+            $(node).attr("id", "arc1"); 
+            $(node).attr("fill", "black"); 
+            
+            $("#someGroup").append($(node));
 
             document.getElementById("arc1").setAttribute(
                 "d", 
@@ -55,20 +62,22 @@
         </clipPath>
     </defs>
 
-    <!---->
+    
     <g  transform="translate(100,100)"
         clip-path="url(#cut-off-bottom)"
+        id="someGroup"
     >
+    
     <circle id="circleShare"
             fill="#ddd"
             style="-webkit-tap-highlight-color: rgba(40, 40, 40, 0); stroke-linejoin: round; cursor: pointer;"
             r="100"
             />
         
-        <path id="arc1" fill="black" />
-        <path id="arc2" fill="green" />
-        <path id="arc3" fill="yellow" />
-        
+          
+            <!-- <path id="arc1" fill="black" /> -->
+          <path id="arc2" fill="green" />
+          <path id="arc3" fill="yellow" />
     </g>
     
 </svg>
