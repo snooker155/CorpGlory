@@ -11,8 +11,8 @@ Template.gameScreen.init = function(data) {
     "stroke-linejoin": "round"
   };
   
-  var svgHeight = 400;
-  var svgWidth = 1000;
+  var svgHeight = 320;
+  var svgWidth = 600;
   
   var R = Raphael("worldMapHolder", "100%", "100%");
   R.setViewBox(0, 0, svgWidth, svgHeight, false);

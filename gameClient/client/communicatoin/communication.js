@@ -10,7 +10,6 @@ Communication = {
     socket.on('message', function(msg) {
       var jmsg = JSON.parse(msg);
       if(jmsg.command === 'init') {
-        
         Template.gameScreen.init(jmsg.data);
       }
     });
