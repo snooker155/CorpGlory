@@ -16,10 +16,11 @@ MapMarketShare = function(id, cx, cy, svg, region, companies) {
   this.r = Math.max(box.width, box.height);
   
   // make sectors
-  var colors = ['red', 'blue', 'green', 'yellow'];
   var group = $(mkSVG("g")).attr("clip-path", "url(#" + clipId + ")");
   for(var i = 0; i < companies.length; i++) {
-    var path = $(mkSVG("path")).attr("fill", colors[i]);
+    var path = $(mkSVG("path"))
+        .attr("fill", companies[i].color)
+        .attr("fill-opacity", "0.3");
     group.append(path);
   }
   $(svg).append(group);

@@ -3,11 +3,16 @@ Template.gameScreen.onRendered(function () {
 });
 
 Template.gameScreen.init = function(data) {
+  // set colors
+  data[0].color = "#0f5b78";
+  data[1].color = "#a2b86c";
+  data[2].color = "#ef8b2c";
+  
   var map = {};
   var regionAttr = {
-    fill: "#fff",
+    fill: "#eee",
     stroke: "#888",
-    "stroke-width": .5,
+    "stroke-width": 0.6,
     "stroke-linejoin": "round"
   };
   
@@ -27,7 +32,7 @@ Template.gameScreen.init = function(data) {
     }
   }
 
-  MarketShare.init();
+  MarketShare.init(data);
 };
 
 Template.gameScreen.onNextState = function(stage) {
