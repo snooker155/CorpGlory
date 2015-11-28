@@ -19,8 +19,13 @@ http.listen(4000, function() {
 });
 
 // -----------------------
-io.on('connection', function(socket){
-  console.log('a user connected');
+io.on('connection', function(socket) {
+  // init player
+  var initObj = {
+    command: 'init',
+    data: players
+  }
+  socket.send(JSON.stringify(initObj));
   socket.on('disconnect', function() {
     console.log('user disconnected');
   });

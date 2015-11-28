@@ -1,20 +1,10 @@
 Template.gameScreen.onRendered(function () {
-  
-  $(window).resize(function() {
-    console.log($("#worldMapHolder svg").width());
-    console.log($("#worldMapHolder svg").height());
-  });
-  
-  function renderMap(R, map, attr) {
-    for(var c in MapData) {
-      map[c] = R.path(MapData[c]).attr(attr);
-    }
-  }
-  
-  var current = null;
+  Communication.open();
+});
+
+Template.gameScreen.init = function(data) {
   var map = {};
-  
-  var attr = {
+  var regionAttr = {
     fill: "#fff",
     stroke: "#888",
     "stroke-width": .5,
@@ -26,21 +16,22 @@ Template.gameScreen.onRendered(function () {
   
   var R = Raphael("worldMapHolder", "100%", "100%");
   R.setViewBox(0, 0, svgWidth, svgHeight, false);
-  renderMap(R, map, attr);
+  
+  for(var c in MapData) {
+    map[c] = R.path(MapData[c]).attr(regionAttr);
+  }
+  
+  MarketShare.init();
+};
 
-  
-  // Communications
-  Communication.onNextState = function(stage) {
-    var money = stage.world.ptr_wrapper.data.model.ptr_wrapper.data.companies[0].ptr_wrapper.data.money;
-    var companies = stage.world.ptr_wrapper.data.model.ptr_wrapper.data.companies;
-    var shares = {};
-    for(var i = 0; i < companies.length; i++) {
-      shares[companies[i].ptr_wrapper.data.name] = companies[i].ptr_wrapper.data.market_share;
-    }
-    MarketShare.updateBalance(money);
-    MarketShare.updateCompanyShares(shares);
-  };
-  
-  Communication.open();
-  
-});
+Template.gameScreen.onNextState = function(stage) {
+  var money = stage.world.ptr_wrapper.data.model.ptr_wrapper.data.companies[0].ptr_wrapper.data.money;
+  var companies = stage.world.ptr_wrapper.data.model.ptr_wrapper.data.companies;
+  var shares = {};
+  for(var i = 0; i < companies.length; i++) {
+    shares[companies[i].ptr_wrapper.data.name] = companies[i].ptr_wrapper.data.market_share;
+  }
+  MarketShare.updateBalance(money);
+  MarketShare.updateCompanyShares(shares);
+};
+
