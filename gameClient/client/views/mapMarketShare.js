@@ -35,7 +35,11 @@ MapMarketShare.prototype.updateValues = function(values) {
         x2 = cx + r * Math.cos(-endAngle),
         y1 = cy + r * Math.sin(-startAngle),
         y2 = cy + r * Math.sin(-endAngle);
-    var resArr = ["M", cx, cy, "L", x1, y1, "A", r, r, 0, +(endAngle - startAngle > Math.PI), 0, x2, y2, "z"];
+    var anglePositive = +(endAngle - startAngle > Math.PI);
+    var resArr = [
+      "M", cx, cy, "L", x1, y1, "A", r, r,
+      0, anglePositive, 0, x2, y2, "z"
+    ];
     return resArr.join(" ");
   }
   

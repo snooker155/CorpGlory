@@ -10,8 +10,8 @@ Template.gameScreen.init = function(data) {
   
   var map = {};
   var regionAttr = {
-    fill: "#eee",
-    stroke: "#888",
+    "fill": "#eee",
+    "stroke": "#888",
     "stroke-width": 0.6,
     "stroke-linejoin": "round"
   };
