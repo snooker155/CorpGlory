@@ -1,4 +1,19 @@
-MapMarketShare = function(id, cx, cy, svg, region, companies) {
+var REGION_ATTR = {
+  "fill": "#eee",
+  "stroke": "#888",
+  "stroke-width": 0.6,
+  "stroke-linejoin": "round"
+};
+
+MapRegion = function (id, mapDataObj, raphaelObj, initData) {
+  this.region = raphaelObj.path(mapDataObj.path).attr(REGION_ATTR);
+  this.marketShare = new MapMarketShare(
+    id, mapDataObj.cx, mapDataObj.cy,
+    raphaelObj.canvas, this.region[0], initData
+  );
+}
+
+var MapMarketShare = function(id, cx, cy, svg, region, companies) {
   function mkSVG(tag) {
     return document.createElementNS("http://www.w3.org/2000/svg", tag);
   }

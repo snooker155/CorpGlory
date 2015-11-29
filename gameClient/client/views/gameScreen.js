@@ -8,28 +8,15 @@ Template.gameScreen.init = function(data) {
   data[1].color = "#a2b86c";
   data[2].color = "#ef8b2c";
   
-  var map = {};
-  var regionAttr = {
-    "fill": "#eee",
-    "stroke": "#888",
-    "stroke-width": 0.6,
-    "stroke-linejoin": "round"
-  };
-  
   var svgHeight = 320;
   var svgWidth = 600;
   
   var R = Raphael("worldMapHolder", "100%", "100%");
   R.setViewBox(0, 0, svgWidth, svgHeight, false);
   
-  for(var c in MapData) {
-    var region = R.path(MapData[c].path).attr(regionAttr);
-    map[c] = {
-      region: region,
-      marketShare: new MapMarketShare(
-        c, MapData[c].cx, MapData[c].cy, R.canvas, region[0], data
-      )
-    }
+  var map = {};
+  for(var regionId in MapData) {
+    map[regionId] = new MapRegion(regionId, MapData[regionId], R, data);
   }
 
   MarketShare.init(data);
