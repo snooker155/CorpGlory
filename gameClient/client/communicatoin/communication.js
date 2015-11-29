@@ -1,22 +1,28 @@
 Communication = {
   open: function() {
     try {
-      var socket = io.connect("http://localhost:4000");
-      socket.emit('userAction', "my action is hi!");
+      this.socket = io.connect("http://" + location.hostname + ":4000");
     } catch (err) {
       Communication.onConnectionLost();
       return;
     }
-    socket.on('message', function(msg) {
+    this.socket.on('message', function(msg) {
       var jmsg = JSON.parse(msg);
       if(jmsg.command === 'init') {
         Template.gameScreen.init(jmsg.data);
       }
     });
-    socket.on('nextGameState', function(msg) {
+    this.socket.on('nextGameState', function(msg) {
       var jmsg = JSON.parse(msg);
       Template.gameScreen.onNextState(jmsg);
     });
+  },
+  userAction: function(action, data) {
+    var resObj = {
+      action: action,
+      data: data
+    };
+    this.socket.emit('userAction', JSON.stringify(resObj));
   },
   onConnectionLost: function () {
     WindowError.show(

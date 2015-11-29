@@ -30,7 +30,7 @@ io.on('connection', function(socket) {
     console.log('user disconnected');
   });
   socket.on('userAction', function(msg) {
-    console.log('message: ' + msg);
+    console.log('user action: ' + msg);
   });
 });
 

@@ -17,7 +17,9 @@ Template.gameScreen.init = function(data) {
 };
 
 Template.gameScreen.onRegionClick = function(regionId) {
-  console.log("gameScreen: click on region: " + regionId);
+  Communication.userAction(
+    'regionClick', {id: regionId}
+  );
 }
 
 Template.gameScreen.onNextState = function(stage) {
