@@ -37,6 +37,10 @@ var MapRegion = function (id, mapDataObj, raphaelObj, initData) {
   );
   var self = this;
   this.region[0].onclick = function() {
+    self.marketShare.g
+      .stop(true, true)
+      .css({opacity: 0.6})
+      .animate({opacity: 0.25});
     if(self.onClick) {
       self.onClick();
     }
@@ -61,11 +65,11 @@ var WorldMapMarketShare = function(id, cx, cy, svg, region, companies) {
   // make sectors
   var group = $(mkSVG("g"))
     .attr("clip-path", "url(#" + clipId + ")")
-    .css("pointer-events", "none");
+    .css("pointer-events", "none")
+    .css("opacity", "0.3");
   for(var i = 0; i < companies.length; i++) {
     var path = $(mkSVG("path"))
-        .attr("fill", companies[i].color)
-        .attr("fill-opacity", "0.3");
+        .attr("fill", companies[i].color);
     group.append(path);
   }
   $(svg).append(group);
