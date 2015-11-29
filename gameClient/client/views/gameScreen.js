@@ -8,17 +8,7 @@ Template.gameScreen.init = function(data) {
   data[1].color = "#a2b86c";
   data[2].color = "#ef8b2c";
   
-  var svgHeight = 320;
-  var svgWidth = 600;
-  
-  var R = Raphael("worldMapHolder", "100%", "100%");
-  R.setViewBox(0, 0, svgWidth, svgHeight, false);
-  
-  var map = {};
-  for(var regionId in MapData) {
-    map[regionId] = new MapRegion(regionId, MapData[regionId], R, data);
-  }
-
+  WorldMap.init(data);
   MarketShare.init(data);
 };
 
