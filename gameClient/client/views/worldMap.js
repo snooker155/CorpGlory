@@ -8,6 +8,7 @@ var REGION_ATTR = {
 WorldMap = {
   regions: {},
   init: function (initData) {
+
     var svgHeight = 320;
     var svgWidth = 600;
     
@@ -16,16 +17,30 @@ WorldMap = {
     
     for(var regionId in WorldMapData) {
       this.regions[regionId] = new MapRegion(regionId, WorldMapData[regionId], R, initData);
+      this.regions[regionId].onClick = function() {
+        if(WorldMap.onRegionClick) {
+          WorldMap.onRegionClick(this.id)
+        }
+      }
     }
-  }
+
+  },
+  onRegionClick: null
 }
 
 var MapRegion = function (id, mapDataObj, raphaelObj, initData) {
+  this.id = id;
   this.region = raphaelObj.path(mapDataObj.path).attr(REGION_ATTR);
   this.marketShare = new WorldMapMarketShare(
     id, mapDataObj.cx, mapDataObj.cy,
     raphaelObj.canvas, this.region[0], initData
   );
+  var self = this;
+  this.region[0].onclick = function() {
+    if(self.onClick) {
+      self.onClick();
+    }
+  };
 }
 
 var WorldMapMarketShare = function(id, cx, cy, svg, region, companies) {
@@ -44,7 +59,9 @@ var WorldMapMarketShare = function(id, cx, cy, svg, region, companies) {
   this.r = Math.max(box.width, box.height);
   
   // make sectors
-  var group = $(mkSVG("g")).attr("clip-path", "url(#" + clipId + ")");
+  var group = $(mkSVG("g"))
+    .attr("clip-path", "url(#" + clipId + ")")
+    .css("pointer-events", "none");
   for(var i = 0; i < companies.length; i++) {
     var path = $(mkSVG("path"))
         .attr("fill", companies[i].color)
@@ -54,7 +71,6 @@ var WorldMapMarketShare = function(id, cx, cy, svg, region, companies) {
   $(svg).append(group);
   this.g = group;
   this.updateValues([0.3, 0.4, 0.1]);
-  
 };
 
 WorldMapMarketShare.prototype.updateValues = function(values) {
