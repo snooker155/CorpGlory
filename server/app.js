@@ -1,41 +1,36 @@
 // REQUIRES
-var app = require('express')();
+
+var express = require('express');
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var path = require('path');
 
-var gameNativeModule = require("../Game/NodeWrapper/build/Release/GameWrapper.node");
+// CONFIGURE
 
-// GAME CONFIG
-var players = [{name: "Eduard"}, {name: "Anton"}, {name: "Alexey"}];
-var game = gameNativeModule.NewGame(players);
+var SERVER_PORT = 4000;
 
-// -----------------------
+if(process.argv.length > 2) {
+  SERVER_PORT = parseInt(process.argv[2]);
+  console.log(SERVER_PORT);
+}
+
+var app = express();
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// ROUTES
+
+app.use("/public", express.static(path.join(__dirname, 'public')));
+
 app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/index.html');
+  console.log("/ ???");
+  res.render('index');
 });
 
-http.listen(4000, function() {
-  console.log('listening on *:4000');
+// RUN
+
+var server = app.listen(SERVER_PORT, function () {
+  var host = server.address().address;
+  var port = server.address().port;
+  console.log('Example app listening at http://%s:%s', host, port);
 });
-
-// -----------------------
-io.on('connection', function(socket) {
-  // init player
-  var initObj = {
-    command: 'init',
-    data: players
-  }
-  socket.send(JSON.stringify(initObj));
-  socket.on('disconnect', function() {
-    console.log('user disconnected');
-  });
-  socket.on('userAction', function(msg) {
-    console.log('user action: ' + msg);
-  });
-});
-
-setInterval(function() {
-  io.emit('nextGameState', game.gameState());
-}, 1000);
-
-
