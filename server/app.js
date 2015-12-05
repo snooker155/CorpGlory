@@ -21,8 +21,6 @@ app.use("/public", express.static(path.join(__dirname, 'public')));
 
 // ROUTES
 
-
-
 app.get('/', function(req, res) {
   res.render('index');
 });
