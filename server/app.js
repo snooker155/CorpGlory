@@ -25,6 +25,10 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
+app.get('/subscribtions', function(req, res) {
+  res.render('subscribtions');
+});
+
 // RUN
 
 var server = app.listen(SERVER_PORT, function () {
