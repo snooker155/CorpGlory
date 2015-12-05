@@ -1,8 +1,13 @@
 {
   "name": "CorpGlorySite",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "CorpGlory public website",
   "dependencies": {
+    "ejs": "^2.3.4",
     "express": "^4.10.2"
+  },
+  "repository" : { 
+    "type" : "git"
+  , "url" : "git@github.com:jonyrock/CorpGlory.git"
   }
 }

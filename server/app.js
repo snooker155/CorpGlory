@@ -1,7 +1,6 @@
 // REQUIRES
 
 var express = require('express');
-var http = require('http').Server(app);
 var path = require('path');
 
 // CONFIGURE
@@ -18,12 +17,13 @@ var app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// ROUTES
-
 app.use("/public", express.static(path.join(__dirname, 'public')));
 
+// ROUTES
+
+
+
 app.get('/', function(req, res) {
-  console.log("/ ???");
   res.render('index');
 });
 
