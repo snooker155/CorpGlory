@@ -4,6 +4,7 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var fs = require('fs');
+var randomstring = require("randomstring");
 
 // CONFIGURE
 
@@ -38,8 +39,12 @@ app.get('/subscribtions', function(req, res) {
 });
 
 app.post('/subscribtions', function(req, res) {
+  var fileName = randomstring.generate({
+    length: 10,
+    charset: 'alphabetic'
+  }) + ".txt";
   var stream = fs.createWriteStream(
-    path.join(DATA_PATH, "my_file.txt")
+    path.join(DATA_PATH, fileName)
   );
   stream.once('open', function(fd) {
     stream.write(req.body.email + "\n");
