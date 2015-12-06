@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "description": "CorpGlory public website",
   "dependencies": {
+    "body-parser": "^1.14.1",
     "ejs": "^2.3.4",
     "express": "^4.10.2"
   },
-  "repository" : { 
-    "type" : "git"
-  , "url" : "git@github.com:jonyrock/CorpGlory.git"
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jonyrock/CorpGlory.git"
   }
 }

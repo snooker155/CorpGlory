@@ -5,6 +5,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
+    cursor: default;
 }
 h1 {
     font-family: monospace;
@@ -65,4 +66,12 @@ h1 {
     width: 110px;
     margin: auto;
     height: 55px;
+}
+
+#form ul {
+    list-style-type: none;
+}
+
+label {
+    font-weight: normal !important;
 }
