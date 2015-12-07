@@ -1,45 +1,14 @@
- body, html { 
-    margin: 0;
-    padding: 0;
-    background-color: white;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+body, html { 
     cursor: default;
 }
-h1 {
-    font-family: monospace;
-    font-weight: normal;
-    text-align: center;
-    font-size: 5vh;
-}
 
-#landing h1 {
-    position: absolute;
-    bottom: 20%;
-    width: 100%;
-}
-
-#logoHolder {
-    position: absolute;
-    left: 50%;
-    top: 35%;
-    width: 50%;
-    height: 50%;
-}
 #logo {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    left: -50%;
-    top: -50%;
     background-image: url("/public/img/logo.png");
     background-size:contain;
-    background-position: center;
+    background-position: center;    
     background-repeat: no-repeat;
 }
 #socialButtons {
-    position: absolute;
     height: 55px;
     margin: auto;
     bottom: 5%;
