@@ -11,7 +11,7 @@ body {
     display: block;
     width: 100%;
     text-align: center;
-    background: url('/public/img/back1.jpg') no-repeat center center scroll;
+    background: url('/public/img/back1.png') no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
