@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CorpGlory. Стартапы и экономика: online game.</title>
+    <link rel="stylesheet" type="text/css" href="/public/css/main.css">
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <script type="text/javascript" src="/public/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/public/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div class="container">
+<div class="jumbotron">
+<h1 class="text-center">Я спамил? Прости. </h1>
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+<h2 >Изменить настрокий подписки</h2>
+<form method="POST" id="form">
+  <ul>
+    <li> 
+      <label>
+        <input checked="checked" type="radio" name="subType" value="all">
+        Получать все новости разработки 
+      </label>
+    </li>
+    <li> 
+      <label>
+        <input type="radio" name="subType" value="release">
+        Прислать письмо только когда будет что-то готовое 
+      </label>
+    </li>
+    <li>
+      <label>
+        <input type="radio" name="subType" value="bye">
+        Отписаться от всех рассылок
+      </label>
+    </li>
+  </ul>
+  <p class="text-center">
+  Твоя почта: <input type="text" type="email" name="email" />
+  </p>
+  <p class="text-center">
+    <a class="btn btn-lg btn-success" 
+       href="#" role="button"
+       onclick="$('#form').submit()" 
+    >Изменить</a>
+  </p>
+</form>
+</div>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>

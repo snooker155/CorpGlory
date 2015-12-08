@@ -1,9 +1,11 @@
-# Startup Game
+# CorpGlory
 
-# Start the node
-cd meteor/Startupgame 
-meteor
+Nodejs + C++ version of our game.
 
+game - c++ classes of real game
+server - nodejs server scripts
 
-cd server 
-python server.py
+CMake targets:
+node-module - compile game with node-gyp
+
+>>>>>>> 73-dev-better-landing-with-pricing

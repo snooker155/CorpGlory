@@ -1,0 +1,2 @@
+Template.mainLayout.rendered = function() {
+};
