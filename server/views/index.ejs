@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CorpGlory. Стартапы и экономика: online game.</title>
+    <title>
+        <% if(language == 'ru') { %>
+            CorpGlory. Startup vs economics: online game.
+        <% } else { %>
+            CorpGlory. Стартапы и экономика: online game.
+        <% } %>
+    </title>
     <link rel="stylesheet" href="/public/css/main.css">
     <link rel="stylesheet" href="/public/css/bootstrap.min.css">
     <link rel="stylesheet" href="/public/css/one-page-wonder.css">
@@ -18,7 +24,13 @@
     <div class="headline">
         <div class="container">
             <div id="logoHolder"><div id="logo"></div></div>
-            <h2>Онлайн игра об экономике и стартапах</h2>
+            <h2>
+                <% if(language == 'ru') { %>
+                    Онлайн игра об экономике и стартапах
+                <% } else { %>
+                    Online game about economics and startups
+                <% } %>
+            </h2>
         </div>
     </div>
 </header>
@@ -31,10 +43,21 @@
     <!-- First Featurette -->
     <div class="featurette" id="about">
         <img class="featurette-image img-responsive center-block" src="/public/img/cg-screen-mvp.png">
-        <h2 class="featurette-heading">Научись крутым бизнез стратегиям в игре</h2>
+        <h2 class="featurette-heading">
+            <% if(language == 'ru') { %>
+                Научись крутым бизнез стратегиям в игре
+            <% } else { %>
+                Learn cool stuff economics and startups
+            <% } %>
+        </h2>
         <p class="lead">
-            Придумывай стратегию захвата мирового рынка: хорошая доля пользователей в регионе принесет дивиденды, но
+            <% if(language == 'ru') { %>
+                Придумывай стратегию захвата мирового рынка: хорошая доля пользователей в регионе принесет дивиденды, но
             конкуренты будут мешать. Поэтому нужно будет потратиться что бы захватить их пользователей.
+            <% } else { %>
+                Learn cool strategies to conquer the global market for your tech company. Rules are simple: invest into 
+                region and get money from it but be aware of your competitors.
+            <% } %>
         </p>
     </div>
 
