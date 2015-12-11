@@ -5,7 +5,7 @@ foreach(module ${submodules})
 endforeach()
 
 include_directories(/usr/include/nodejs/src SYSTEM)
-add_library(NodeWrapper src/dummy.cpp)
+add_library(NodeWrapper src/GameWrapper.cpp src/GameModule.cpp)
 
 add_custom_command(
         TARGET NodeWrapper

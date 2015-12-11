@@ -12,8 +12,8 @@ struct Model
   Model() = default;
   virtual ~Model() = default;
 
-  Model(const Model&) = delete;
-  const Model& operator=(const Model&) = delete;
+  Model(const Model&) = default;
+  Model& operator=(const Model&) = default;
 };
 
 

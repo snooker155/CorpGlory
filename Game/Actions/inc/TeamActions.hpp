@@ -13,21 +13,23 @@
 class TeamImproveAction: public Action<CompanyModel>
 {
 public:
-  TeamImproveAction(const std::string& companyName);
+  TeamImproveAction(const ActionParams& params);
   virtual bool visit(CompanyModel* model) const override;
 
 private:
   std::string m_companyName;
+  int m_level;
 };
 
 class MarketingImprove: public Action<CompanyModel>
 {
 public:
-  MarketingImprove(const std::string& companyName);
+  MarketingImprove(const ActionParams& params);
   virtual bool visit(CompanyModel* model) const override;
 
 private:
   std::string m_companyName;
+  int m_level;
 };
 
 

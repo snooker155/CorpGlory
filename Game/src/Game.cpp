@@ -38,7 +38,7 @@ struct Game::GameImpl
   std::unique_ptr<std::thread> m_stateRecalcThread;
   std::vector<Player> m_players;
   std::shared_ptr<World> m_world;
-  ProducerConsumerQueue<ActionBase*> m_actions;
+  ProducerConsumerQueue<std::shared_ptr<ActionBase>> m_actions;
 
   size_t calcUserCount(size_t playersCount) const;
 
@@ -78,7 +78,7 @@ std::string Game::state()
   std::ostringstream ss;
   {
     cereal::JSONOutputArchive ar(ss);
-    ar(cereal::make_nvp("world", m_impl->m_world));
+    ar(cereal::make_nvp("world", *m_impl->m_world));
   } // cereal archives are RAII
   return ss.str();
 }
@@ -93,14 +93,9 @@ void Game::GameImpl::recalcState()
   {
     auto before = steady_clock::now();
 
-    ActionBase* actions[] = {new TeamImproveAction("PlayerCompany"), new MarketingImprove("twitter")};
-    auto action = *Random::choice(actions, actions + 2);
-
-    m_actions.push(action);
-
     while (!m_actions.empty())
     {
-      m_world->acceptAction(m_actions.pop());
+      m_world->acceptAction(m_actions.pop().get());
     }
     m_world->update();
 
@@ -114,9 +109,11 @@ void Game::GameImpl::recalcState()
   	{
 	  	std::cerr << company->m_name << ": " << company->m_money << "$" << std::endl;
 	  }
-    assert(timeSpan <= 1);
 
+    assert(timeSpan <= 1);
+    std::cerr << "Loop ended!" << std::endl;
     int64_t millisToSleep = 1000 - static_cast<int64_t>(timeSpan * 1000);
+    std::cerr << "Sleeping for " << millisToSleep << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(millisToSleep));
   }
 }
@@ -240,4 +237,9 @@ void Game::GameImpl::createCEOs(const std::shared_ptr<WorldModel>& model)
 size_t Game::GameImpl::calcUserCount(size_t playersCount) const
 {
   return playersCount * 100;
+}
+
+void Game::processAction(const std::shared_ptr<ActionBase>& action)
+{
+  m_impl->m_actions.push(action);
 }

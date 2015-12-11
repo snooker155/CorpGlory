@@ -21,6 +21,11 @@ int main()
   while (true)
   {
     std::cout << game.state() << std::endl;
+    std::map<std::string, std::string> params;
+    params["action"] = "team";
+    params["company_name"] = "PlayerCompany";
+    params["level"] = "1";
+    game.processAction(createAction(params["action"], params));
     std::this_thread::sleep_for(std::chrono::seconds(1));
   }
 }
