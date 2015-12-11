@@ -15,8 +15,6 @@ var cerrTail = new tail(__dirname + "/logs/cerr.txt");
 coutTail.on('line', function(line) { console.log(line); });
 cerrTail.on('line', function(line) { console.log(line); });
 
-return 0;
-
 
 // -----------------------
 app.get('/', function(req, res) {
