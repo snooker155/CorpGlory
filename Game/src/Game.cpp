@@ -192,7 +192,8 @@ void Game::GameImpl::createUsers(size_t usersCount,
 void Game::GameImpl::createCompanies(const std::shared_ptr<WorldModel>& model)
 {
   std::vector<std::shared_ptr<CompanyModel>> result;
-
+  
+  // remove hardcoded companies
   std::vector<std::string> names {"PlayerCompany", "facebook", "twitter"};
 
   for (auto& name: names)

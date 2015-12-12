@@ -29,6 +29,9 @@ function Game(players) {
   }, 1000);
 }
 
+Game.prototype.playerRegionClick = function(player, regionId) {
+};
+
 util.inherits(Game, EventEmitter);
 
 module.exports = Game;
