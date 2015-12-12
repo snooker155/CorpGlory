@@ -2,19 +2,13 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var tail = require('always-tail2');
 
-var gameNativeModule = require("../Game/NodeWrapper/build/Release/GameWrapper.node");
+var Game = require('./game.js');
+
 
 // GAME CONFIG
 var players = [{name: "Eduard"}, {name: "Anton"}, {name: "Alexey"}];
-var game = gameNativeModule.NewGame(players);
-
-var coutTail = new tail(__dirname + "/logs/cout.txt");
-var cerrTail = new tail(__dirname + "/logs/cerr.txt");
-coutTail.on('line', function(line) { console.log(line); });
-cerrTail.on('line', function(line) { console.log(line); });
-
+var game = new Game(players);
 
 // -----------------------
 app.get('/', function(req, res) {
@@ -41,8 +35,6 @@ io.on('connection', function(socket) {
   });
 });
 
-setInterval(function() {
-  io.emit('nextGameState', game.gameState());
-}, 1000);
-
-
+game.on('nextGameState', function(state) {
+  io.emit('nextGameState', state);
+});
