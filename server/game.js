@@ -19,6 +19,9 @@ cerrTail.on('line', function(line) { console.log(line); });
 
 function Game(players) {
   EventEmitter.call(this);
+  for(var p in players) {
+    players[p].enterToGame(this);
+  }
   this.nGame = gameNativeModule.NewGame(players);
   var self = this;
   setInterval(function() {
