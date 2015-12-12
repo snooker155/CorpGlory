@@ -14,8 +14,8 @@ const util = require('util');
 
 var coutTail = new Tail(LOGS_PATH + "/cout.txt");
 var cerrTail = new Tail(LOGS_PATH + "/cerr.txt");
-coutTail.on('line', function(line) { console.log(line); });
-cerrTail.on('line', function(line) { console.log(line); });
+// coutTail.on('line', function(line) { console.log(line); });
+// cerrTail.on('line', function(line) { console.log(line); });
 
 function Game(players) {
   EventEmitter.call(this);
@@ -28,10 +28,10 @@ function Game(players) {
     self.emit('nextGameState', self.nGame.gameState());
   }, 1000);
 }
+util.inherits(Game, EventEmitter);
+
 
 Game.prototype.playerRegionClick = function(player, regionId) {
 };
-
-util.inherits(Game, EventEmitter);
 
 module.exports = Game;

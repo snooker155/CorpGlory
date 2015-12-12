@@ -4,11 +4,12 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
 const Game = require('./game.js');
-const Player = require('./player.js');
+const Player = require('./players/player.js');
+const BotPlayer = require('./players/botPlayer.js');
 
 
 // GAME CONFIG
-var players = [new Player("Eduard"), new Player("Anton"), new Player("Alexey")];
+var players = [new Player("RealPlayer"), new BotPlayer("Anton"), new BotPlayer("Alexey")];
 var game = new Game(players);
 
 // -----------------------
