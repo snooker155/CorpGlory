@@ -6589,11 +6589,36 @@ body.landing-page {
   height: 470px;
   width: 100%;
 }
-.landing-page .header-back.one {
-  background: url('http://placehold.it/1920x500') 50% 0 no-repeat;
+/*.landing-page .header-back.one {
+  background: url('../img/Countries_UI.png') 50% 0 no-repeat;
 }
 .landing-page .header-back.two {
-  background: url('http://placehold.it/1920x500') 50% 0 no-repeat;
+  background: url('../img/Segment_UI.png') 50% 0 no-repeat;
+}
+.landing-page .header-back.three {
+  background: url('../img/Company_UI.png') 50% 0 no-repeat;
+}
+.landing-page .header-back.four {
+  background: url('../img/Product_UI.png') 50% 0 no-repeat;
+}
+.landing-page .header-back.five {
+  background: url('../img/Team_UI.png') 50% 0 no-repeat;
+}*/
+
+.landing-page .header-back.one {
+  background: url('http://placehold.it/1920x780') 50% 0 no-repeat;
+}
+.landing-page .header-back.two {
+  background: url('http://placehold.it/1920x780') 50% 0 no-repeat;
+}
+.landing-page .header-back.three {
+  background: url('http://placehold.it/1920x780') 50% 0 no-repeat;
+}
+.landing-page .header-back.four {
+  background: url('http://placehold.it/1920x780') 50% 0 no-repeat;
+}
+.landing-page .header-back.five {
+  background: url('http://placehold.it/1920x780') 50% 0 no-repeat;
 }
 .landing-page .carousel {
   height: 470px;
