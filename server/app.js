@@ -30,8 +30,26 @@ app.use("/public", express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());                           // to process 
 app.use(bodyParser.urlencoded({ extended: true }));   // request params
 
+// CONTROLLERS
+
+function updateEmailSubscribtion(email, type) {
+  var fileName = randomstring.generate({
+    length: 10,
+    charset: 'alphabetic'
+  }) + ".txt";
+  var stream = fs.createWriteStream(
+    path.join(DATA_PATH, fileName)
+  );
+  stream.once('open', function(fd) {
+    stream.write(email + "\n");
+    stream.write(type + "\n");
+    stream.end();
+  });
+}
+
 // ROUTES
 
+// index
 app.get('/', function(req, res) {
   var host = req.get('host');
   var language = 'en';
@@ -44,24 +62,21 @@ app.get('/', function(req, res) {
   );
 });
 
+app.post('/', function(req, res) {
+  updateEmailSubscribtion(req.body.email, 'all');
+  res.render('subscribtionsOk');
+}); 
+
+// subsribtions
 app.get('/subscribtions', function(req, res) {
   res.render('subscribtions');
 });
 
 app.post('/subscribtions', function(req, res) {
-  var fileName = randomstring.generate({
-    length: 10,
-    charset: 'alphabetic'
-  }) + ".txt";
-  var stream = fs.createWriteStream(
-    path.join(DATA_PATH, fileName)
+  updateEmailSubscribtion(
+    req.body.email,
+    req.body.subType
   );
-  stream.once('open', function(fd) {
-    stream.write(req.body.email + "\n");
-    stream.write(req.body.subType + "\n");
-    stream.end();
-  });
-
   res.render('subscribtionsOk');
 });
 
