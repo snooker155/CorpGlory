@@ -61,36 +61,37 @@
         </p>
     </div>
     <hr class="featurette-divider">
-    <div class="row">
-        <h2 class="featurette-heading">
-            <% if(language == 'ru') { %>
-                Следи за новостями по email:
-            <% } else { %>
-                Let's keep in touch, leave your email:
-            <% } %>
-        </h2>
-        <div>
-            <form method="POST" id="form">
-              <p class="text-center">
-              Твоя почта: <input type="text" type="email" name="email" />
-              </p>
-              <p class="text-center">
-                <a class="btn btn-lg btn-success" 
-                   href="#" role="button"
-                   onclick="$('#form').submit()" 
-                >
-                <% if(language == 'ru') { %>
-                    Отправить
-                <% } else { %>
-                    Submit
-                <% } %>
+    <div class="row text-center">
+        <% if(language == 'ru') { %>
+            <h2 class="featurette-heading"> Нравится идея? </h2>
+            <form method="POST" id="form" class="form-inline">
+            <div class="form-group">
+                <label for="inputEmail"> <big> Следи за новостями: </big> </label>
+                <input type="text" type="email" name="email" 
+                    placeholder="Email" class="form-control" 
+                    id="inputEmail" 
+                />
+                <a class="btn btn-lg btn-success" href="#" role="button" onclick="$('#form').submit()">
+                    Подписаться
                 </a>
-              </p>
+            </div>
             </form>
-        </div>
+        <% } else { %>
+            <h2 class="featurette-heading"> Like the idea? </h2>
+            <form method="POST" id="form" class="form-inline">
+            <div class="form-group">
+                <label for="inputEmail"> <big> Let's keep in touch: </big> </label>
+                <input type="text" type="email" name="email" 
+                    placeholder="Email" class="form-control" 
+                    id="inputEmail" 
+                />
+                <a class="btn btn-lg btn-success" href="#" role="button" onclick="$('#form').submit()">
+                    Subscribe
+                </a>
+            </div>
+            </form>
+        <% } %>
     </div>
-
-    <hr class="featurette-divider">
 
     <!-- Footer -->
     <footer>
