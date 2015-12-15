@@ -60,6 +60,35 @@
             <% } %>
         </p>
     </div>
+    <hr class="featurette-divider">
+    <div class="row">
+        <h2 class="featurette-heading">
+            <% if(language == 'ru') { %>
+                Следи за новостями по email:
+            <% } else { %>
+                Let's keep in touch, leave your email:
+            <% } %>
+        </h2>
+        <div>
+            <form method="POST" id="form">
+              <p class="text-center">
+              Твоя почта: <input type="text" type="email" name="email" />
+              </p>
+              <p class="text-center">
+                <a class="btn btn-lg btn-success" 
+                   href="#" role="button"
+                   onclick="$('#form').submit()" 
+                >
+                <% if(language == 'ru') { %>
+                    Отправить
+                <% } else { %>
+                    Submit
+                <% } %>
+                </a>
+              </p>
+            </form>
+        </div>
+    </div>
 
     <hr class="featurette-divider">
 
