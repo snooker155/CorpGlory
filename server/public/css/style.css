@@ -7,7 +7,7 @@ body {
 #logoHolder {
   position: absolute;
   left: 15%;
-  top:100px;
+  top:70px;
   z-index: 999;
 }
 #inSlider {
@@ -6832,7 +6832,6 @@ body.landing-page {
   color: #1ab394 !important;
 }
 .landing-page .contact {
-  background-image: url('../img/landing/word_map.png');
   background-position: 50% 50%;
   background-repeat: no-repeat;
   margin-top: 60px;
