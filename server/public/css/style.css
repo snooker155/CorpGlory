@@ -1,6 +1,21 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en");
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,300,500,700");
 
+body {
+  cursor: default;
+}
+#logoHolder {
+  position: absolute;
+  left: 15%;
+  top:100px;
+  z-index: 999;
+}
+#inSlider {
+  position: relative;
+  max-width: 1500px;
+  margin: auto;
+}
+
 h1,
 h2,
 h3,
@@ -6540,9 +6555,9 @@ body.landing-page {
   height: auto;
   display: block;
   font-size: 14px;
-  background: #1ab394;
+  /*background: #1ab394;*/
   padding: 15px 20px 15px 20px;
-  border-radius: 0 0 5px 5px;
+  /*border-radius: 0 0 5px 5px;*/
   font-weight: 700;
   transition: all 0.3s ease-in-out 0s;
 }

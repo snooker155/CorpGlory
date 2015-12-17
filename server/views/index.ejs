@@ -21,37 +21,15 @@
     <link href="/public/css/style.css" rel="stylesheet">
 </head>
 <body id="page-top" class="landing-page no-skin-config">
-<div class="navbar-wrapper">
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header page-scroll">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <!-- <a class="navbar-brand" href="#page-top">CORPGLORY</a> -->
-                    <a class="navbar-brand" href="#page-top"><img src="/public/img/logo.jpg" style="width:100px;height:100px;"></a>
-                </div>
-            </div>
-        </nav>
-</div>
+
+
+
 <div id="inSlider" class="carousel carousel-fade" data-ride="carousel">
+    <a href="#page-top" id="logoHolder"><img src="/public/img/logo.png"></a>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1 style="color:orange">Онлайн игра<br> об экономике и стартапах</h1>
-                    <!-- <p>Lorem Ipsum is simply dummy text of the printing.</p> -->
-                </div>
-                <div class="carousel-image wow zoomIn">
-                    <!-- <img src="img/landing/laptop.png" alt="laptop"/> -->
-                </div>
-            </div>
             <!-- Set background for slide in css -->
             <div class="header-back one"></div>
-
         </div>
     </div>
 </div>
@@ -193,63 +171,6 @@
 <!-- Mainly scripts -->
 <script src="/public/js/jquery-2.1.1.js"></script>
 <script src="/public/js/bootstrap.min.js"></script>
-
-
-
-
-<script>
-
-    $(document).ready(function () {
-
-        $('body').scrollspy({
-            target: '.navbar-fixed-top',
-            offset: 80
-        });
-
-        // Page scrolling feature
-        $('a.page-scroll').bind('click', function(event) {
-            var link = $(this);
-            $('html, body').stop().animate({
-                scrollTop: $(link.attr('href')).offset().top - 50
-            }, 500);
-            event.preventDefault();
-        });
-    });
-
-    var cbpAnimatedHeader = (function() {
-        var docElem = document.documentElement,
-                header = document.querySelector( '.navbar-default' ),
-                didScroll = false,
-                changeHeaderOn = 200;
-        function init() {
-            window.addEventListener( 'scroll', function( event ) {
-                if( !didScroll ) {
-                    didScroll = true;
-                    setTimeout( scrollPage, 250 );
-                }
-            }, false );
-        }
-        function scrollPage() {
-            var sy = scrollY();
-            if ( sy >= changeHeaderOn ) {
-                $(header).addClass('navbar-scroll')
-            }
-            else {
-                $(header).removeClass('navbar-scroll')
-            }
-            didScroll = false;
-        }
-        function scrollY() {
-            return window.pageYOffset || docElem.scrollTop;
-        }
-        init();
-
-    })();
-
-    // Activate WOW.js plugin for animation on scrol
-    new WOW().init();
-
-</script>
 
 </body>
 
