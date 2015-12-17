@@ -21,24 +21,18 @@ if(process.argv.length > 2) {
 
 var app = express();
 
+// views
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// middleware
 app.use("/public", express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.json());                           // to process 
+app.use(bodyParser.urlencoded({ extended: true }));   // request params
 
-// ROUTES
+// CONTROLLERS
 
-app.get('/', function(req, res) {
-  res.render('index');
-});
-
-app.get('/subscribtions', function(req, res) {
-  res.render('subscribtions');
-});
-
-app.post('/subscribtions', function(req, res) {
+function updateEmailSubscribtion(email, type) {
   var fileName = randomstring.generate({
     length: 10,
     charset: 'alphabetic'
@@ -47,11 +41,42 @@ app.post('/subscribtions', function(req, res) {
     path.join(DATA_PATH, fileName)
   );
   stream.once('open', function(fd) {
-    stream.write(req.body.email + "\n");
-    stream.write(req.body.subType + "\n");
+    stream.write(email + "\n");
+    stream.write(type + "\n");
     stream.end();
   });
+}
 
+// ROUTES
+
+// index
+app.get('/', function(req, res) {
+  var host = req.get('host');
+  var language = 'en';
+  if(host.indexOf(".ru") != -1) {
+    language = 'ru';
+  }
+  res.render(
+    'index',
+    { language: language }
+  );
+});
+
+app.post('/', function(req, res) {
+  updateEmailSubscribtion(req.body.email, 'all');
+  res.render('subscribtionsOk');
+}); 
+
+// subsribtions
+app.get('/subscribtions', function(req, res) {
+  res.render('subscribtions');
+});
+
+app.post('/subscribtions', function(req, res) {
+  updateEmailSubscribtion(
+    req.body.email,
+    req.body.subType
+  );
   res.render('subscribtionsOk');
 });
 
