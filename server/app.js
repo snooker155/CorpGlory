@@ -80,6 +80,13 @@ app.post('/subscribtions', function(req, res) {
   res.render('subscribtionsOk');
 });
 
+// press
+
+app.get('/press', function(req, res) {
+  res.render('press');
+});
+
+
 // RUN
 
 var server = app.listen(SERVER_PORT, function () {
