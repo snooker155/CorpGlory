@@ -27,10 +27,15 @@ app.set('views', path.join(__dirname, 'views'));
 
 // middleware
 app.use("/public", express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json());                           // to process 
+app.use(bodyParser.json());                           // to process
 app.use(bodyParser.urlencoded({ extended: true }));   // request params
 
 // CONTROLLERS
+
+function validateEmail(email) {
+  var filter = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return filter.test(email);
+}
 
 function updateEmailSubscribtion(email, type) {
   var fileName = randomstring.generate({
@@ -63,9 +68,14 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
-  updateEmailSubscribtion(req.body.email, 'all');
-  res.render('subscribtionsOk');
-}); 
+  if(validateEmail(req.body.email)) {
+    updateEmailSubscribtion(req.body.email, 'all');
+    res.render('subscribtionsOk');
+  }
+  else {
+
+  }
+});
 
 // subsribtions
 app.get('/subscribtions', function(req, res) {
