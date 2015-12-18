@@ -86,6 +86,11 @@ app.get('/press', function(req, res) {
   res.render('press');
 });
 
+// blog
+
+app.get('/blog', function(req, res) {
+  res.render('blog');
+});
 
 // RUN
 
