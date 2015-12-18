@@ -101,6 +101,19 @@ app.get('/blog', function(req, res) {
   res.render('blog', {title:'Blog'});
 });
 
+app.get('/blog/(*)', function(req, res) {
+  res.render('posts/' + req.params[0], {title:'Blog'}, function(err, html) {
+    if (err) {
+      if (err.message.indexOf('Failed to lookup view') !== -1) {
+        return res.status(404).send('not found');
+      }
+      throw err;
+    }
+    res.send(html);
+  });
+});
+
+
 // RUN
 
 var server = app.listen(SERVER_PORT, function () {
