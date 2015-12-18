@@ -1,6 +1,7 @@
 // REQUIRES
 
-var express = require('express');
+var express = require('express'),
+    expressLayouts = require('express-ejs-layouts');
 var path = require('path');
 var bodyParser = require('body-parser');
 var fs = require('fs');
@@ -23,12 +24,15 @@ var app = express();
 
 // views
 app.set('view engine', 'ejs');
+
 app.set('views', path.join(__dirname, 'views'));
+app.set('layout', 'layouts/innerPageLayout');
 
 // middleware
 app.use("/public", express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());                           // to process
 app.use(bodyParser.urlencoded({ extended: true }));   // request params
+app.use(expressLayouts);
 
 // CONTROLLERS
 
@@ -54,6 +58,14 @@ function updateEmailSubscribtion(email, type) {
 
 // ROUTES
 
+function renderBasic(res, view, data) {
+  if(data === undefined) {
+    data = {}
+  }
+  data.layout = 'layouts/emptyLayout';
+  res.render(view, data);
+}
+
 // index
 app.get('/', function(req, res) {
   var host = req.get('host');
@@ -61,10 +73,7 @@ app.get('/', function(req, res) {
   if(host.indexOf(".ru") != -1) {
     language = 'ru';
   }
-  res.render(
-    'index',
-    { language: language }
-  );
+  renderBasic(res, 'index', { language: language });
 });
 
 app.post('/', function(req, res) {
@@ -79,7 +88,7 @@ app.post('/', function(req, res) {
 
 // subsribtions
 app.get('/subscribtions', function(req, res) {
-  res.render('subscribtions');
+  renderBasic(res, 'subscribtions');
 });
 
 app.post('/subscribtions', function(req, res) {
@@ -94,6 +103,31 @@ app.post('/subscribtions', function(req, res) {
     res.render('subscribtionsInvalid');
   }
 });
+
+// press
+
+app.get('/press', function(req, res) {
+  res.render('press', {title:'Press'});
+});
+
+// blog
+
+app.get('/blog', function(req, res) {
+  res.render('blog', {title:'Blog'});
+});
+
+app.get('/blog/(*)', function(req, res) {
+  res.render('posts/' + req.params[0], {title:'Blog'}, function(err, html) {
+    if (err) {
+      if (err.message.indexOf('Failed to lookup view') !== -1) {
+        return res.status(404).send('not found');
+      }
+      throw err;
+    }
+    res.send(html);
+  });
+});
+
 
 // RUN
 
