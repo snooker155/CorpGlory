@@ -1,6 +1,7 @@
 // REQUIRES
 
-var express = require('express');
+var express = require('express'),
+    expressLayouts = require('express-ejs-layouts');
 var path = require('path');
 var bodyParser = require('body-parser');
 var fs = require('fs');
@@ -23,12 +24,15 @@ var app = express();
 
 // views
 app.set('view engine', 'ejs');
+
 app.set('views', path.join(__dirname, 'views'));
+app.set('layout', 'layouts/innerPageLayout');
 
 // middleware
 app.use("/public", express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());                           // to process 
 app.use(bodyParser.urlencoded({ extended: true }));   // request params
+app.use(expressLayouts);
 
 // CONTROLLERS
 
@@ -49,6 +53,14 @@ function updateEmailSubscribtion(email, type) {
 
 // ROUTES
 
+function renderBasic(res, view, data) {
+  if(data === undefined) {
+    data = {}
+  }
+  data.layout = 'layouts/emptyLayout';
+  res.render(view, data);
+}
+
 // index
 app.get('/', function(req, res) {
   var host = req.get('host');
@@ -56,20 +68,17 @@ app.get('/', function(req, res) {
   if(host.indexOf(".ru") != -1) {
     language = 'ru';
   }
-  res.render(
-    'index',
-    { language: language }
-  );
+  renderBasic(res, 'index', { language: language });
 });
 
 app.post('/', function(req, res) {
   updateEmailSubscribtion(req.body.email, 'all');
-  res.render('subscribtionsOk');
+  renderBasic(res,'subscribtionsOk');
 }); 
 
 // subsribtions
 app.get('/subscribtions', function(req, res) {
-  res.render('subscribtions');
+  renderBasic(res, 'subscribtions');
 });
 
 app.post('/subscribtions', function(req, res) {
@@ -77,7 +86,7 @@ app.post('/subscribtions', function(req, res) {
     req.body.email,
     req.body.subType
   );
-  res.render('subscribtionsOk');
+  renderBasic(res, 'subscribtionsOk');
 });
 
 // press
