@@ -92,13 +92,13 @@ app.post('/subscribtions', function(req, res) {
 // press
 
 app.get('/press', function(req, res) {
-  res.render('press');
+  res.render('press', {title:'Press'});
 });
 
 // blog
 
 app.get('/blog', function(req, res) {
-  res.render('blog');
+  res.render('blog', {title:'Blog'});
 });
 
 // RUN
