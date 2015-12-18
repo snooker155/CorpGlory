@@ -73,7 +73,7 @@ app.post('/', function(req, res) {
     res.render('subscribtionsOk');
   }
   else {
-
+    res.render('subscribtionsInvalid');
   }
 });
 
