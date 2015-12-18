@@ -6,7 +6,7 @@ body {
 }
 #logoHolder {
   position: absolute;
-  left: 15%;
+  left: 12%;
   top:70px;
   z-index: 999;
 }
@@ -23,6 +23,13 @@ body {
     -webkit-border-radius: 8px;
        -moz-border-radius: 8px;
             border-radius: 8px;
+}
+
+#team p {
+  color:#333;
+  font-family: 'Open Sans', helvetica, arial, sans-serif;
+  font-weight: lighter;
+  font-size: 15px;
 }
 
 h1,
