@@ -83,11 +83,16 @@ app.get('/subscribtions', function(req, res) {
 });
 
 app.post('/subscribtions', function(req, res) {
-  updateEmailSubscribtion(
-    req.body.email,
-    req.body.subType
-  );
-  res.render('subscribtionsOk');
+  if(validateEmail(req.body.email)) {
+    updateEmailSubscribtion(
+      req.body.email,
+      req.body.subType
+    );
+    res.render('subscribtionsOk');
+  }
+  else {
+    res.render('subscribtionsInvalid');
+  }
 });
 
 // RUN
