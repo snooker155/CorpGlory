@@ -1,42 +1,43 @@
 // REQUIRES
+
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-
-const Game = require('./game.js');
-const Player = require('./players/player.js');
-const BotPlayer = require('./players/botPlayer.js');
+const gameRoute = require('./route.js')(app, io);
 
 
-// GAME CONFIG
-var players = [new Player("RealPlayer"), new BotPlayer("Anton"), new BotPlayer("Alexey")];
-var game = new Game(players);
+// CONFIGURE
 
-// -----------------------
-app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/index.html');
+const SERVER_PORT = 4000;
+const DATA_PATH = path.join(__dirname, 'data');
+
+if (!fs.existsSync(DATA_PATH)){
+  fs.mkdirSync(DATA_PATH);
+}
+
+if(process.argv.length > 2) {
+  SERVER_PORT = parseInt(process.argv[2]);
+}
+
+// views
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// middleware
+app.use("/public", express.static(path.join(__dirname, 'public')));
+
+
+// RUN
+
+var server = app.listen(SERVER_PORT, function () {
+  var host = server.address().address;
+  var port = server.address().port;
+  console.log('App listening at http://%s:%s', host, port);
 });
 
-http.listen(4000, function() {
-  console.log('listening on *:4000');
-});
+var io = require('socket.io').listen(server);
 
-// -----------------------
-io.on('connection', function(socket) {
-  // init player
-  var initObj = {
-    command: 'init',
-    data: players
-  }
-  socket.send(JSON.stringify(initObj));
-  socket.on('disconnect', function() {
-    console.log('user disconnected');
-  });
-  socket.on('userAction', function(msg) {
-    console.log('user action: ' + msg);
-  });
-});
-
-game.on('nextGameState', function(state) {
-  io.emit('nextGameState', state);
-});
+gameRoute();

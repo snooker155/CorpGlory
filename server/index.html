@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="/public/js/game/communication.js"></script>
+  <script src="/public/js/game/gameScreen.js"></script>
+  <script src="/public/js/game/marketShare.js"></script>
+  <script src="/public/js/game/windowError.js"></script>
+  <script src="/public/js/game/worldMap.js"></script>
+  <script src="/public/js/game/worldMapData.js"></script>
 </head>
-<script src="/socket.io/socket.io.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-<script>
-    var socket = io();
-    socket.emit('userAction', "my action is hi!");
-    socket.on('nextGameState', function(msg){
-        $('#output').text(msg);
-    });
-</script>
+
+
 <body>
 
 
 <a href="https://trello.com/c/XhehqmUx/60-dev-nodejs-ws-glue" >
-    <h1>[Dev] NodeJS WS glue</h1>
+  <h1>[Dev] NodeJS WS glue</h1>
 </a>
 <p> 
-    Simple demo
+  Simple demo
 </p>
 
 <pre id="output">
