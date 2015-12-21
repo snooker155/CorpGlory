@@ -17,17 +17,11 @@ function bindGameRoute(app, io) {
   
   // game
   app.get('/game', function(req, res) {
-    var host = req.get('host');
-    var language = 'en';
-    if(host.indexOf(".ru") != -1) {
-      language = 'ru';
-    }
-    renderBasic(res, 'game');
+    res.render('game');
   });
   
   // -----------------------
   io.on('connection', function(socket) {
-    
     // init player
     var initObj = {
       command: 'init',
@@ -42,9 +36,6 @@ function bindGameRoute(app, io) {
     });
   });
 
-  game.on('nextGameState', function(state) {
-    io.emit('nextGameState', state);
-  });
   
 }
 

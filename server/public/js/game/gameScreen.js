@@ -1,8 +1,10 @@
-Template.gameScreen.onRendered(function () {
+$(function() {
   Communication.open();
 });
 
-Template.gameScreen.init = function(data) {
+GameScreen = {};
+
+GameScreen.init = function(data) {
   // set colors
   data[0].color = "#0f5b78";
   data[1].color = "#a2b86c";
@@ -16,13 +18,13 @@ Template.gameScreen.init = function(data) {
   MarketShare.init(data);
 };
 
-Template.gameScreen.onRegionClick = function(regionId) {
+GameScreen.onRegionClick = function(regionId) {
   Communication.userAction(
-    'regionClick', {id: regionId}
+    'regionClick', { id: regionId }
   );
 }
 
-Template.gameScreen.onNextState = function(stage) {
+GameScreen.onNextState = function(stage) {
   var money = stage.world.ptr_wrapper.data.model.ptr_wrapper.data.companies[0].ptr_wrapper.data.money;
   var companies = stage.world.ptr_wrapper.data.model.ptr_wrapper.data.companies;
   var shares = {};

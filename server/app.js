@@ -6,7 +6,7 @@ const fs = require('fs');
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-const gameRoute = require('./route.js')(app, io);
+const gameRoute = require('./game/route.js')(app, io);
 
 
 // CONFIGURE
@@ -37,7 +37,3 @@ var server = app.listen(SERVER_PORT, function () {
   var port = server.address().port;
   console.log('App listening at http://%s:%s', host, port);
 });
-
-var io = require('socket.io').listen(server);
-
-gameRoute();
