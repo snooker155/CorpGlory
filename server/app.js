@@ -41,7 +41,7 @@ function validateEmail(email) {
   return regex.test(email);
 }
 
-function updateEmailSubscribtion(email, type) {
+function updateEmailSubscribtion(email, type, ip) {
   var fileName = randomstring.generate({
     length: 10,
     charset: 'alphabetic'
@@ -50,7 +50,7 @@ function updateEmailSubscribtion(email, type) {
     path.join(DATA_PATH, fileName)
   );
   stream.once('open', function(fd) {
-    stream.write(email + "\n");
+    stream.write(email + " " + ip + "\n");
     stream.write(type + "\n");
     stream.end();
   });
@@ -78,11 +78,15 @@ app.get('/', function(req, res) {
 
 app.post('/', function(req, res) {
   if(validateEmail(req.body.email)) {
-    updateEmailSubscribtion(req.body.email, 'all');
-    res.render('subscribtionsOk');
+    var ip = req.headers['x-forwarded-for'] ||
+     req.connection.remoteAddress ||
+     req.socket.remoteAddress ||
+     req.connection.socket.remoteAddress;
+    updateEmailSubscribtion(req.body.email, 'all', ip);
+    renderBasic(res, 'subscribtionsOk');
   }
   else {
-    res.render('subscribtionsInvalid');
+    renderBasic(res, 'subscribtionsInvalid');
   }
 });
 
@@ -93,14 +97,19 @@ app.get('/subscribtions', function(req, res) {
 
 app.post('/subscribtions', function(req, res) {
   if(validateEmail(req.body.email)) {
+    var ip = req.headers['x-forwarded-for'] ||
+     req.connection.remoteAddress ||
+     req.socket.remoteAddress ||
+     req.connection.socket.remoteAddress;
     updateEmailSubscribtion(
       req.body.email,
-      req.body.subType
+      req.body.subType,
+      ip
     );
-    res.render('subscribtionsOk');
+    renderBasic(res, 'subscribtionsOk');
   }
   else {
-    res.render('subscribtionsInvalid');
+    renderBasic(res, 'subscribtionsInvalid');
   }
 });
 
