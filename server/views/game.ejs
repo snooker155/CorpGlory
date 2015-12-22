@@ -12,10 +12,17 @@
   <script src="/public/js/game/windowError.js"></script>
   <script src="/public/js/game/worldMap.js"></script>
   <script src="/public/js/game/worldMapData.js"></script>
+  <script src="/public/js/game/loginScreen.js"></script>
   <script src="/public/js/game/gameScreen.js"></script>
   
   <link rel="stylesheet" type="text/css" href="/public/packages/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/public/css/game.css">
+  
+  <script type="text/javascript">
+    // todo: remove it
+    var USER_NAME = <%= userName %>;
+    
+  </script>
   
 </head>
 
@@ -40,8 +47,7 @@
     </p>
   </div>
   
-  <div id="logText"></div>
-    
+  <div id="logText"></div>    
 </div>
 
 </body>

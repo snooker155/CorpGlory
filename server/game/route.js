@@ -4,38 +4,47 @@ const Game = require('./game.js');
 const Player = require('./players/player.js');
 const BotPlayer = require('./players/botPlayer.js');
 const Regions = require('./regions.js');
+const PlayerConnection = require('./playerConnection.js');
 
 // GAME CONFIG
 
-var players = [new Player("RealPlayer"), new BotPlayer("Anton"), new BotPlayer("Alexey")];
-var game = new Game(players);
+const players = [];
+const playerConnections = {  };
 
-function bindGameRoute(app, io) {
+
+function onUserConnection(socket, name) {
+  if(PlayerConnection[name] !== undefined) {
+    return false;
+  }
+  players = new Player();
+  playerConnections[name] = new PlayerConnection(socket, player);
+  // TODO: remove from PlayerConnections on disconnect
+  // via 'on'
+  return true;
+}
+
+
+function route(app, io) {
 
   // game
-  app.get('/', function(req, res) {
-    res.render('game');
+  
+  app.get('/game', function(req, res) {
+    res.redirect('/default');
+  }
+  
+  app.get('/game/(*)', function(req, res) {
+    // TODO: check that user exist
+    res.render(
+      'game', 
+      { userName: req.params[0] }
+    );
   });
 
   io.on('connection', function(socket) {
-    // init player
-    var initObj = {
-      command: 'init',
-      data: {
-        players: players,
-        regions: Regions
-      }
-    }
-    socket.send(JSON.stringify(initObj));
-    socket.on('disconnect', function() {
-      console.log('user disconnected');
-    });
-    socket.on('userAction', function(msg) {
-      console.log('user action: ' + msg);
-    });
+    onUserConnection(socket, socket.handshake.query.name);
   });
 
   
 }
 
-module.exports = bindGameRoute;
+module.exports = route;

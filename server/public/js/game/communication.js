@@ -2,7 +2,7 @@ Communication = { };
 
 Communication.open = function() {
   try {
-    this.socket = io.connect("http://" + location.hostname + ":4000");
+    this.socket = io.connect('', { query: 'name=' + USER_NAME });
   } catch (err) {
     Communication.onConnectionLost();
     return;
