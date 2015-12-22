@@ -13,7 +13,7 @@ Communication.open = function() {
     if(jmsg.command === 'enterRoom') {
       App.onEnterRoom(data);
     }
-    if(jmsg.command === 'startGame') {
+    if(jmsg.command === 'enterGame') {
       App.onEnterGame(data);
     }
   });

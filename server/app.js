@@ -37,4 +37,4 @@ const server = app.listen(SERVER_PORT, function () {
 
 const io = require('socket.io').listen(server);
 
-const gameRoute = require('./game/route.js')(app, io);
+require('./game/route.js')(app, io);

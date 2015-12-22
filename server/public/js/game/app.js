@@ -1,10 +1,16 @@
 App = {};
 
-App.onEnterRoom = function(data) {
-  PlayersList.init(data);
+App.main = function() {
+  Communication.open();
+}
+
+App.onEnterRoom = function(players) {
+  PlayersList.init(players);
 }
 
 App.onEnterGame = function(data) {
   GameScreen.init(data);
 }
 
+
+$(App.main);

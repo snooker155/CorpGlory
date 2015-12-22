@@ -1,4 +1,5 @@
 
+// TODO: inherit from Player ? 
 
 function PlayerConnection(socket, player) {
   this.socket = socket;
@@ -25,21 +26,24 @@ function PlayerConnection(socket, player) {
   });
 }
 
-PlayerConnection.prototype.enterRoom = function(players) {
+PlayerConnection.prototype.sendObj = function(commandName, data) {
   var obj = {
-    command: 'enterRoom',
-    data: players;
+    command: commandName,
+    data: data
   }
-  socket.send(JSON.stringify(obj));
+  this.socket.send(JSON.stringify(obj));
 }
 
-PlayerConnection.prototype.startGame = function() {
-  var obj = {
-    command: 'startGame',
-    data: {
-      players: players,
-      regions: Regions
-    }
-  }
-  socket.send(JSON.stringify(obj));
+PlayerConnection.prototype.enterRoom = function(players) {
+  this.sendObj('enterRoom', players);
 }
+
+PlayerConnection.prototype.addPlayer = function(player) {
+  this.sendObj('addPlayer', players);
+}
+
+PlayerConnection.prototype.startGame = function(gameInit) {
+  this.sendObj('enterGame', gameInit);
+}
+
+module.exports = PlayerConnection;

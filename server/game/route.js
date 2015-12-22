@@ -8,19 +8,35 @@ const PlayerConnection = require('./playerConnection.js');
 
 // GAME CONFIG
 
-const players = [];
+const players = [new BotPlayer("BotPlayer1")];
 const playerConnections = { };
+
+
+var io = undefined;
 
 
 function onUserConnection(socket, name) {
   if(PlayerConnection[name] !== undefined) {
     return false;
   }
-  players = new Player(name);
-  playerConnections[name] = new PlayerConnection(socket, player);
+  var player = new Player(name);
+  players.push(player);
+  
   // TODO: remove from PlayerConnections on disconnect
   // via 'on'
+  
+  for(var pl in playerConnections) {
+    pl.addPlayer(player);
+  }
+  var playerConnection = new PlayerConnection(socket, player);
+  playerConnection.enterRoom(players);
+  playerConnections[name] = playerConnection;
+  
   return true;
+}
+
+function enterGame() {
+  // 
 }
 
 
@@ -44,7 +60,6 @@ function route(app, io) {
     onUserConnection(socket, socket.handshake.query.name);
   });
 
-  
 }
 
 module.exports = route;

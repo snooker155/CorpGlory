@@ -1,7 +1,10 @@
 PlayersList = { };
 
-PlayersList.init = function(data) {
+PlayersList.init = function(players) {
   $("#playersListHolder").show();
+  for(var p in players) {
+    this.addUser(p);
+  }
 }
 
 PlayersList.addUser = function(user) {
