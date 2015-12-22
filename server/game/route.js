@@ -9,14 +9,14 @@ const PlayerConnection = require('./playerConnection.js');
 // GAME CONFIG
 
 const players = [];
-const playerConnections = {  };
+const playerConnections = { };
 
 
 function onUserConnection(socket, name) {
   if(PlayerConnection[name] !== undefined) {
     return false;
   }
-  players = new Player();
+  players = new Player(name);
   playerConnections[name] = new PlayerConnection(socket, player);
   // TODO: remove from PlayerConnections on disconnect
   // via 'on'

@@ -9,8 +9,12 @@ Communication.open = function() {
   }
   this.socket.on('message', function(msg) {
     var jmsg = JSON.parse(msg);
-    if(jmsg.command === 'init') {
-      GameScreen.init(jmsg.data);
+    var data = jmsg.data;
+    if(jmsg.command === 'enterRoom') {
+      App.onEnterRoom(data);
+    }
+    if(jmsg.command === 'startGame') {
+      App.onEnterGame(data);
     }
   });
   this.socket.on('nextGameState', function(msg) {
