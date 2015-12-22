@@ -11,7 +11,7 @@ GameScreen.init = function(data) {
   data[2].color = "#ef8b2c";
 
   // bind events
-  WorldMap.onRegionClick = Template.gameScreen.onRegionClick;
+  WorldMap.onRegionClick = GameScreen.onRegionClick;
 
   // init game elements
   WorldMap.init(data);

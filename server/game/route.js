@@ -6,10 +6,10 @@ const BotPlayer = require('./players/botPlayer.js');
 
 // GAME CONFIG
 
-function createGame() {
-  var players = [new Player("RealPlayer"), new BotPlayer("Anton"), new BotPlayer("Alexey")];
-  var game = new Game(players);
-}
+
+var players = [new Player("RealPlayer"), new BotPlayer("Anton"), new BotPlayer("Alexey")];
+var game = new Game(players);
+
 
 function bindGameRoute(app, io) {
   
@@ -18,21 +18,20 @@ function bindGameRoute(app, io) {
     res.render('game');
   });
   
-  // // -----------------------
-  // io.on('connection', function(socket) {
-  //   // init player
-  //   var initObj = {
-  //     command: 'init',
-  //     data: players
-  //   }
-  //   socket.send(JSON.stringify(initObj));
-  //   socket.on('disconnect', function() {
-  //     console.log('user disconnected');
-  //   });
-  //   socket.on('userAction', function(msg) {
-  //     console.log('user action: ' + msg);
-  //   });
-  // });
+  io.on('connection', function(socket) {
+    // init player
+    var initObj = {
+      command: 'init',
+      data: players
+    }
+    socket.send(JSON.stringify(initObj));
+    socket.on('disconnect', function() {
+      console.log('user disconnected');
+    });
+    socket.on('userAction', function(msg) {
+      console.log('user action: ' + msg);
+    });
+  });
 
   
 }
