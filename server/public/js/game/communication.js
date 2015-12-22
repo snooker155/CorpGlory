@@ -13,9 +13,13 @@ Communication.open = function() {
     if(jmsg.command === 'enterRoom') {
       App.onEnterRoom(data);
     }
+    if(jmsg.command === 'addPlayer') {
+      App.onAddPlayer(data);
+    }
     if(jmsg.command === 'enterGame') {
       App.onEnterGame(data);
     }
+    
   });
   this.socket.on('nextGameState', function(msg) {
     var jmsg = JSON.parse(msg);

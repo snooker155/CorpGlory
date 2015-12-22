@@ -19,6 +19,7 @@ function onUserConnection(socket, name) {
   if(PlayerConnection[name] !== undefined) {
     return false;
   }
+
   var player = new Player(name);
   players.push(player);
   
@@ -26,8 +27,10 @@ function onUserConnection(socket, name) {
   // via 'on'
   
   for(var pl in playerConnections) {
-    pl.addPlayer(player);
+    console.log(player);
+    playerConnections[pl].addPlayer(player);
   }
+
   var playerConnection = new PlayerConnection(socket, player);
   playerConnection.enterRoom(players);
   playerConnections[name] = playerConnection;

@@ -39,7 +39,7 @@ PlayerConnection.prototype.enterRoom = function(players) {
 }
 
 PlayerConnection.prototype.addPlayer = function(player) {
-  this.sendObj('addPlayer', players);
+  this.sendObj('addPlayer', player);
 }
 
 PlayerConnection.prototype.startGame = function(gameInit) {
