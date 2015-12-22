@@ -29,8 +29,8 @@ function route(app, io) {
   // game
   
   app.get('/game', function(req, res) {
-    res.redirect('/default');
-  }
+    res.redirect('/game/default');
+  });
   
   app.get('/game/(*)', function(req, res) {
     // TODO: check that user exist
