@@ -79,10 +79,10 @@ app.get('/', function(req, res) {
 app.post('/', function(req, res) {
   if(validateEmail(req.body.email)) {
     updateEmailSubscribtion(req.body.email, 'all');
-    res.render('subscribtionsOk');
+    renderBasic(res, 'subscribtionsOk');
   }
   else {
-    res.render('subscribtionsInvalid');
+    renderBasic(res, 'subscribtionsInvalid');
   }
 });
 
@@ -97,10 +97,10 @@ app.post('/subscribtions', function(req, res) {
       req.body.email,
       req.body.subType
     );
-    res.render('subscribtionsOk');
+    renderBasic(res, 'subscribtionsOk');
   }
   else {
-    res.render('subscribtionsInvalid');
+    renderBasic(res, 'subscribtionsInvalid');
   }
 });
 
