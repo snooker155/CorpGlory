@@ -1,4 +1,4 @@
-var Regions = {
+const Regions = {
   EU:{},
   AS:{},
   OC:{},

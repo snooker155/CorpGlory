@@ -6,9 +6,9 @@ GameScreen = {};
 
 GameScreen.init = function(data) {
   // set colors
-  data[0].color = "#0f5b78";
-  data[1].color = "#a2b86c";
-  data[2].color = "#ef8b2c";
+  data.players[0].color = "#0f5b78";
+  data.players[1].color = "#a2b86c";
+  data.players[2].color = "#ef8b2c";
 
   // bind events
   WorldMap.onRegionClick = GameScreen.onRegionClick;
