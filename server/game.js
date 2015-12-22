@@ -5,7 +5,6 @@ const LOGS_PATH = __dirname + "/logs";
 try { fs.lstatSync(LOGS_PATH) } 
 catch (e) { fs.mkdirSync(LOGS_PATH); }
 
-
 const gameNativeModule = require("../Game/NodeWrapper/build/Release/GameWrapper.node");
 const Tail = require('always-tail2');
 const EventEmitter = require('events').EventEmitter;

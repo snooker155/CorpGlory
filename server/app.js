@@ -5,9 +5,6 @@ const path = require('path');
 const fs = require('fs');
 const app = require('express')();
 const http = require('http').Server(app);
-const io = require('socket.io')(http);
-const gameRoute = require('./game/route.js')(app, io);
-
 
 // CONFIGURE
 
@@ -32,8 +29,12 @@ app.use("/public", express.static(path.join(__dirname, 'public')));
 
 // RUN
 
-var server = app.listen(SERVER_PORT, function () {
+const server = app.listen(SERVER_PORT, function () {
   var host = server.address().address;
   var port = server.address().port;
   console.log('App listening at http://%s:%s', host, port);
 });
+
+const io = require('socket.io').listen(server);
+
+const gameRoute = require('./game/route.js')(app, io);
