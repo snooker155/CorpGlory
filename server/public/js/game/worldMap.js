@@ -5,35 +5,40 @@ var REGION_ATTR = {
   "stroke-linejoin": "round"
 };
 
-WorldMap = {
-  regions: {},
-  init: function (initData) {
+WorldMap = { };
 
-    var svgHeight = 320;
-    var svgWidth = 600;
-    
-    var R = Raphael("worldMapHolder", "100%", "100%");
-    R.setViewBox(0, 0, svgWidth, svgHeight, false);
-    
-    for(var regionId in WorldMapData) {
-      this.regions[regionId] = new MapRegion(regionId, WorldMapData[regionId], R, initData);
-      this.regions[regionId].onClick = function() {
-        if(WorldMap.onRegionClick) {
-          WorldMap.onRegionClick(this.id)
-        }
+WorldMap.init = function (initData) {
+
+  var svgHeight = 320;
+  var svgWidth = 600;
+  
+  var R = Raphael("worldMapHolder", "100%", "100%");
+  R.setViewBox(0, 0, svgWidth, svgHeight, false);
+  
+  WorldMap.regions = initData.regions;
+  
+  for(var regionId in WorldMapData) {
+    if(this.regions[regionId] === undefined) {
+      throw "Undefined region: " + regionId;
+    }
+    this.regions[regionId] = new MapRegion(regionId, WorldMapData[regionId], R, initData);
+    this.regions[regionId].onClick = function() {
+      if(WorldMap.onRegionClick) {
+        WorldMap.onRegionClick(this.id)
       }
     }
+  }
 
-  },
-  onRegionClick: null
 }
+  
+WorldMap.onRegionClick = null;
 
 var MapRegion = function (id, mapDataObj, raphaelObj, initData) {
   this.id = id;
   this.region = raphaelObj.path(mapDataObj.path).attr(REGION_ATTR);
   this.marketShare = new WorldMapMarketShare(
     id, mapDataObj.cx, mapDataObj.cy,
-    raphaelObj.canvas, this.region[0], initData
+    raphaelObj.canvas, this.region[0], initData.players
   );
   var self = this;
   this.region[0].onclick = function() {

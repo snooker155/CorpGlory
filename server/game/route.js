@@ -23,7 +23,7 @@ function bindGameRoute(app, io) {
       command: 'init',
       data: {
         players: players,
-        regions: Regions;
+        regions: Regions
       }
     }
     socket.send(JSON.stringify(initObj));
