@@ -5,8 +5,6 @@ body {
   cursor: default;
 }
 #logoHolder {
-  position: absolute;
-  left: 12%;
   top:70px;
   z-index: 999;
 }
@@ -43,7 +41,7 @@ body {
 #blog h2 {
   font-family: 'Open Sans', helvetica, arial, sans-serif;
   font-weight: normal;
-  font-size: 36px; 
+  font-size: 36px;
   margin-bottom: 50px;
 }
 
@@ -6441,7 +6439,7 @@ body.body-small .vote-icon {
 /*
  *
  *   Landing Page
- *   
+ *
 */
 /* GLOBAL STYLES
 -------------------------------------------------- */
@@ -6985,6 +6983,7 @@ body.landing-page {
   .landing-page .featurette-heading {
     font-size: 50px;
   }
+  }
 }
 @media (max-width: 992px) {
   .landing-page .carousel-image {
@@ -7053,6 +7052,9 @@ body.landing-page {
   .landing-page .featurette-heading {
     margin-top: 120px;
   }
+  .landing-page .subheader {
+    margin-top: 120px;
+  }
 }
 @media (max-width: 768px) {
   .landing-page .navbar .navbar-header {
@@ -7063,6 +7065,12 @@ body.landing-page {
     background-color: #ffffff;
     padding: 9px 10px;
     border: none;
+  }
+  .landing-page .subheader h1 {
+    font-size: 24px;
+  }
+  .btn {
+    margin-top: 5px;
   }
 }
 body.rtls {
