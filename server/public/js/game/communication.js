@@ -19,6 +19,9 @@ Communication.open = function() {
     if(jmsg.command === 'removePlayer') {
       App.onRemovePlayer(data);
     }
+    if(jmsg.command === 'readyPlayer') {
+      App.onReadyPlayer(data);
+    }
     if(jmsg.command === 'enterGame') {
       App.onEnterGame(data);
     }

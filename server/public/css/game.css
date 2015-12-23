@@ -71,3 +71,11 @@ body, html {
 #windowError {
     
 }
+
+#playersListHolderList .wait {
+    color: red;
+}
+
+#playersListHolderList .ready {
+    color: green;
+}

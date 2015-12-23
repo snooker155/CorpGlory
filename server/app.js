@@ -11,7 +11,7 @@ const http = require('http').Server(app);
 const SERVER_PORT = 4000;
 const DATA_PATH = path.join(__dirname, 'data');
 
-if (!fs.existsSync(DATA_PATH)){
+if (!fs.existsSync(DATA_PATH)) {
   fs.mkdirSync(DATA_PATH);
 }
 

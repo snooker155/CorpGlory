@@ -5,7 +5,7 @@ const _ = require('underscore');
 
 function BotPlayer(name) {
   Player.call(this, name);
-  var self = this;
+  this.ready = true;
 }
 util.inherits(BotPlayer, Player);
 

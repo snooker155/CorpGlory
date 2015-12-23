@@ -6,27 +6,24 @@ const util = require('util');
 function PlayerConnection(socket, player) {
   this.socket = socket;
   this.player = player;
+  const self = this;
   
   socket.on('userAction', function(msg) {
     // TODO: reafactor userAction -> to handler
     const jmsg = JSON.parse(msg);
     
     // enter
-    if(jmsg.action === "roomEnter") {
-      if(!onEnterGame(jmsg.data.name)) {
-        res.status(403).send("Can't login with username " + jmsg.data.name);
-      } else {
-      }
+    if(jmsg.action === "ready") {
+      self.player.ready = true;
+      self.emit('ready', self);
     }
     console.log('user action: ' + msg);
   });
-  
-  const self = this;
+
   socket.on('disconnect', function() {
     self.emit('disconnect', self);
   });
-  
-  
+
 }
 
 util.inherits(PlayerConnection, EventEmitter);
@@ -49,6 +46,10 @@ PlayerConnection.prototype.addPlayer = function(player) {
 
 PlayerConnection.prototype.removePlayer = function(playerId) {
   this.sendObj('removePlayer', playerId);
+}
+
+PlayerConnection.prototype.readyPlayer = function(playerId) {
+  this.sendObj('readyPlayer', playerId);
 }
 
 PlayerConnection.prototype.startGame = function(gameInit) {

@@ -1,6 +1,7 @@
 
 function Player(name) {
   this.name = name;
+  this.ready = false;
   this.game = undefined;
 }
 

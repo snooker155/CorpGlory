@@ -32,3 +32,6 @@ GameScreen.onNextState = function(stage) {
   MarketShare.updateCompanyShares(shares);
 };
 
+$(function() {
+  $("#gameScreenHolder").hide();
+});

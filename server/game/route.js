@@ -6,6 +6,8 @@ const BotPlayer = require('./players/botPlayer.js');
 const Regions = require('./regions.js');
 const PlayerConnection = require('./playerConnection.js');
 
+const _ = require('underscore');
+
 // GAME CONFIG
 
 const players = { };
@@ -30,6 +32,12 @@ function onUserDisconnect(playerConnection) {
   }
 }
 
+function onUserReady(playerConnection) {
+  _.each(playerConnections, function(p) {
+    p.readyPlayer(playerConnection.player.name);
+  });
+}
+
 function onUserConnection(socket, name) {
   if(PlayerConnection[name] !== undefined) {
     return false;
@@ -45,6 +53,7 @@ function onUserConnection(socket, name) {
 
   var playerConnection = new PlayerConnection(socket, player);
   playerConnection.on('disconnect', onUserDisconnect);
+  playerConnection.on('ready', onUserReady);
   playerConnection.enterRoom(players);
   playerConnections[name] = playerConnection;
   
