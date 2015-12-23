@@ -8,8 +8,6 @@ const PlayerConnection = require('./playerConnection.js');
 
 const _ = require('underscore');
 
-// GAME CONFIG
-
 const players = { };
 const playerConnections = { };
 
@@ -22,6 +20,13 @@ function addBotPlayer(name) {
 addBotPlayer("BotPlayer1");
 addBotPlayer("BotPlayer2");
 
+var game = undefined;
+
+function onEnterGame() {
+  game = new Game(players);
+  game.start();
+}
+
 function onUserDisconnect(playerConnection) {
   console.log("onUserDisconnect");
   var name = playerConnection.player.name;
@@ -33,9 +38,13 @@ function onUserDisconnect(playerConnection) {
 }
 
 function onUserReady(playerConnection) {
-  _.each(playerConnections, function(p) {
+  var allIsReady = _.every(playerConnections, function(p) {
     p.readyPlayer(playerConnection.player.name);
+    return playerConnection.player.ready;
   });
+  if(allIsReady) {
+    onEnterGame();
+  }
 }
 
 function onUserConnection(socket, name) {
@@ -60,9 +69,6 @@ function onUserConnection(socket, name) {
   return true;
 }
 
-function enterGame() {
-  // 
-}
 
 
 function route(app, io) {

@@ -13,7 +13,6 @@ function PlayersListItem(name) {
   
   this.li.append(nm);
   this.li.append(this.stat);
-  
 }
 
 PlayersListItem.prototype.setState = function(state) {
@@ -35,8 +34,7 @@ PlayersList.init = function(players) {
 
 PlayersList.addUser = function(user) {
   var listItem = new PlayersListItem(user.name);
-  
-  
+
   if(PlayersList.users[user.name] !== undefined) {
     PlayersList.users[user.name].setState(
       user.ready ? 'ready': 'wait'
@@ -51,7 +49,6 @@ PlayersList.addUser = function(user) {
   if(user.ready) {
     listItem.setState('ready');
   }
-
 }
 
 PlayersList.removeUser = function(userName) {

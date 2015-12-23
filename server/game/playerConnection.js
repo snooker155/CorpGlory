@@ -11,7 +11,7 @@ function PlayerConnection(socket, player) {
   socket.on('userAction', function(msg) {
     // TODO: reafactor userAction -> to handler
     const jmsg = JSON.parse(msg);
-    
+
     // enter
     if(jmsg.action === "ready") {
       self.player.ready = true;
@@ -22,6 +22,10 @@ function PlayerConnection(socket, player) {
 
   socket.on('disconnect', function() {
     self.emit('disconnect', self);
+  });
+
+  player.on('enterToGame', function() {
+    self.enterGame();
   });
 
 }
@@ -52,7 +56,7 @@ PlayerConnection.prototype.readyPlayer = function(playerId) {
   this.sendObj('readyPlayer', playerId);
 }
 
-PlayerConnection.prototype.startGame = function(gameInit) {
+PlayerConnection.prototype.enterGame = function(gameInit) {
   this.sendObj('enterGame', gameInit);
 }
 
