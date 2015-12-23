@@ -73,9 +73,14 @@ body, html {
 }
 
 #playersListHolderList .wait {
-    color: red;
+    color: #DE9621;
 }
 
 #playersListHolderList .ready {
     color: green;
 }
+
+#playersListHolderList .fail {
+    color: red;
+}
+

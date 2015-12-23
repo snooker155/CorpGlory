@@ -1,5 +1,28 @@
 PlayersList = { };
 
+function PlayersListItem(name) {
+  this.li = $("<div class='row'>");
+  var nm = $("<div class='col-md-6'>");
+  nm.text(name);
+  
+  this.stat = $(
+    "<div class='col-md-6 text-right wait'>"
+  );
+  this.stat.text('wait');
+  this.currentState = 'wait';
+  
+  this.li.append(nm);
+  this.li.append(this.stat);
+  
+}
+
+PlayersListItem.prototype.setState = function(state) {
+  this.stat.removeClass(this.currentState).addClass(state).text(state);
+  this.currentState = state;
+}
+
+PlayersList.users = {};
+
 PlayersList.init = function(players) {
   $("#playersListHolder").show();
   for(var p in players) {
@@ -11,31 +34,34 @@ PlayersList.init = function(players) {
 }
 
 PlayersList.addUser = function(user) {
-  var li = $("<div class='row' id='li-" + user.name + "' >");
-  li.attr("id", "li-" + user.name);
-  var nm = $("<div class='col-md-6'>");
-  nm.text(user.name);
-  li.append(nm);
+  var listItem = new PlayersListItem(user.name);
   
-  var stat = $("<div class='col-md-6 wait text-right'>");
-  stat.text("wait");
-  li.append(stat);
   
-  $("#playersListHolderList").append(li);
-  if(user.ready) {
-    this.readyUser(user.name);
+  if(PlayersList.users[user.name] !== undefined) {
+    PlayersList.users[user.name].setState(
+      user.ready ? 'ready': 'wait'
+    );
+    return;
   }
   
+  PlayersList.users[user.name] = listItem;
+  
+  $("#playersListHolderList").append(listItem.li);
+  
+  if(user.ready) {
+    listItem.setState('ready');
+  }
+
 }
 
 PlayersList.removeUser = function(userName) {
-  $("#li-" + userName).remove();
+  if(PlayersList.users[userName] === undefined) return;
+  PlayersList.users[userName].setState('fail');
 }
 
 PlayersList.readyUser = function(userName) {
-  $("#li-" + userName).find('.wait').text('ready')
-                      .removeClass('wait')
-                      .addClass('ready');
+  if(PlayersList.users[userName] === undefined) return;
+  PlayersList.users[userName].setState('ready');
 }
 
 $(function() {
