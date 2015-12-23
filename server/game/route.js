@@ -8,12 +8,27 @@ const PlayerConnection = require('./playerConnection.js');
 
 // GAME CONFIG
 
-const players = [new BotPlayer("BotPlayer1")];
+const players = { };
 const playerConnections = { };
-
 
 var io = undefined;
 
+function addBotPlayer(name) {
+  players[name] = new BotPlayer(name);
+}
+
+addBotPlayer("BotPlayer1");
+addBotPlayer("BotPlayer2");
+
+function onUserDisconnect(playerConnection) {
+  console.log("onUserDisconnect");
+  var name = playerConnection.player.name;
+  delete playerConnections[name];
+  delete players[name];
+  for(var p in playerConnections) {
+    playerConnections[p].removePlayer(name);
+  }
+}
 
 function onUserConnection(socket, name) {
   if(PlayerConnection[name] !== undefined) {
@@ -21,10 +36,7 @@ function onUserConnection(socket, name) {
   }
 
   var player = new Player(name);
-  players.push(player);
-  
-  // TODO: remove from PlayerConnections on disconnect
-  // via 'on'
+  players[name] = player;
   
   for(var pl in playerConnections) {
     console.log(player);
@@ -32,6 +44,7 @@ function onUserConnection(socket, name) {
   }
 
   var playerConnection = new PlayerConnection(socket, player);
+  playerConnection.on('disconnect', onUserDisconnect);
   playerConnection.enterRoom(players);
   playerConnections[name] = playerConnection;
   

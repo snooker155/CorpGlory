@@ -9,8 +9,13 @@ PlayersList.init = function(players) {
 
 PlayersList.addUser = function(user) {
   var li = $("<li>");
+  li.attr("id", "li-" + user.name);
   li.text(user.name);
   $("#playersListHolderList").append(li);
+}
+
+PlayersList.removeUser = function(userName) {
+  $("#li-" + userName).remove();
 }
 
 $(function() {
