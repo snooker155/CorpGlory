@@ -16,19 +16,19 @@ Game.prototype.start = function() {
   _.each(this.players, function(p) {
     p.enterToGame(this);
   });
-}
+};
 
 // get personal for player init game state
 Game.prototype.getInit = function(player) {
   return {
     regions: Regions,
     players: this.players
-  }
-}
+  };
+};
 
 Game.prototype.getWorldState = function() {
   
-}
+};
 
 Game.prototype.playerRegionClick = function(player, regionId) {
 };

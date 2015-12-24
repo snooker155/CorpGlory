@@ -38,3 +38,7 @@ const server = app.listen(SERVER_PORT, function () {
 const io = require('socket.io').listen(server);
 
 require('./game/route.js')(app, io);
+
+app.get('/', function(req, res) {
+  res.redirect('/game');
+});

@@ -56,7 +56,6 @@ function onUserConnection(socket, name) {
   players[name] = player;
   
   for(var pl in playerConnections) {
-    console.log(player);
     playerConnections[pl].addPlayer(player);
   }
 
