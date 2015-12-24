@@ -1,7 +1,5 @@
 // REQUIRES
 
-console.log(process.argv[0]);
-
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
