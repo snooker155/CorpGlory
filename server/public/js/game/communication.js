@@ -16,16 +16,16 @@ Communication.open = function() {
     if(jmsg.command === 'addPlayer') {
       App.onAddPlayer(data);
     }
-    if(jmsg.command === 'removePlayer') {
-      App.onRemovePlayer(data);
+    if(jmsg.command === 'disconnectPlayer') {
+      App.onDisconnectPlayer(data);
     }
     if(jmsg.command === 'readyPlayer') {
       App.onReadyPlayer(data);
     }
     if(jmsg.command === 'enterGame') {
+      alert('enter to the game');
       App.onEnterGame(data);
     }
-    
   });
   this.socket.on('nextGameState', function(msg) {
     var jmsg = JSON.parse(msg);

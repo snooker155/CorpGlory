@@ -16,7 +16,13 @@ function PlayersListItem(name) {
 }
 
 PlayersListItem.prototype.setState = function(state) {
-  this.stat.removeClass(this.currentState).addClass(state).text(state);
+  var text = state;
+  if(text === 'disconnect') {
+    text = 'fail';
+  }
+  this.stat
+    .removeClass(this.currentState)
+    .addClass(state).text(text);
   this.currentState = state;
 }
 
@@ -51,14 +57,18 @@ PlayersList.addUser = function(user) {
   }
 }
 
-PlayersList.removeUser = function(userName) {
+PlayersList.disconnectUser = function(userName) {
   if(PlayersList.users[userName] === undefined) return;
-  PlayersList.users[userName].setState('fail');
+  PlayersList.users[userName].setState('disconnect');
 }
 
 PlayersList.readyUser = function(userName) {
   if(PlayersList.users[userName] === undefined) return;
   PlayersList.users[userName].setState('ready');
+}
+
+PlayersList.destroy = function() {
+  $("#playersListHolder").remove();
 }
 
 $(function() {

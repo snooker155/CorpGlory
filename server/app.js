@@ -1,5 +1,7 @@
 // REQUIRES
 
+console.log(process.argv[0]);
+
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
@@ -8,7 +10,7 @@ const http = require('http').Server(app);
 
 // CONFIGURE
 
-const SERVER_PORT = 4000;
+const SERVER_PORT = 3000;
 const DATA_PATH = path.join(__dirname, 'data');
 
 if (!fs.existsSync(DATA_PATH)) {

@@ -28,12 +28,11 @@ function onEnterGame() {
 }
 
 function onUserDisconnect(playerConnection) {
-  console.log("onUserDisconnect");
   var name = playerConnection.player.name;
   delete playerConnections[name];
   delete players[name];
   for(var p in playerConnections) {
-    playerConnections[p].removePlayer(name);
+    playerConnections[p].disconnectPlayer(name);
   }
 }
 
@@ -68,8 +67,6 @@ function onUserConnection(socket, name) {
   return true;
 }
 
-
-
 function route(app, io) {
 
   // game
@@ -89,7 +86,6 @@ function route(app, io) {
   io.on('connection', function(socket) {
     onUserConnection(socket, socket.handshake.query.name);
   });
-
 }
 
 module.exports = route;

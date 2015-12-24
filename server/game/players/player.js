@@ -13,8 +13,12 @@ Player.prototype.enterToGame = function(game) {
   this.emit('enterToGame');
 }
 
-Player.prototype.getInit = function() {
-  return this.game.getInit(this);
+Player.prototype.getState = function(player) {
+  if(player === this) {
+    return 'interesting data about me';
+  } else {
+    return 'some data';
+  }
 }
 
 Player.prototype.clickOnRegion = function(regionId) {

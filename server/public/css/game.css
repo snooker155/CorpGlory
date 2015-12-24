@@ -80,7 +80,7 @@ body, html {
   color: green;
 }
 
-#playersListHolderList .fail {
+#playersListHolderList .disconnect {
   color: red;
 }
 

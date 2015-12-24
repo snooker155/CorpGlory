@@ -8,7 +8,7 @@
     }, {
       "path": "./public",
       "name": "client",
-      "folder_include_patterns": ["*", "./../views"]
+      "folder_exclude_patterns": ["packages"]
     }, {
       "path": "./views"
     }

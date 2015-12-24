@@ -13,20 +13,22 @@ function Game(players) {
 util.inherits(Game, EventEmitter);
 
 Game.prototype.start = function() {
+  var self = this;
   _.each(this.players, function(p) {
-    p.enterToGame(this);
+    p.enterToGame(self);
   });
 };
 
 // get personal for player init game state
-Game.prototype.getInit = function(player) {
+Game.prototype.getInitState = function(player) {
+  // TOOD: get specific to the user content
   return {
     regions: Regions,
-    players: this.players
+    players: _.map(this.players, p => p.name)
   };
 };
 
-Game.prototype.getWorldState = function() {
+Game.prototype.getWorldState = function(player) {
   
 };
 

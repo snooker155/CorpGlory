@@ -14,8 +14,8 @@ App.onAddPlayer = function(player) {
   PlayersList.addUser(player);
 }
 
-App.onRemovePlayer = function(playerName) {
-  PlayersList.removeUser(playerName);
+App.onDisconnectPlayer = function(playerName) {
+  PlayersList.disconnectUser(playerName);
 }
 
 App.onReadyPlayer = function(playerName) {
@@ -23,6 +23,7 @@ App.onReadyPlayer = function(playerName) {
 }
 
 App.onEnterGame = function(data) {
+  PlayersList.destroy();
   GameScreen.init(data);
 }
 

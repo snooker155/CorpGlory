@@ -17,7 +17,6 @@ function PlayerConnection(socket, player) {
       self.player.ready = true;
       self.emit('ready', self);
     }
-    console.log('user action: ' + msg);
   });
 
   socket.on('disconnect', function() {
@@ -25,9 +24,8 @@ function PlayerConnection(socket, player) {
   });
 
   player.on('enterToGame', function() {
-    self.enterGame();
+    self.enterGame(self.player.game.getInitState());
   });
-
 }
 
 util.inherits(PlayerConnection, EventEmitter);
@@ -36,7 +34,7 @@ PlayerConnection.prototype.sendObj = function(commandName, data) {
   var obj = {
     command: commandName,
     data: data
-  }
+  };
   this.socket.send(JSON.stringify(obj));
 }
 
@@ -48,8 +46,8 @@ PlayerConnection.prototype.addPlayer = function(player) {
   this.sendObj('addPlayer', player);
 }
 
-PlayerConnection.prototype.removePlayer = function(playerId) {
-  this.sendObj('removePlayer', playerId);
+PlayerConnection.prototype.disconnectPlayer = function(playerId) {
+  this.sendObj('disconnectPlayer', playerId);
 }
 
 PlayerConnection.prototype.readyPlayer = function(playerId) {
