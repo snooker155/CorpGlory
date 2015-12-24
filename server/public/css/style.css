@@ -7062,6 +7062,9 @@ body.landing-page {
     font-size: 12px;
     padding: 6px 15px;
   }
+    .landing-page .subheader{
+    margin-top: 15px;
+  }
 }
 @media (min-width: 992px) {
   .landing-page .featurette-heading {
