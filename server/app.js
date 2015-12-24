@@ -86,8 +86,7 @@ app.get('/', function(req, res) {
 
 app.post('/', function(req, res) {
   if(isEmailValid(req.body.email)) {
-    var ip = getClientIP(req);
-    updateEmailSubscribtion(req.body.email, 'all', ip);
+    updateEmailSubscribtion(req.body.email, 'all', getClientIP(req));
     renderBasic(res, 'subscribtionsOk');
   }
   else {
@@ -102,11 +101,10 @@ app.get('/subscribtions', function(req, res) {
 
 app.post('/subscribtions', function(req, res) {
   if(isEmailValid(req.body.email)) {
-    var ip = getClientIP(req);
     updateEmailSubscribtion(
       req.body.email,
       req.body.subType,
-      ip
+      getClientIP(req)
     );
     renderBasic(res, 'subscribtionsOk');
   }
