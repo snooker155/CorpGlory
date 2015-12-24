@@ -1,6 +1,6 @@
 {
-	"folders":
-	[ {
+  "folders":
+  [ {
       "path": ".",
       "folder_exclude_patterns": [
         "node_modules", "data", "public", "views"
@@ -12,7 +12,7 @@
     }, {
       "path": "./views"
     }
-	],
+  ],
   "settings": {
     "tab_size": 2,
     "default_line_ending": "unix",
