@@ -36,9 +36,17 @@ app.use(expressLayouts);
 
 // CONTROLLERS
 
-function validateEmail(email) {
+function isEmailValid(email) {
   var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
   return regex.test(email);
+}
+
+function getClientIP(req) {
+  var ip = req.headers['x-forwarded-for'] ||
+  req.connection.remoteAddress ||
+  req.socket.remoteAddress ||
+  req.connection.socket.remoteAddress;
+  return ip;
 }
 
 function updateEmailSubscribtion(email, type, ip) {
@@ -77,11 +85,8 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
-  if(validateEmail(req.body.email)) {
-    var ip = req.headers['x-forwarded-for'] ||
-     req.connection.remoteAddress ||
-     req.socket.remoteAddress ||
-     req.connection.socket.remoteAddress;
+  if(isEmailValid(req.body.email)) {
+    var ip = getClientIP(req);
     updateEmailSubscribtion(req.body.email, 'all', ip);
     renderBasic(res, 'subscribtionsOk');
   }
@@ -96,11 +101,8 @@ app.get('/subscribtions', function(req, res) {
 });
 
 app.post('/subscribtions', function(req, res) {
-  if(validateEmail(req.body.email)) {
-    var ip = req.headers['x-forwarded-for'] ||
-     req.connection.remoteAddress ||
-     req.socket.remoteAddress ||
-     req.connection.socket.remoteAddress;
+  if(isEmailValid(req.body.email)) {
+    var ip = getClientIP(req);
     updateEmailSubscribtion(
       req.body.email,
       req.body.subType,
