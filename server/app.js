@@ -60,7 +60,7 @@ function updateEmailSubscribtion(email, type, ip) {
   stream.once('open', function(fd) {
     stream.write(email + "\n");
     stream.write(type + "\n");
-    stream.write(ip;
+    stream.write(ip);
     stream.end();
   });
 }
