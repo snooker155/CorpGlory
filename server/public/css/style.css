@@ -6983,11 +6983,19 @@ body.landing-page {
   .landing-page .featurette-heading {
     font-size: 50px;
   }
+    .landing-page .subheader {
+    margin-top: 15px;
+  }
+   .form-control {
+    height: 38px;
   }
 }
 @media (max-width: 992px) {
   .landing-page .carousel-image {
     display: none;
+  }
+  .landing-page .subheader {
+    margin-top: 53px;
   }
 }
 @media (max-width: 768px) {
@@ -7046,6 +7054,13 @@ body.landing-page {
   }
   .landing-page .carousel-control {
     display: none;
+  }
+  .form-control {
+    height: 28px;
+  }
+  .landing-page .btn-primary {
+    font-size: 12px;
+    padding: 6px 15px;
   }
 }
 @media (min-width: 992px) {
