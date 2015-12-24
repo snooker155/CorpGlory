@@ -39,7 +39,7 @@ function onUserDisconnect(playerConnection) {
 function onUserReady(playerConnection) {
   var allIsReady = _.every(playerConnections, function(p) {
     p.readyPlayer(playerConnection.player.name);
-    return playerConnection.player.ready;
+    return p.player.ready;
   });
   if(allIsReady) {
     onEnterGame();

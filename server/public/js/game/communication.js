@@ -23,7 +23,6 @@ Communication.open = function() {
       App.onReadyPlayer(data);
     }
     if(jmsg.command === 'enterGame') {
-      alert('enter to the game');
       App.onEnterGame(data);
     }
   });
