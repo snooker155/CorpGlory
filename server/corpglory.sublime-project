@@ -2,9 +2,15 @@
 	"folders":
 	[ {
       "path": ".",
-      "folder_exclude_patterns": ["node_modules", "data"]
+      "folder_exclude_patterns": [
+        "node_modules", "data", "public", "views"
+      ]
     }, {
-      "path": "./public/"
+      "path": "./public",
+      "name": "client",
+      "folder_include_patterns": ["*", "./../views"]
+    }, {
+      "path": "./views"
     }
 	],
   "settings": {
