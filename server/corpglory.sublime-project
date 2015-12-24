@@ -1,0 +1,16 @@
+{
+	"folders":
+	[ {
+      "path": ".",
+      "folder_exclude_patterns": ["node_modules", "data"]
+    }, {
+      "path": "./public/"
+    }
+	],
+  "settings": {
+    "tab_size": 2,
+    "default_line_ending": "unix",
+    "translate_tabs_to_spaces": true,
+    "rulers": [80],
+  }
+}
