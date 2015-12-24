@@ -58,8 +58,9 @@ function updateEmailSubscribtion(email, type, ip) {
     path.join(DATA_PATH, fileName)
   );
   stream.once('open', function(fd) {
-    stream.write(email + " " + ip + "\n");
+    stream.write(email + "\n");
     stream.write(type + "\n");
+    stream.write(ip;
     stream.end();
   });
 }
