@@ -2,15 +2,28 @@ Communication = { };
 
 Communication.open = function() {
   try {
-    this.socket = io.connect("http://" + location.hostname + ":4000");
+    this.socket = io.connect('', { query: 'name=' + USER_NAME });
   } catch (err) {
     Communication.onConnectionLost();
     return;
   }
   this.socket.on('message', function(msg) {
     var jmsg = JSON.parse(msg);
-    if(jmsg.command === 'init') {
-      GameScreen.init(jmsg.data);
+    var data = jmsg.data;
+    if(jmsg.command === 'enterRoom') {
+      App.onEnterRoom(data);
+    }
+    if(jmsg.command === 'addPlayer') {
+      App.onAddPlayer(data);
+    }
+    if(jmsg.command === 'disconnectPlayer') {
+      App.onDisconnectPlayer(data);
+    }
+    if(jmsg.command === 'readyPlayer') {
+      App.onReadyPlayer(data);
+    }
+    if(jmsg.command === 'enterGame') {
+      App.onEnterGame(data);
     }
   });
   this.socket.on('nextGameState', function(msg) {

@@ -1,15 +1,36 @@
 const EventEmitter = require('events').EventEmitter;
 const util = require('util');
+const Regions = require('./regions.js');
 
+const _ = require('underscore');
 
 function Game(players) {
   EventEmitter.call(this);
-  for(var p in players) {
-    players[p].enterToGame(this);
-  }
+  this.regions = Regions;
+  this.players = players;
+  
 }
 util.inherits(Game, EventEmitter);
 
+Game.prototype.start = function() {
+  var self = this;
+  _.each(this.players, function(p) {
+    p.enterToGame(self);
+  });
+};
+
+// get personal for player init game state
+Game.prototype.getInitState = function(player) {
+  // TOOD: get specific to the user content
+  return {
+    regions: Regions,
+    players: _.map(this.players, p => p.name)
+  };
+};
+
+Game.prototype.getWorldState = function(player) {
+  
+};
 
 Game.prototype.playerRegionClick = function(player, regionId) {
 };

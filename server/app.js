@@ -8,10 +8,10 @@ const http = require('http').Server(app);
 
 // CONFIGURE
 
-const SERVER_PORT = 4000;
+const SERVER_PORT = 3000;
 const DATA_PATH = path.join(__dirname, 'data');
 
-if (!fs.existsSync(DATA_PATH)){
+if (!fs.existsSync(DATA_PATH)) {
   fs.mkdirSync(DATA_PATH);
 }
 
@@ -37,4 +37,8 @@ const server = app.listen(SERVER_PORT, function () {
 
 const io = require('socket.io').listen(server);
 
-const gameRoute = require('./game/route.js')(app, io);
+require('./game/route.js')(app, io);
+
+app.get('/', function(req, res) {
+  res.redirect('/game');
+});

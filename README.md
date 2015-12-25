@@ -1,10 +1,10 @@
 # CorpGlory
+NodeJS version of our game.
 
-Nodejs + C++ version of our game.
+NodeJS v5.0.0 + npm required
 
-game - c++ classes of real game
-server - nodejs server scripts
-
-CMake targets:
-node-module - compile game with node-gyp
+```
+cd server
+node app
+```
 
