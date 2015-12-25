@@ -6981,12 +6981,12 @@ body.landing-page {
     line-height: 1.4;
   }
   .landing-page .featurette-heading {
-    font-size: 50px;
+    font-size: 40px;
   }
-    .landing-page .subheader {
+  .landing-page .subheader {
     margin-top: 15px;
   }
-   .form-control {
+  .form-control {
     height: 38px;
   }
 }
@@ -7062,13 +7062,14 @@ body.landing-page {
     font-size: 12px;
     padding: 6px 15px;
   }
-    .landing-page .subheader{
+  .landing-page .subheader{
     margin-top: 15px;
   }
 }
 @media (min-width: 992px) {
   .landing-page .featurette-heading {
     margin-top: 120px;
+    font-size: 40px;
   }
   .landing-page .subheader {
     margin-top: 120px;
@@ -7089,6 +7090,11 @@ body.landing-page {
   }
   .btn {
     margin-top: 5px;
+  }
+}
+@media (min-width: 1200px) {
+  .landing-page .featurette-heading {
+    font-size: 50px;
   }
 }
 body.rtls {
