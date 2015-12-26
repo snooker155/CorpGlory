@@ -21,14 +21,15 @@ WorldMap.init = function (initData) {
     if(this.regions[regionId] === undefined) {
       throw "Undefined region: " + regionId;
     }
-    this.regions[regionId] = new MapRegion(regionId, WorldMapData[regionId], R, initData);
+    this.regions[regionId] = new MapRegion(
+      regionId, WorldMapData[regionId], R, initData
+    );
     this.regions[regionId].onClick = function() {
       if(WorldMap.onRegionClick) {
         WorldMap.onRegionClick(this.id)
       }
     }
   }
-
 }
   
 WorldMap.onRegionClick = null;
