@@ -21,15 +21,15 @@ Game.prototype.start = function() {
 
 // get personal for player init game state
 Game.prototype.getInitState = function(player) {
-  // TOOD: get specific to the user content
   return {
     regions: Regions,
-    players: _.map(this.players, p => p.name)
+    players: _.map(this.players, p => p.name),
+    playerId: player.name
   };
 };
 
 Game.prototype.getWorldState = function(player) {
-  
+  // TOOD: get specific to the user content
 };
 
 Game.prototype.playerRegionClick = function(player, regionId) {

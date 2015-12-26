@@ -21,14 +21,15 @@ WorldMap.init = function (initData) {
     if(this.regions[regionId] === undefined) {
       throw "Undefined region: " + regionId;
     }
-    this.regions[regionId] = new MapRegion(regionId, WorldMapData[regionId], R, initData);
+    this.regions[regionId] = new MapRegion(
+      regionId, WorldMapData[regionId], R, initData
+    );
     this.regions[regionId].onClick = function() {
       if(WorldMap.onRegionClick) {
         WorldMap.onRegionClick(this.id)
       }
     }
   }
-
 }
   
 WorldMap.onRegionClick = null;
@@ -79,7 +80,6 @@ var WorldMapMarketShare = function(id, cx, cy, svg, region, companies) {
   }
   $(svg).append(group);
   this.g = group;
-  this.updateValues([0.3, 0.4, 0.1]);
 };
 
 WorldMapMarketShare.prototype.updateValues = function(values) {
