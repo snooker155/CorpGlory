@@ -80,7 +80,6 @@ var WorldMapMarketShare = function(id, cx, cy, svg, region, companies) {
   }
   $(svg).append(group);
   this.g = group;
-  this.updateValues([0.3, 0.4, 0.1]);
 };
 
 WorldMapMarketShare.prototype.updateValues = function(values) {
