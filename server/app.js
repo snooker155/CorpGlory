@@ -36,12 +36,20 @@ app.use(expressLayouts);
 
 // CONTROLLERS
 
-function validateEmail(email) {
+function isEmailValid(email) {
   var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
   return regex.test(email);
 }
 
-function updateEmailSubscribtion(email, type) {
+function getClientIP(req) {
+  var ip = req.headers['x-forwarded-for'] ||
+  req.connection.remoteAddress ||
+  req.socket.remoteAddress ||
+  req.connection.socket.remoteAddress;
+  return ip;
+}
+
+function updateEmailSubscribtion(email, type, ip) {
   var fileName = randomstring.generate({
     length: 10,
     charset: 'alphabetic'
@@ -52,6 +60,7 @@ function updateEmailSubscribtion(email, type) {
   stream.once('open', function(fd) {
     stream.write(email + "\n");
     stream.write(type + "\n");
+    stream.write(ip);
     stream.end();
   });
 }
@@ -77,8 +86,8 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
-  if(validateEmail(req.body.email)) {
-    updateEmailSubscribtion(req.body.email, 'all');
+  if(isEmailValid(req.body.email)) {
+    updateEmailSubscribtion(req.body.email, 'all', getClientIP(req));
     renderBasic(res, 'subscribtionsOk');
   }
   else {
@@ -92,10 +101,11 @@ app.get('/subscribtions', function(req, res) {
 });
 
 app.post('/subscribtions', function(req, res) {
-  if(validateEmail(req.body.email)) {
+  if(isEmailValid(req.body.email)) {
     updateEmailSubscribtion(
       req.body.email,
-      req.body.subType
+      req.body.subType,
+      getClientIP(req)
     );
     renderBasic(res, 'subscribtionsOk');
   }
