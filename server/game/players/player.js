@@ -2,6 +2,7 @@ const EventEmitter = require('events').EventEmitter;
 const util = require('util');
 
 function Player(name) {
+  // TODO: rename 'name' to 'id' (it is used as id)
   this.name = name;
   this.ready = false;
   this.game = undefined;

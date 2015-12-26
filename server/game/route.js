@@ -76,10 +76,7 @@ function onUserConnection(socket, name) {
   return true;
 }
 
-function route(app, io) {
-
-  // game
-  
+function route(app, io) {  
   app.get('/game', function(req, res) {
     res.redirect('/game/default');
   });

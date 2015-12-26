@@ -23,9 +23,7 @@ function PlayerConnection(socket, player) {
     self.emit('disconnect', self);
   });
 
-  player.on('enterToGame', function() {
-    self.enterGame(self.player.game.getInitState());
-  });
+  player.on('enterToGame', self.enterGame.bind(self));
 }
 
 util.inherits(PlayerConnection, EventEmitter);
@@ -54,8 +52,9 @@ PlayerConnection.prototype.readyPlayer = function(playerId) {
   this.sendObj('readyPlayer', playerId);
 }
 
-PlayerConnection.prototype.enterGame = function(gameInit) {
-  this.sendObj('enterGame', gameInit);
+PlayerConnection.prototype.enterGame = function() {
+  var state = this.player.game.getInitState(this.player);
+  this.sendObj('enterGame', state);
 }
 
 module.exports = PlayerConnection;
