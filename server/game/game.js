@@ -10,9 +10,13 @@ const Regions = require('./regions.js');
 
 const _ = require('underscore');
 
+function getNames(players) {
+  return _.map(players, p => p.name);
+}
+
 function Game(players) {
   EventEmitter.call(this);
-  this.regions = Regions;
+  this.regions = new Regions(getNames(players));
   this.players = players;
   this.day = 0;
 }
@@ -27,8 +31,8 @@ Game.prototype.start = function() {
 // get personal for player init game state
 Game.prototype.getInitState = function(player) {
   return {
-    regions: Regions,
-    players: _.map(this.players, p => p.name),
+    regions: this.regions.getInit(),
+    players: getNames(this.players),
     playerId: player.name
   };
 };
@@ -36,7 +40,7 @@ Game.prototype.getInitState = function(player) {
 Game.prototype.getWorldState = function(player) {
   // TOOD: get specific to the user content
   return {
-    regions: Regions,
+    regions: this.regions.getState(player),
     day: this.day,
     player: player.getState(player)
   };
@@ -45,6 +49,7 @@ Game.prototype.getWorldState = function(player) {
 Game.prototype.update = function() {
   var v = this;
   this.day++;
+  this.regions.update();
   // emulate calculation
   for(var i = 0; i < 1000; i++) {
     
