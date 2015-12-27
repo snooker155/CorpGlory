@@ -13,12 +13,14 @@ MarketShare.init = function(data) {
   ];
   
   var listTempalte =  _.template(
-    '<h5><%= name %></h5>' +
-    '<div class="progress progress-mini">' +
-      '<div aria-valuemax="100" aria-valuemin="0"' + 
-        ' role="progressbar" class="progress-bar <%= style %>">' +
+    '<div>' + 
+      '<h5><%= name %></h5>' +
+      '<div class="progress progress-mini">' +
+        '<div aria-valuemax="100" aria-valuemin="0"' + 
+          ' role="progressbar" class="progress-bar <%= style %>">' +
+        '</div>' + 
       '</div>' + 
-    '</div> '
+    '</div>'
   );
   
   for(var i = 0; i < players.length; i++) {
@@ -33,9 +35,10 @@ MarketShare.init = function(data) {
 
 MarketShare.setPercentage = function(playerId, percetage) {
   var item = MarketShare.items[playerId];
+  console.log(item.find('.progress div').html());
   item.find('.progress div')
     .css({ width: percetage + '%' })
-    .attr('aria-valuenow', percetage);
+    
 }
 
 MarketShare.updateBalance = function(value) {
@@ -45,10 +48,8 @@ MarketShare.updateBalance = function(value) {
 MarketShare.updateCompanyShares = function(shares) {
   // shares {PlayerId->Share}
   
-  for(var pr in shares) {
-    MarketShare.setPercentage(
-      pr.name, shares[r.name]
-    );
+  for(var pid in shares) {
+    MarketShare.setPercentage(pid, shares[pid]);
   }
   
 };

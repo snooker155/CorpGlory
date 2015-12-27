@@ -26,12 +26,7 @@ GameScreen.onRegionClick = function(regionId) {
 
 GameScreen.update = function(data) {
   var money = data.player.money;
-  var companies = {};
-  var shares = {};
-  for(var i = 0; i < companies.length; i++) {
-    shares[companies[i].ptr_wrapper.data.name] = companies[i]
-      .ptr_wrapper.data.market_share;
-  }
+  var shares = data.regions['EU'];
   MarketShare.updateBalance(money);
   MarketShare.updateCompanyShares(shares);
 };
