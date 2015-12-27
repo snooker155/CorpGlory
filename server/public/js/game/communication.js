@@ -25,10 +25,9 @@ Communication.open = function() {
     if(jmsg.command === 'enterGame') {
       App.onEnterGame(data);
     }
-  });
-  this.socket.on('nextGameState', function(msg) {
-    var jmsg = JSON.parse(msg);
-    GameScreen.onNextState(jmsg);
+    if(jmsg.command === 'update') {
+      App.onUpdate(data);
+    }
   });
 }
 

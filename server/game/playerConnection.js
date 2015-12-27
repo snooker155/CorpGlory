@@ -55,6 +55,11 @@ PlayerConnection.prototype.readyPlayer = function(playerId) {
 PlayerConnection.prototype.enterGame = function() {
   var state = this.player.game.getInitState(this.player);
   this.sendObj('enterGame', state);
+  this.player.game.on('updateReady', this.update.bind(this));
+}
+
+PlayerConnection.prototype.update = function() {
+  this.sendObj('update', this.player.game.getWorldState(this.player));
 }
 
 module.exports = PlayerConnection;
