@@ -35,10 +35,8 @@ MarketShare.init = function(data) {
 
 MarketShare.setPercentage = function(playerId, percetage) {
   var item = MarketShare.items[playerId];
-  console.log(item.find('.progress div').html());
   item.find('.progress div')
     .css({ width: percetage + '%' })
-    
 }
 
 MarketShare.updateBalance = function(value) {
