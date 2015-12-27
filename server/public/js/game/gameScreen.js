@@ -24,16 +24,9 @@ GameScreen.onRegionClick = function(regionId) {
   );
 }
 
-GameScreen.onNextState = function(stage) {
-  var money = stage.world.ptr_wrapper
-    .data.model.ptr_wrapper.data.companies[0].ptr_wrapper.data.money;
-  var companies = stage.world.ptr_wrapper
-    .data.model.ptr_wrapper.data.companies;
-  var shares = {};
-  for(var i = 0; i < companies.length; i++) {
-    shares[companies[i].ptr_wrapper.data.name] = companies[i]
-      .ptr_wrapper.data.market_share;
-  }
+GameScreen.update = function(data) {
+  var money = data.player.money;
+  var shares = data.regions['EU'];
   MarketShare.updateBalance(money);
   MarketShare.updateCompanyShares(shares);
 };

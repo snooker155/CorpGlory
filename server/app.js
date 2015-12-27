@@ -1,3 +1,8 @@
+// CONFIG
+
+const SERVER_PORT = 3000;
+const DATA_FOLDER = 'data';
+
 // REQUIRES
 
 const express = require('express');
@@ -6,10 +11,8 @@ const fs = require('fs');
 const app = require('express')();
 const http = require('http').Server(app);
 
-// CONFIGURE
+const DATA_PATH = path.join(__dirname, DATA_FOLDER);
 
-const SERVER_PORT = 3000;
-const DATA_PATH = path.join(__dirname, 'data');
 
 if (!fs.existsSync(DATA_PATH)) {
   fs.mkdirSync(DATA_PATH);

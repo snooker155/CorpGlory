@@ -27,6 +27,10 @@ App.onEnterGame = function(data) {
   GameScreen.init(data);
 }
 
+App.onUpdate = function(data) {
+  GameScreen.update(data);
+}
+
 
 
 
