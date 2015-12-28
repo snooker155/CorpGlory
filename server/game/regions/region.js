@@ -20,4 +20,8 @@ Region.prototype.getState = function() {
   return this.shares;
 }
 
+Region.prototype.playerClick = function(player) {
+  console.log('Region.prototype.playerClick' + player.name);
+}
+
 module.exports = Region;

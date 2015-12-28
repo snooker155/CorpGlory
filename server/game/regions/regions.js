@@ -29,7 +29,7 @@ Regions.prototype.getInit = function() {
   });
   return res;
 }
- 
+
 Regions.prototype.getState = function() {  
   var res = {};
   this.forRegion((r, n) => {
@@ -37,5 +37,16 @@ Regions.prototype.getState = function() {
   });
   return res;
 }
+
+Regions.prototype.playerRegionClick = function(player, regionId) {
+  var region = this[regionId];
+  if(region === undefined) {
+    // TODO: log this
+    return;
+  }
+  region.playerClick(player, regionId);
+};
+
+
 
 module.exports = Regions;
