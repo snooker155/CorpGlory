@@ -47,7 +47,8 @@ MarketShare.updateCompanyShares = function(shares) {
   // shares {PlayerId->Share}
   
   for(var pid in shares) {
-    MarketShare.setPercentage(pid, shares[pid]);
+    var percent = shares[pid] * 100;
+    MarketShare.setPercentage(pid, percent);
   }
   
 };

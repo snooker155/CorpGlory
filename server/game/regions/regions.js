@@ -14,17 +14,17 @@ Regions.prototype.forRegion = function(f) {
   for(var i in Regions.NAMES) {
     var name = Regions.NAMES[i];
     var region = this[name];
-    f(name, region);
+    f(region, name);
   }
 }
 
 Regions.prototype.update = function() {
-  this.forRegion((n, r) => r.update());
+  this.forRegion(r => r.update());
 }
 
 Regions.prototype.getInit = function() {
   var res = {};
-  this.forRegion((n, r) => {
+  this.forRegion((r, n) => {
     res[n] = {};
   });
   return res;
@@ -32,7 +32,7 @@ Regions.prototype.getInit = function() {
  
 Regions.prototype.getState = function() {  
   var res = {};
-  this.forRegion((n, r) => {
+  this.forRegion((r, n) => {
     res[n] = r.getState();
   });
   return res;
