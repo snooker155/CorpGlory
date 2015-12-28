@@ -15,6 +15,7 @@ Region.prototype.update = function() {
   for(var s in this.shares) {
     this.shares[s] += remain * this.shares[s];
   }
+  this.clickPrice++;
 }
 
 Region.prototype.getState = function() {
