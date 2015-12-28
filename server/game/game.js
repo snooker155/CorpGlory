@@ -6,7 +6,7 @@ const UPDATE_TIME = 1000;
 
 const EventEmitter = require('events').EventEmitter;
 const util = require('util');
-const Regions = require('./regions.js');
+const Regions = require('./regions/regions.js');
 
 const _ = require('underscore');
 

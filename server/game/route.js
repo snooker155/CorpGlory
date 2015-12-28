@@ -3,7 +3,6 @@
 const Game = require('./game.js');
 const Player = require('./players/player.js');
 const BotPlayer = require('./players/botPlayer.js');
-const Regions = require('./regions.js');
 // --------------
 
 const PlayerConnection = require('./playerConnection.js');

@@ -1,15 +1,18 @@
-const NAMES = ['EU', 'AS', 'OC', 'AF', 'SA', 'NA'];
+
+const Region = require('./region.js');
 
 var Regions = function(playerIds) {
-  for(var i in NAMES) {
-    var r = NAMES[i];
+  for(var i in Regions.NAMES) {
+    var r = Regions.NAMES[i];
     this[r] = new Region(playerIds);
   }
 }
 
+Regions.NAMES = ['EU', 'AS', 'OC', 'AF', 'SA', 'NA'];
+
 Regions.prototype.forRegion = function(f) {
-  for(var i in NAMES) {
-    var name = NAMES[i];
+  for(var i in Regions.NAMES) {
+    var name = Regions.NAMES[i];
     var region = this[name];
     f(name, region);
   }
@@ -29,28 +32,9 @@ Regions.prototype.getInit = function() {
  
 Regions.prototype.getState = function() {  
   var res = {};
-  this.forRegion((n, r) => { 
+  this.forRegion((n, r) => {
     res[n] = r.getState();
   });
-  return res;
-}
-
-var Region = function(playerIds) {
-  this.playerIds = playerIds;
-  for(var pid in playerIds) {
-    this[pid] = 0;
-  };
-}
-
-Region.prototype.update = function() {
-}
-
-Region.prototype.getState = function() {
-  var res = {};
-  for(var i in this.playerIds) {
-    var pid = this.playerIds[i];
-    res[pid] = 10;
-  };
   return res;
 }
 

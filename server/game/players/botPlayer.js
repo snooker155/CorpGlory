@@ -1,6 +1,6 @@
 const Player = require('./Player.js');
 const util = require('util');
-const Regions = require('../regions.js');
+const Regions = require('../regions/regions.js');
 const _ = require('underscore');
 
 function BotPlayer(name) {
@@ -8,7 +8,7 @@ function BotPlayer(name) {
   const self = this;
   this.ready = true;
   this.on('enterToGame', function() {
-    var keys = _.keys(Regions);
+    var keys = Regions.NAMES;
     setInterval(function() {
       self.clickOnRegion(_.sample(keys));
     }, 1500);
