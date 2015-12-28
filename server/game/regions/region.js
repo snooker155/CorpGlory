@@ -18,7 +18,10 @@ Region.prototype.update = function() {
 }
 
 Region.prototype.getState = function() {
-  return this.shares;
+  return {
+    shares: this.shares,
+    clickPrice: this.clickPrice
+  };
 }
 
 Region.prototype.playerClick = function(player) {

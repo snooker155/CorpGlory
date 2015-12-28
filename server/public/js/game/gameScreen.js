@@ -26,7 +26,7 @@ GameScreen.onRegionClick = function(regionId) {
 
 GameScreen.update = function(data) {
   var money = data.player.money;
-  var shares = data.regions['EU'];
+  var shares = data.regions['EU'].shares;
   MarketShare.updateBalance(money);
   MarketShare.updateCompanyShares(shares);
 };
