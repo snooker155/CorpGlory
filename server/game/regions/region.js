@@ -2,6 +2,7 @@ const _ = require('underscore');
 
 var Region = function(playerIds) {
   this.shares = {};
+  this.clickPrice = 100;
   for(var i in playerIds) {
     var pid = playerIds[i];
     this.shares[pid] = 0.05 + i / 20;
@@ -21,7 +22,13 @@ Region.prototype.getState = function() {
 }
 
 Region.prototype.playerClick = function(player) {
-  console.log('Region.prototype.playerClick' + player.name);
+  console.log(
+    'Region.prototype.playerClick ' + player.name + ' ' + player.money
+  );
+}
+
+Region.prototype.getClickPrice = function() {
+  return this.clickPrice;
 }
 
 module.exports = Region;
