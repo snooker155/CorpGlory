@@ -20,7 +20,7 @@ GameScreen.init = function(data) {
 
 GameScreen.onRegionClick = function(regionId) {
   Communication.userAction(
-    'regionClick', { id: regionId }
+    'regionClick', { regionId: regionId }
   );
 }
 
