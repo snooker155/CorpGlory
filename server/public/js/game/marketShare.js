@@ -7,27 +7,23 @@ MarketShare.init = function(data) {
   
   var players = data.players;
   
-  var styles = [
-    "progress-bar-success", "progress-bar-warning",
-    "progress-bar-danger", ""
-  ];
-  
   var listTempalte =  _.template(
     '<div>' + 
       '<h5><%= name %></h5>' +
       '<div class="progress progress-mini">' +
         '<div aria-valuemax="100" aria-valuemin="0"' + 
-          ' role="progressbar" class="progress-bar <%= style %>">' +
+          ' role="progressbar" class="progress-bar"' +
+            'style="background-color:<%= backgroundColor %>" >' +
         '</div>' + 
       '</div>' + 
     '</div>'
   );
   
   for(var i = 0; i < players.length; i++) {
-    var pid = players[i];
+    var pid = players[i].name;
     MarketShare.items[pid] = $(listTempalte({
       name: pid,
-      style: styles[i]
+      backgroundColor: players[i].color
     }));
     $("#marketShareHolder").append(MarketShare.items[pid]);
   }

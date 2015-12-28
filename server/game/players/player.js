@@ -15,14 +15,19 @@ Player.prototype.enterToGame = function(game) {
   this.emit('enterToGame');
 }
 
+Player.prototype.getInit = function() {
+  return {
+    name: this.name
+  }
+}
+
 Player.prototype.getState = function(player) {
   if(player === this) {
     return {
       money: this.money
     }
   } else {
-    return { 
-      
+    return {
     };
   }
 }

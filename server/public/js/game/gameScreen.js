@@ -29,6 +29,7 @@ GameScreen.update = function(data) {
   var shares = data.regions['EU'].shares;
   MarketShare.updateBalance(money);
   MarketShare.updateCompanyShares(shares);
+  WorldMap.update(data);
 };
 
 $(function() {

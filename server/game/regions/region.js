@@ -25,9 +25,6 @@ Region.prototype.getState = function() {
 }
 
 Region.prototype.playerClick = function(player) {
-  console.log(
-    'Region.prototype.playerClick ' + player.name + ' ' + player.money
-  );
 }
 
 Region.prototype.getClickPrice = function() {
