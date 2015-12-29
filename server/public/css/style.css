@@ -6813,6 +6813,22 @@ body.landing-page {
 .landing-page .social-icon a:hover {
   background: #179d82;
 }
+.landing-page .sharing-icon a {
+  background: #1ab394;
+  color: #fff;
+  padding: 3px 0;
+  height: 40px;
+  width: 40px;
+  display: block;
+  border-radius: 5px;
+  font-size: 23px;
+}
+.landing-page .sharing-icon a:hover {
+  background: #179d82;
+}
+.landing-page .sharing-icon i {
+  margin-top: 5px;
+}
 .landing-page .img-small {
   height: 88px;
   width: 88px;
