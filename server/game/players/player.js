@@ -15,19 +15,30 @@ Player.prototype.enterToGame = function(game) {
   this.emit('enterToGame');
 }
 
+Player.prototype.getInit = function() {
+  return {
+    name: this.name
+  }
+}
+
 Player.prototype.getState = function(player) {
   if(player === this) {
     return {
       money: this.money
     }
   } else {
-    return { 
-      
+    return {
     };
   }
 }
 
 Player.prototype.clickOnRegion = function(regionId) {
+  var price = this.game.regions[regionId].getClickPrice();
+  if(price > this.money) {
+    // TODO: write error to console
+    return;
+  }
+  this.money -= price;
   this.game.playerRegionClick(this, regionId);
 }
 

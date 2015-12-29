@@ -10,13 +10,12 @@ const Regions = require('./regions/regions.js');
 
 const _ = require('underscore');
 
-function getNames(players) {
-  return _.map(players, p => p.name);
-}
 
 function Game(players) {
   EventEmitter.call(this);
-  this.regions = new Regions(getNames(players));
+  this.regions = new Regions(
+    _.map(players, p => p.name)
+  );
   this.players = players;
   this.day = 0;
 }
@@ -32,7 +31,7 @@ Game.prototype.start = function() {
 Game.prototype.getInitState = function(player) {
   return {
     regions: this.regions.getInit(),
-    players: getNames(this.players),
+    players: _.map(this.players, p => p.getInit()),
     playerId: player.name
   };
 };

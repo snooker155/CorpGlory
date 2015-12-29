@@ -20,15 +20,16 @@ GameScreen.init = function(data) {
 
 GameScreen.onRegionClick = function(regionId) {
   Communication.userAction(
-    'regionClick', { id: regionId }
+    'regionClick', { regionId: regionId }
   );
 }
 
 GameScreen.update = function(data) {
   var money = data.player.money;
-  var shares = data.regions['EU'];
+  var shares = data.regions['EU'].shares;
   MarketShare.updateBalance(money);
   MarketShare.updateCompanyShares(shares);
+  WorldMap.update(data);
 };
 
 $(function() {

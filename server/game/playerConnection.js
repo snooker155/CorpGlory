@@ -13,10 +13,15 @@ function PlayerConnection(socket, player) {
     const jmsg = JSON.parse(msg);
 
     // enter
-    if(jmsg.action === "ready") {
+    if(jmsg.action === 'ready') {
       self.player.ready = true;
       self.emit('ready', self);
     }
+    
+    if(jmsg.action === 'regionClick') {
+      self.player.clickOnRegion(jmsg.data.regionId);
+    }
+    
   });
 
   socket.on('disconnect', function() {

@@ -8,7 +8,6 @@ var REGION_ATTR = {
 WorldMap = { };
 
 WorldMap.init = function (initData) {
-
   var svgHeight = 320;
   var svgWidth = 600;
   
@@ -31,6 +30,15 @@ WorldMap.init = function (initData) {
     }
   }
 }
+
+WorldMap.update = function(data) {
+  for(var r in this.regions) {
+    var shares = data.regions['EU'].shares;
+    this.regions[r].marketShare.updateValues(
+      _.toArray(data.regions[r].shares)
+    );
+  }
+}
   
 WorldMap.onRegionClick = null;
 
@@ -43,17 +51,14 @@ var MapRegion = function (id, mapDataObj, raphaelObj, initData) {
   );
   var self = this;
   this.region[0].onclick = function() {
-    self.marketShare.g
-      .stop(true, true)
-      .css({opacity: 0.6})
-      .animate({opacity: 0.25});
+    self.marketShare.blink();
     if(self.onClick) {
       self.onClick();
     }
   };
 }
 
-var WorldMapMarketShare = function(id, cx, cy, svg, region, companies) {
+var WorldMapMarketShare = function(id, cx, cy, svg, region, players) {
   
   // make clip
   var clipId = "clip" + id;
@@ -73,9 +78,9 @@ var WorldMapMarketShare = function(id, cx, cy, svg, region, companies) {
     .attr("clip-path", "url(#" + clipId + ")")
     .css("pointer-events", "none")
     .css("opacity", "0.3");
-  for(var i = 0; i < companies.length; i++) {
+  for(var i = 0; i < players.length; i++) {
     var path = $(mkSVG("path"))
-        .attr("fill", companies[i].color);
+        .attr("fill", players[i].color);
     group.append(path);
   }
   $(svg).append(group);
@@ -94,6 +99,13 @@ WorldMapMarketShare.prototype.updateValues = function(values) {
     angleSum = aTo;
   }
 };
+
+WorldMapMarketShare.prototype.blink = function() {
+  this.g
+    .stop(true, true)
+    .css({opacity: 0.6})
+    .animate({opacity: 0.25});
+}
 
 var mkSVG = function (tag) {
   return document.createElementNS("http://www.w3.org/2000/svg", tag);
