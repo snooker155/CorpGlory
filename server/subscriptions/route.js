@@ -4,7 +4,11 @@ const Render = require('./../render.js');
 
 function route (app) {
   app.get('/subscribtions', function(req, res) {
-    Render.renderBasic(res, 'subscribtions');
+    res.redirect('/subscriptions');
+  });
+  
+  app.get('/subscriptions', function(req, res) {
+    Render.renderBasic(res, 'subscriptions');
   });
 
   app.post('/subscribtions', function(req, res) {
@@ -14,9 +18,9 @@ function route (app) {
       req.body.subType
     );
     if(success) {
-      Render.renderBasic(res, 'subscribtionsOk');
+      Render.renderBasic(res, 'subscriptionsOk');
     } else {
-      Render.renderBasic(res, 'subscribtionsInvalid');
+      Render.renderBasic(res, 'subscriptionsInvalid');
     }
   });
 }

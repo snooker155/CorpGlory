@@ -43,9 +43,9 @@ app.post('/', function(req, res) {
     req, req.body.email, 'all'
   );
   if(success) {
-    Render.renderBasic(res, 'subscribtionsOk');
+    Render.renderBasic(res, 'subscriptionsOk');
   } else {
-    Render.renderBasic(res, 'subscribtionsInvalid');
+    Render.renderBasic(res, 'subscriptionsInvalid');
   }
 });
 
