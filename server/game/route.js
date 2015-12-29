@@ -59,6 +59,19 @@ function onUserConnection(socket, name) {
     return false;
   }
 
+  if(players[name] !== undefined) {
+    var count = 0;
+    var pname = name;
+    for(var p in players) {
+      if(players[p].name === name ||
+         players[p].name === pname) {
+        count++;
+        pname = name + " (" + count + ")";
+      }
+    }
+    name = pname;
+  }
+
   var player = new Player(name);
   players[name] = player;
   
