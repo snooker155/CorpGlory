@@ -6826,6 +6826,9 @@ body.landing-page {
 .landing-page .sharing-icon a:hover {
   background: #179d82;
 }
+.landing-page .sharing-icon i {
+  margin-top: 5px;
+}
 .landing-page .img-small {
   height: 88px;
   width: 88px;
