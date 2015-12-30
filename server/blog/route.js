@@ -1,7 +1,9 @@
+const Render = require('../render.js');
+
 const _ = require('underscore');
 const libxmljs = require("libxmljs");
 const fs = require('fs');
-var path = require('path');
+const path = require('path');
 
 
 // MODELS
@@ -55,24 +57,24 @@ function route (app) {
     }
     res.send(html);
   };
-  
+
   app.get('/blog', function(req, res) {
     var posts = getAllPosts();
-    res.render('blog/list', {
+    Render.renderInner(res, 'blog/list', {
       title: 'Blog',
       posts: posts,
-      _: _
     });
   });
 
   app.get('/blog/(*)', function(req, res) {
-    var path = 'posts/' + req.params[0];    
-    var data = { 
+    var postId = req.params[0];
+    var data = {
       title: 'Blog',
-      html: getPost(postId)
+      post: {
+        html: getPost(postId)
+      }
     };
-    var callback = _.partial(postFail, res);
-    res.render('blog/post', data , callback);
+    Render.renderInner(res, 'blog/post', data, postFail);
   });
 }
 
