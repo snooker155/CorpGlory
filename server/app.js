@@ -5,7 +5,9 @@ var express = require('express'),
 var path = require('path');
 var bodyParser = require('body-parser');
 
-const SubscriptionManager = require('./subscriptions/subscriptionManager.js');
+const SubscriptionManager = require(
+  './subscriptions/subscriptionManager.js'
+);
 const Render = require('./render.js');
 
 // CONFIGURE
@@ -49,8 +51,6 @@ app.post('/', function(req, res) {
   }
 });
 
-// subsribtions
-require('./subscriptions/route.js')(app);
 
 // press
 
@@ -59,22 +59,11 @@ app.get('/press', function(req, res) {
 });
 
 // blog
-// TODO: move to module 'blog'
-app.get('/blog', function(req, res) {
-  res.render('blog', {title:'Blog'});
-});
+require('./blog/route.js')(app);
 
-app.get('/blog/(*)', function(req, res) {
-  res.render('posts/' + req.params[0], { title:'Blog' }, function(err, html) {
-    if (err) {
-      if (err.message.indexOf('Failed to lookup view') !== -1) {
-        return res.status(404).send('not found');
-      }
-      throw err;
-    }
-    res.send(html);
-  });
-});
+// subsribtions
+require('./subscriptions/route.js')(app);
+
 
 
 // RUN

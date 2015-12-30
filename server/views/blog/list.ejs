@@ -1,0 +1,16 @@
+<section class="blog" id="blog">
+  
+  <% _.each(posts, post => { %>
+  
+  <%- post.previewHtml %>
+  <%= post.id %>
+  
+  <a href="<%= post.url %>" 
+    class="btn btn-lg btn-primary" 
+    style="background:#fd8a10; border:0">
+    Read it
+  </a>
+  
+  <% }) %>
+    
+</section>
