@@ -2,7 +2,6 @@ const randomstring = require("randomstring");
 const path = require('path');
 const fs = require('fs');
 
-
 const DATA_PATH = path.join(__dirname, 'data');
 
 if (!fs.existsSync(DATA_PATH)){
