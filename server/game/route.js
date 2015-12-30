@@ -35,8 +35,10 @@ function onEnterGame() {
 // TODO: move to game manger
 function onUserDisconnect(playerConnection) {
   var name = playerConnection.player.name;
-  delete playerConnections[name];
-  delete players[name];
+  if(game === undefined) {
+    delete playerConnections[name];
+    delete players[name];
+  }
   for(var p in playerConnections) {
     playerConnections[p].disconnectPlayer(name);
   }
@@ -55,21 +57,17 @@ function onUserReady(playerConnection) {
 
 // TODO: move to game manger
 function onUserConnection(socket, name) {
-  if(PlayerConnection[name] !== undefined) {
+  if(players[name] !== undefined && game === undefined) {
     return false;
   }
 
-  if(players[name] !== undefined) {
-    var count = 0;
-    var pname = name;
-    for(var p in players) {
-      if(players[p].name === name ||
-         players[p].name === pname) {
-        count++;
-        pname = name + " (" + count + ")";
-      }
-    }
-    name = pname;
+  if (playerConnections[name] !== undefined && game !== undefined) {
+    delete playerConnections[name];
+    var playerConnection = new PlayerConnection(socket, players[name]);
+    playerConnection.on('disconnect', onUserDisconnect);
+    playerConnections[name] = playerConnection;
+    playerConnections[name].enterGame();
+    return;
   }
 
   var player = new Player(name);
