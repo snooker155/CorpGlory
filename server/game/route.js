@@ -78,11 +78,11 @@ function onUserConnection(socket, name) {
 }
 
 function onUserReconnect(socket, name) {
-    delete playerConnections[name];
-    var playerConnection = new PlayerConnection(socket, players[name]);
-    playerConnection.on('disconnect', onUserDisconnect);
-    playerConnection.enterGame();
-    playerConnections[name] = playerConnection;
+  delete playerConnections[name];
+  var playerConnection = new PlayerConnection(socket, players[name]);
+  playerConnection.on('disconnect', onUserDisconnect);
+  playerConnection.enterGame();
+  playerConnections[name] = playerConnection;
 }
 
 function route(app, io) {  
