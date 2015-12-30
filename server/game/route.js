@@ -57,7 +57,7 @@ function onUserReady(playerConnection) {
 
 // TODO: move to game manger
 function onUserConnection(socket, name) {
-  if(players[name] !== undefined && game === undefined) {
+  if(playerConnections[name] !== undefined) {
     return false;
   }
 
