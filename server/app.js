@@ -5,7 +5,7 @@ var express = require('express'),
 var path = require('path');
 var bodyParser = require('body-parser');
 
-const SubscriptionManager = require('./subscriptions/SubscriptionManager.js');
+const SubscriptionManager = require('./subscriptions/subscriptionManager.js');
 const Render = require('./render.js');
 
 // CONFIGURE
