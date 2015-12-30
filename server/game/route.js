@@ -32,13 +32,27 @@ function onEnterGame() {
   game.start();
 }
 
+function isGameStarted() {
+  return game;
+}
+
+function isConnectionExists(name) {
+  return playerConnections[name];
+}
+
+function isPlayerExists(name) {
+  return players[name];
+}
+
 // TODO: move to game manger
 function onUserDisconnect(playerConnection) {
   var name = playerConnection.player.name;
-  if(game === undefined) {
+
+  if(!isGameStarted()) {
     delete playerConnections[name];
     delete players[name];
   }
+  
   for(var p in playerConnections) {
     playerConnections[p].disconnectPlayer(name);
   }
@@ -57,7 +71,7 @@ function onUserReady(playerConnection) {
 
 // TODO: move to game manger
 function onUserConnection(socket, name) {
-  if(playerConnections[name] !== undefined && game === undefined) {
+  if(!isGameStarted() && isConnectionExists(name)) {
     return false;
   }
 
@@ -99,13 +113,14 @@ function route(app, io) {
   });
 
   io.on('connection', function(socket) {
-    if(game === undefined) {
-      onUserConnection(socket, socket.handshake.query.name);
-    }else{
-      if (!players[socket.handshake.query.name]){
+    var name = socket.handshake.query.name;
+    if(!isGameStarted()) {
+      onUserConnection(socket, name);
+    } else {
+      if (!isPlayerExists(name)){
         return false;
-      }else{
-        onUserReconnect(socket, socket.handshake.query.name);
+      } else {
+        onUserReconnect(socket, name);
       }
     }
   });
