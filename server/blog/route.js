@@ -68,6 +68,7 @@ function getPost(postId) {
 function route (app) {
   app.get('/blog', function(req, res) {
     Render.renderInner(res, 'blog/list', {
+      navigationTitle: 'Blog',
       title: 'Blog',
       posts: posts,
     });
@@ -80,12 +81,12 @@ function route (app) {
       res.status(404).send('not found');
       return;
     }
-    
-    var data = {
-      title: 'Blog',
+
+    Render.renderInner(res, 'blog/post', {
+      navigationTitle: 'Blog',
+      title: post.title,
       post: post
-    };
-    Render.renderInner(res, 'blog/post', data);
+    });
   });
 }
 

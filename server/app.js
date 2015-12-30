@@ -55,7 +55,13 @@ app.post('/', function(req, res) {
 // press
 
 app.get('/press', function(req, res) {
-  res.render('press', {title:'Press'});
+  Render.renderInner(
+    res, 'press', 
+    { 
+      navigationTitle: 'Press',
+      title: 'Press'
+    }
+  );
 });
 
 // blog
