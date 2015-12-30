@@ -57,7 +57,7 @@ function onUserReady(playerConnection) {
 
 // TODO: move to game manger
 function onUserConnection(socket, name) {
-  if(playerConnections[name] !== undefined) {
+  if(playerConnections[name] !== undefined && game === undefined) {
     return false;
   }
 
@@ -65,8 +65,8 @@ function onUserConnection(socket, name) {
     delete playerConnections[name];
     var playerConnection = new PlayerConnection(socket, players[name]);
     playerConnection.on('disconnect', onUserDisconnect);
+    playerConnection.enterGame();
     playerConnections[name] = playerConnection;
-    playerConnections[name].enterGame();
     return;
   }
 
