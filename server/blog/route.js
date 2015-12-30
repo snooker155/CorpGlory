@@ -8,13 +8,15 @@ const path = require('path');
 
 // MODELS
 
+var posts = undefined;
+
 // TODO: make async
 function getPostText(id) {
   var p = path.join(__dirname, 'posts', id + '.xml');
   return fs.readFileSync(p, 'utf8');
 }
 
-function getAllPosts() {
+function loadAllPosts() {
   function getPreview(id) {
     var text = getPostText(id);
     var cutIndex = text.indexOf('<preview/>');
@@ -32,34 +34,39 @@ function getAllPosts() {
   );
   var posts = _.map(xmlPosts, xp => {
     var id = xp.attr('id').value();
+    var title = xp.attr('title').value();
     var previewHtml = getPreview(id);
     return {
-      id: id, previewHtml: previewHtml
+      id:id, 
+      previewHtml: previewHtml,
+      title: title
     };
   });
-  return posts;
+
+  var res = _.object(
+    _.map(posts, p => [p.id, p])
+  );
+
+  return res;
 }
 
+posts = loadAllPosts();
+
 function getPost(postId) {
+  if(posts[postId] === undefined) {
+    return undefined;
+  }
   var text = getPostText(postId);
-  return text.replace('<preview/>', '');
+  text.replace('<preview/>', '');
+  var res = _.clone(posts[postId]);
+  res.html = text;
+  return res;
 }
 
 // CONTROLLERS
 
 function route (app) {
-  function postFail(res, err, html) {
-    if (err) {
-      if (err.message.indexOf('Failed to lookup view') !== -1) {
-        return res.status(404).send('not found');
-      }
-      throw err;
-    }
-    res.send(html);
-  };
-
   app.get('/blog', function(req, res) {
-    var posts = getAllPosts();
     Render.renderInner(res, 'blog/list', {
       title: 'Blog',
       posts: posts,
@@ -68,13 +75,17 @@ function route (app) {
 
   app.get('/blog/(*)', function(req, res) {
     var postId = req.params[0];
+    var post = getPost(postId);
+    if(post === undefined) {
+      res.status(404).send('not found');
+      return;
+    }
+    
     var data = {
       title: 'Blog',
-      post: {
-        html: getPost(postId)
-      }
+      post: post
     };
-    Render.renderInner(res, 'blog/post', data, postFail);
+    Render.renderInner(res, 'blog/post', data);
   });
 }
 

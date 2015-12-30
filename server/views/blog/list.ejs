@@ -1,6 +1,9 @@
 <section class="blog" id="blog">
   
   <% _.each(posts, post => { %>
+    <a href="/blog/<%= post.id %>"> 
+      <h2> <%= post.title %> </h2>
+    </a>
     <%- post.previewHtml %>
     <a href="/blog/<%= post.id %>" 
       class="btn btn-lg btn-primary" 
