@@ -11,7 +11,7 @@ function route (app) {
     Render.renderBasic(res, 'subscriptions');
   });
 
-  app.post('/subscribtions', function(req, res) {
+  app.post('/subscriptions', function(req, res) {
     const success = SubscriptionManager.updateEmailSubscribtion(
       req,
       req.body.email,
