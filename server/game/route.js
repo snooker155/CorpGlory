@@ -61,15 +61,6 @@ function onUserConnection(socket, name) {
     return false;
   }
 
-  if (playerConnections[name] !== undefined && game !== undefined) {
-    delete playerConnections[name];
-    var playerConnection = new PlayerConnection(socket, players[name]);
-    playerConnection.on('disconnect', onUserDisconnect);
-    playerConnection.enterGame();
-    playerConnections[name] = playerConnection;
-    return;
-  }
-
   var player = new Player(name);
   players[name] = player;
   
@@ -86,6 +77,14 @@ function onUserConnection(socket, name) {
   return true;
 }
 
+function onUserReconnect(socket, name) {
+    delete playerConnections[name];
+    var playerConnection = new PlayerConnection(socket, players[name]);
+    playerConnection.on('disconnect', onUserDisconnect);
+    playerConnection.enterGame();
+    playerConnections[name] = playerConnection;
+}
+
 function route(app, io) {  
   app.get('/game', function(req, res) {
     res.redirect('/game/default');
@@ -100,7 +99,15 @@ function route(app, io) {
   });
 
   io.on('connection', function(socket) {
-    onUserConnection(socket, socket.handshake.query.name);
+    if(game === undefined) {
+      onUserConnection(socket, socket.handshake.query.name);
+    }else{
+      if (!players[socket.handshake.query.name]){
+        return false;
+      }else{
+        onUserReconnect(socket, socket.handshake.query.name);
+      }
+    }
   });
 }
 
