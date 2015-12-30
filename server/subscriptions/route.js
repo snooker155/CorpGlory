@@ -1,4 +1,4 @@
-const SubscriptionManager = require('./SubscriptionManager.js');
+const SubscriptionManager = require('./subscriptionManager.js');
 const Render = require('./../render.js');
 
 
