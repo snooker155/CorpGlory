@@ -32,11 +32,27 @@ function onEnterGame() {
   game.start();
 }
 
+function isGameStarted() {
+  return game;
+}
+
+function isConnectionExists(name) {
+  return playerConnections[name];
+}
+
+function isPlayerExists(name) {
+  return players[name];
+}
+
 // TODO: move to game manger
 function onUserDisconnect(playerConnection) {
   var name = playerConnection.player.name;
-  delete playerConnections[name];
-  delete players[name];
+
+  if(!isGameStarted()) {
+    delete playerConnections[name];
+    delete players[name];
+  }
+  
   for(var p in playerConnections) {
     playerConnections[p].disconnectPlayer(name);
   }
@@ -55,7 +71,7 @@ function onUserReady(playerConnection) {
 
 // TODO: move to game manger
 function onUserConnection(socket, name) {
-  if(PlayerConnection[name] !== undefined) {
+  if(!isGameStarted() && isConnectionExists(name)) {
     return false;
   }
 
@@ -75,6 +91,14 @@ function onUserConnection(socket, name) {
   return true;
 }
 
+function onUserReconnect(socket, name) {
+  delete playerConnections[name];
+  var playerConnection = new PlayerConnection(socket, players[name]);
+  playerConnection.on('disconnect', onUserDisconnect);
+  playerConnection.enterGame();
+  playerConnections[name] = playerConnection;
+}
+
 function route(app, io) {  
   app.get('/game', function(req, res) {
     res.redirect('/game/default');
@@ -89,7 +113,16 @@ function route(app, io) {
   });
 
   io.on('connection', function(socket) {
-    onUserConnection(socket, socket.handshake.query.name);
+    var name = socket.handshake.query.name;
+    if(!isGameStarted()) {
+      onUserConnection(socket, name);
+    } else {
+      if (!isPlayerExists(name)){
+        return false;
+      } else {
+        onUserReconnect(socket, name);
+      }
+    }
   });
 }
 
