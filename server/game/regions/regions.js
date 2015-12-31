@@ -44,9 +44,19 @@ Regions.prototype.playerRegionClick = function(player, regionId) {
     // TODO: log this
     return;
   }
-  region.playerClick(player, regionId);
+  return region.playerClick(player, regionId);
 };
 
+
+
+Regions.prototype.playerBuyRegionPlace = function(player, regionId) {
+  var region = this[regionId];
+  if(region === undefined) {
+    // TODO: log this
+    return;
+  }
+  region.playerBuyRegionPlace(player, regionId);
+};
 
 
 module.exports = Regions;

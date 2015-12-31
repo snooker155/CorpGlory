@@ -19,7 +19,7 @@ function PlayerConnection(socket, player) {
     }
     
     if(jmsg.action === 'regionClick') {
-      self.player.clickOnRegion(jmsg.data.regionId);
+      self.selectRegion(jmsg.data.regionId);
     }
     
   });
@@ -65,6 +65,11 @@ PlayerConnection.prototype.enterGame = function() {
 
 PlayerConnection.prototype.update = function() {
   this.sendObj('update', this.player.game.getWorldState(this.player));
+}
+
+
+PlayerConnection.prototype.selectRegion = function(regionId) {
+  this.sendObj('selectRegion', this.player.game.regions.playerRegionClick(this.player, regionId));
 }
 
 module.exports = PlayerConnection;

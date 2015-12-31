@@ -22,6 +22,7 @@ GameScreen.onRegionClick = function(regionId) {
   Communication.userAction(
     'regionClick', { regionId: regionId }
   );
+  
 }
 
 GameScreen.update = function(data) {
@@ -31,6 +32,13 @@ GameScreen.update = function(data) {
   MarketShare.updateCompanyShares(shares);
   WorldMap.update(data);
 };
+
+
+GameScreen.selectRegion = function(data) {
+  var shares = data.shares;
+  MarketShare.updateCompanyShares(shares);
+};
+
 
 $(function() {
   $("#gameScreenHolder").hide();

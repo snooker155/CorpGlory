@@ -31,6 +31,9 @@ App.onUpdate = function(data) {
   GameScreen.update(data);
 }
 
+App.onSelectRegion = function(data) {
+  GameScreen.selectRegion(data);
+}
 
 
 

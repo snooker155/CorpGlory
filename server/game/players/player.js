@@ -33,14 +33,20 @@ Player.prototype.getState = function(player) {
 }
 
 Player.prototype.clickOnRegion = function(regionId) {
+  
+}
+
+
+Player.prototype.buyRegionPlace = function(regionId) {
   var price = this.game.regions[regionId].getClickPrice();
   if(price > this.money) {
     // TODO: write error to console
     return;
   }
   this.money -= price;
-  this.game.playerRegionClick(this, regionId);
+  this.game.playerBuyRegionPlace(this, regionId);
 }
+
 
 Player.prototype.update = function() {
   

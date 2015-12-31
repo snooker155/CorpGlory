@@ -28,6 +28,9 @@ Communication.open = function() {
     if(jmsg.command === 'update') {
       App.onUpdate(data);
     }
+    if(jmsg.command === 'selectRegion') {
+      App.onSelectRegion(data);
+    }
   });
 }
 

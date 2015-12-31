@@ -58,7 +58,12 @@ Game.prototype.update = function() {
 };
 
 Game.prototype.playerRegionClick = function(player, regionId) {
-  this.regions.playerRegionClick(player, regionId);
+  //this.emit('selectRegion', regionId);
 };
+
+Game.prototype.playerBuyRegionPlace = function(player, regionId) {
+  this.regions.playerBuyRegionPlace(player, regionId);
+};
+
 
 module.exports = Game;
