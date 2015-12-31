@@ -1,9 +1,6 @@
 const _ = require('underscore');
 const fs = require('fs');
 const path = require('path');
-const jsonData = require('./posts/data.json');
-
-var posts = undefined;
 
 var BlogManager = {};
 
@@ -24,29 +21,28 @@ BlogManager.loadAllPosts = function() {
     }
     return text;
   }
+  
+  var data = require('./posts/data.json'); // ordered posts array
+  BlogManager.posts = data.posts;
+  BlogManager.idPost = {}; // map id -> post
 
-  var posts = _.map(jsonData.posts, jp => {
-    var res = _.clone(jp);
-    res.previewHtml = getPreview(jp.id);
-    return res;
+  _.each(BlogManager.posts, jp => {
+    jp.previewHtml = getPreview(jp.id);
+    BlogManager.idPost[jp.id] = jp;
   });
-
-  var res = _.object(
-    _.map(posts, p => [p.id, p])
-  );
-
-  return res;
 }
 
-BlogManager.posts = BlogManager.loadAllPosts();
+BlogManager.loadAllPosts();
+
 
 BlogManager.getPost = function(postId) {
-  if(BlogManager.posts[postId] === undefined) {
+  const post = BlogManager.idPost[postId];
+  if(post === undefined) {
     return undefined;
   }
-  var text = BlogManager.getPostText(postId);
-  text.replace(PREVIEW_DELIMETER, '');
-  var res = _.clone(BlogManager.posts[postId]);
+  var text = BlogManager.getPostText(postId)
+                        .replace(PREVIEW_DELIMETER, '');
+  var res = _.clone(post);
   res.html = text;
   return res;
 }
