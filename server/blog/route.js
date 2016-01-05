@@ -16,6 +16,11 @@ function route (app) {
 
   app.get('/blog/(*)', function(req, res) {
     var postId = req.params[0];
+    var alistedId = BlogManager.aliasCheck(postId);
+    if(alistedId !== undefined) {
+      res.redirect(301, alistedId);
+      return;
+    }
     var post = BlogManager.getPost(postId);
     if(post === undefined) {
       res.status(404).send('not found');

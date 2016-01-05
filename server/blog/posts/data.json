@@ -1,8 +1,9 @@
 {
   "posts": [
     {
-      "id": "a-new-entertainment-for-startuppers",
-      "title": "A new entertainment for startuppers"
+      "id": "a-new-entertainment-for-entrepreneurs",
+      "alias": "a-new-entertainment-for-startuppers",
+      "title": "A new entertainment for entrepreneurs"
     }
   ]
 }
