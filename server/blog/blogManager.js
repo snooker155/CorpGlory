@@ -29,18 +29,38 @@ BlogManager.loadAllPosts = function() {
   _.each(BlogManager.posts, jp => {
     jp.previewHtml = getPreview(jp.id);
     BlogManager.idPost[jp.id] = jp;
+    if(jp.alias !== undefined) {
+      BlogManager.idPost[jp.alias] = jp;
+    }
   });
 }
 
 BlogManager.loadAllPosts();
 
+// return undefined if it IS NOT an alias
+// return targetId if it IS an alias
+BlogManager.aliasCheck = function(postId) {
+  var p = BlogManager.idPost[postId];
+  if(p === undefined) {
+    return undefined;
+  }
+  if(p.id === postId) {
+    return undefined;
+  }
+  return p.id;
+}
 
 BlogManager.getPost = function(postId) {
   const post = BlogManager.idPost[postId];
   if(post === undefined) {
     return undefined;
   }
-  var text = BlogManager.getPostText(postId)
+  if(post.id !== postId) {
+    res.redirect(301, post.id);
+    return;
+  }
+  
+  var text = BlogManager.getPostText(post.id)
                         .replace(PREVIEW_DELIMETER, '');
   var res = _.clone(post);
   res.html = text;
