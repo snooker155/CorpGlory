@@ -1,0 +1,32 @@
+.blog img {
+  max-width: 100%;
+}
+
+#team p {
+  color:#333;
+  font-family: 'Open Sans', helvetica, arial, sans-serif;
+  font-weight: lighter;
+  font-size: 15px;
+}
+
+#blog p {
+  color:#333;
+  font-family: 'Open Sans', helvetica, arial, sans-serif;
+  font-weight: lighter;
+  font-size: 18px;
+  margin-top:30px;
+}
+
+#blog h2 {
+  font-family: 'Open Sans', helvetica, arial, sans-serif;
+  font-weight: normal;
+  font-size: 36px;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+#blog .btn-read {
+  background:#fd8a10; 
+  border:0;
+  margin-top: 10px;
+}
