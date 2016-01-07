@@ -9,6 +9,10 @@
   font-size: 15px;
 }
 
+#team h2 {
+  margin-top: 0px;
+}
+
 #blog p {
   color:#333;
   font-family: 'Open Sans', helvetica, arial, sans-serif;
